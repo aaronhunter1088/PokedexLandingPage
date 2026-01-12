@@ -1,6 +1,7 @@
 # PokedexLandingPage
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.5.
+See below for historical changes.
 
 ## Development server
 
@@ -10,7 +11,8 @@ To start a local development server, run:
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will
+automatically reload whenever you modify any of the source files.
 
 ## Code scaffolding
 
@@ -34,7 +36,8 @@ To build the project run:
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build
+optimizes your application for performance and speed.
 
 ## Running unit tests
 
@@ -56,4 +59,11 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 
 ## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+For more information on using the Angular CLI, including detailed command references, visit
+the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## History
+
+#### Version 1.0.0
+This is the initial release of the Pokedex Landing Page application. It features two main sections for navigating to
+either flavor of my Pokédex applications, and then a brief overview describing the reasons for creating these applications.
