@@ -64,6 +64,14 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.1.0
+Updated the homepage to include a background image and 3 tiles. These tiles each link to their
+appropriate flavor of the Pokédex app. The tiles do load their app when they are running however
+the dark mode toggle is not implemented and only a concept at the moment.
+
+#### Version 1.0.1
+Added Angular Material to the project for UI components and styling.
+
 #### Version 1.0.0
 This is the initial release of the Pokedex Landing Page application. It features two main sections for navigating to
 either flavor of my Pokédex applications, and then a brief overview describing the reasons for creating these applications.
