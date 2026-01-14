@@ -169,6 +169,45 @@
         fill: var(--gray-900);
     }
 
+    /* Rotator styles: two overlapping images crossfade in a 6s loop
+       Timeline: 0-2s image A visible, 2-3s fade A->B, 3-5s image B visible, 5-6s fade B->A */
+    .rotator {
+        position: relative;
+        width: 300px;
+        height: 80px;
+        display: block;
+        overflow: hidden;
+    }
+
+    .rotator img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        pointer-events: none;
+    }
+
+    @keyframes showA {
+        0% { opacity: 1; }
+        33.333% { opacity: 1; }
+        50% { opacity: 0; }
+        83.333% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+    @keyframes showB {
+        0% { opacity: 0; }
+        33.333% { opacity: 0; }
+        50% { opacity: 1; }
+        83.333% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+
+    .rotator img.a { animation: showA 6s linear infinite; }
+    .rotator img.b { animation: showB 6s linear infinite; }
+
     @media screen and (max-width: 650px) {
         .content {
             flex-direction: column;
@@ -187,7 +226,7 @@
 <main class="main">
     <div style="width:100%;max-width:900px;">
         <div style="display:inline-flex;width:100%;justify-content:center;margin-top:1rem;">
-            <mat-card id="tile1" tabindex="0" [style]="toggle1Checked ? 'background-color: #333333; color: white;' : ''">
+            <mat-card id="tile1" tabindex="0" [style]="toggle1Checked ? 'background-color: #333333; color: white;' : 'background-color:white;'">
                 <a [href]="'http://localhost:4201?mode=' + (toggle1Checked ? 'dark' : 'light')" style="display: contents;">
                     <mat-card-header>
                         <mat-card-title [style]="toggle1Checked ? 'background-color: #333333; color: white;' : ''"> Spring Boot </mat-card-title>
@@ -206,7 +245,9 @@
                              alt="Spring Full White"/>
                     </mat-card-content>
                     <mat-card-footer [style]="toggle1Checked ? 'background-color: #333333; color: white;' : ''">
-                        Set dark mode and go
+                        {{toggle1Checked
+                        ? 'Dark mode set. Let\'s go!'
+                        : 'Light mode set. Let\'s go!'}}
                     </mat-card-footer>
                 </a>
                 <mat-card-actions style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
@@ -220,15 +261,15 @@
                 </mat-card-actions>
             </mat-card>
             <div aria-label="Divider" class="divider" role="separator"></div>
-            <mat-card id="tile2" tabindex="0" [style]="toggle2Checked ? 'background-color: #333333; color: white;' : ''">
+            <mat-card id="tile2" tabindex="0" [style]="toggle2Checked ? 'background-color: #333333; color: white;' : 'background-color:white;'">
                 <a [href]="'http://localhost:4202?mode=' + (toggle2Checked ? 'dark' : 'light')" style="display: contents;">
                     <mat-card-header>
                         <mat-card-title [style]="toggle2Checked ? 'background-color: #333333; color: white;' : ''"> Angular </mat-card-title>
                         <mat-card-subtitle [style]="toggle2Checked ? 'background-color: #333333; color: white;' : ''"> v21 </mat-card-subtitle>
                         <img mat-card-avatar
                              ngSrc="{{ toggle2Checked ? 'angular-logo-black.png' : 'angular-logo-white.png' }}"
-                             width="50"
-                             height="50"
+                             width="40"
+                             height="40"
                              alt="Angular Logo White"/>
                     </mat-card-header>
                     <mat-card-content>
@@ -239,7 +280,9 @@
                              alt="Angular Full White"/>
                     </mat-card-content>
                     <mat-card-footer [style]="toggle2Checked ? 'background-color: #333333; color: white;' : ''">
-                        Set dark mode and go
+                        {{toggle2Checked
+                        ? 'Dark mode set. Let\'s go!'
+                        : 'Light mode set. Let\'s go!'}}
                     </mat-card-footer>
                 </a>
                 <mat-card-actions style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
@@ -259,27 +302,31 @@
                         <mat-card-title [style]="toggle3Checked ? 'background-color: #333333; color: white;' : ''"> Angular Frontend </mat-card-title>
                         <mat-card-subtitle [style]="toggle3Checked ? 'background-color: #333333; color: white;' : ''"> Spring Boot Backend </mat-card-subtitle>
                         <img mat-card-avatar
-                             ngSrc="{{ toggle3Checked ? 'angular-logo-black.png' : 'angular-logo-white.png' }}"
+                             ngSrc="{{ toggle3Checked
+                             ? 'angular-logo-black.png'
+                             : 'spring-logo-white.png' }}"
                              width="40"
                              height="40"
                              alt="Spring Logo White"/>
                     </mat-card-header>
                     <mat-card-content>
                         <img mat-card-image
-                             ngSrc="{{ toggle3Checked ? 'angular-full-dark-whiteText.png' : 'angular-full-white.png' }}"
+                             ngSrc="spring-full-white.png"
                              width="300"
                              height="80"
                              alt="Spring Full White"/>
                     </mat-card-content>
                     <mat-card-footer [style]="toggle3Checked ? 'background-color: #333333; color: white;' : ''">
-                        Set dark mode and go
+                        {{toggle3Checked
+                        ? 'Dark mode set. Let\'s go!'
+                        : 'Light mode set. Let\'s go!'}}
                     </mat-card-footer>
                 </a>
                 <mat-card-actions style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
                     <mat-icon [style]="'color:#FF9933;'">sunny</mat-icon>
                     <mat-slide-toggle [(ngModel)]="toggle3Checked" (ngModelChange)="updateMode3($event);"></mat-slide-toggle>
                     <mat-icon>
-                        <span class="material-symbols-outlined" [style]="toggle2Checked ? 'color: white;' : ''">
+                        <span class="material-symbols-outlined" [style]="toggle3Checked ? 'color: white;' : ''">
                         bedtime
                         </span>
                     </mat-icon>
@@ -306,3 +353,4 @@
 <!--        </div>-->
     </div>
 </main>
+
