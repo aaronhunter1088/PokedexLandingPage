@@ -64,6 +64,9 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.1.2
+Updated tile3 to alternate the logo and content images between Angular and Spring Boot, independentally of each other.
+
 #### Version 1.1.1
 Updated the homepage to fix the darkmode toggles such that the tiles adjust to this settings change.
 

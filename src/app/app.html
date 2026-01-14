@@ -302,16 +302,14 @@
                         <mat-card-title [style]="toggle3Checked ? 'background-color: #333333; color: white;' : ''"> Angular Frontend </mat-card-title>
                         <mat-card-subtitle [style]="toggle3Checked ? 'background-color: #333333; color: white;' : ''"> Spring Boot Backend </mat-card-subtitle>
                         <img mat-card-avatar
-                             ngSrc="{{ toggle3Checked
-                             ? 'angular-logo-black.png'
-                             : 'spring-logo-white.png' }}"
+                             [ngSrc]="ngLogoImgValue"
                              width="40"
                              height="40"
                              alt="Spring Logo White"/>
                     </mat-card-header>
                     <mat-card-content>
                         <img mat-card-image
-                             ngSrc="spring-full-white.png"
+                             [ngSrc]="ngFullImgValue"
                              width="300"
                              height="80"
                              alt="Spring Full White"/>
@@ -353,4 +351,3 @@
 <!--        </div>-->
     </div>
 </main>
-
