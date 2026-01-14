@@ -1,1 +1,32 @@
 
+.site-header {
+    height: 50px;
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+.header-icons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.header-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+.header-icon.clickable {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.header-icon.clickable:hover {
+    transform: scale(1.1);
+}
