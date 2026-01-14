@@ -64,6 +64,13 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.2.1
+Used Chat to update the homepage to include a header. This header should have two icons, right-justified.
+The first icon is a shuffle icon and will be configured to randomize the background image but is not yet implemented.
+The second icon is an info icon to switch between the tiles and the info section without reloading the page; this button
+was implemented. Clicking the icon shows the info section of the application. The icon also adjusts to a 'go back'
+circle arrow which can be used to display the tiles again.
+
 #### Version 1.2.0
 Set up router-outlet to switch between tiles and info sections without reloading the page.
 
