@@ -8,6 +8,15 @@ import {MatCard} from "@angular/material/card";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatMenu} from "@angular/material/menu";
+import {MatSlideToggle} from "@angular/material/slide-toggle";
+import {
+    MatCardActions,
+    MatCardContent, MatCardFooter,
+    MatCardHeader,
+    MatCardImage,
+    MatCardSubtitle,
+    MatCardTitle
+} from "@angular/material/card";
 
 @NgModule({
     //“What other modules can use through me”
@@ -26,7 +35,16 @@ import {MatMenu} from "@angular/material/menu";
         //MatDialog,
         //MatSnackBar,
         MatCard,
-        MatMenu
+        MatMenu,
+
+        MatCardContent,
+        MatCardImage,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardSubtitle,
+        MatCardActions,
+        MatCardFooter,
+        MatSlideToggle
     ],
     //“What this module is allowed to use internally”
     imports: [
@@ -42,7 +60,16 @@ import {MatMenu} from "@angular/material/menu";
         MatFormField,
         MatInput,
         MatCard,
-        MatMenu
+        MatMenu,
+
+        MatCardContent,
+        MatCardImage,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardSubtitle,
+        MatCardActions,
+        MatCardFooter,
+        MatSlideToggle
     ]
 })
 export class MaterialModule {}
