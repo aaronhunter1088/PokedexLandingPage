@@ -1,5 +1,9 @@
 
 .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 50px;
     width: 100%;
     background-color: transparent;
@@ -8,6 +12,7 @@
     justify-content: flex-end;
     padding-right: 20px;
     box-sizing: border-box;
+    z-index: 1000;
 }
 
 .header-icons {
