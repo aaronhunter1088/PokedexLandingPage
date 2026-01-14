@@ -17,8 +17,9 @@ export class App {
     previousRoute: string;
 
     constructor(private router: Router) {
-        this.currentRoute = "";
+        this.currentRoute = this.router.url;
         this.previousRoute = "";
+        this.updateIcon();
         this.router.events.subscribe((event: any) => {
             if (event instanceof NavigationStart) {
                 // Show loading indicator
