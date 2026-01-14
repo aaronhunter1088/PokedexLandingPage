@@ -187,7 +187,7 @@
 <main class="main">
     <div style="width:100%;max-width:900px;">
         <div style="display:inline-flex;width:100%;justify-content:center;margin-top:1rem;">
-            <mat-card tabindex="0" [style]="toggle1Checked ? 'background-color: #333333; color: white;' : ''">
+            <mat-card id="tile1" tabindex="0" [style]="toggle1Checked ? 'background-color: #333333; color: white;' : ''">
                 <a [href]="'http://localhost:4201?mode=' + (toggle1Checked ? 'dark' : 'light')" style="display: contents;">
                     <mat-card-header>
                         <mat-card-title [style]="toggle1Checked ? 'background-color: #333333; color: white;' : ''"> Spring Boot </mat-card-title>
@@ -220,7 +220,7 @@
                 </mat-card-actions>
             </mat-card>
             <div aria-label="Divider" class="divider" role="separator"></div>
-            <mat-card tabindex="0" [style]="toggle2Checked ? 'background-color: #333333; color: white;' : ''">
+            <mat-card id="tile2" tabindex="0" [style]="toggle2Checked ? 'background-color: #333333; color: white;' : ''">
                 <a [href]="'http://localhost:4202?mode=' + (toggle2Checked ? 'dark' : 'light')" style="display: contents;">
                     <mat-card-header>
                         <mat-card-title [style]="toggle2Checked ? 'background-color: #333333; color: white;' : ''"> Angular </mat-card-title>
@@ -253,7 +253,7 @@
                 </mat-card-actions>
             </mat-card>
             <div aria-label="Divider" class="divider" role="separator"></div>
-            <mat-card tabindex="0" [style]="toggle3Checked ? 'background-color: #333333; color: white;' : ''">
+            <mat-card id="tile3" tabindex="0" [style]="toggle3Checked ? 'background-color: #333333; color: white;' : ''">
                 <a [href]="'http://localhost:4203?mode=' + (toggle3Checked ? 'dark' : 'light')" style="display: contents;">
                     <mat-card-header>
                         <mat-card-title [style]="toggle3Checked ? 'background-color: #333333; color: white;' : ''"> Angular Frontend </mat-card-title>
