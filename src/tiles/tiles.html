@@ -27,9 +27,9 @@
             <mat-icon [style]="'color:#FF9933;'">sunny</mat-icon>
             <mat-slide-toggle [(ngModel)]="toggle1Checked" (ngModelChange)="updateMode1($event);"></mat-slide-toggle>
             <mat-icon>
-                        <span class="material-symbols-outlined" [style]="toggle1Checked ? 'color: white;' : ''">
-                        bedtime
-                        </span>
+                <span class="material-symbols-outlined" [style]="toggle1Checked ? 'color: white;' : ''">
+                bedtime
+                </span>
             </mat-icon>
         </mat-card-actions>
     </mat-card>
@@ -69,8 +69,8 @@
         </mat-card-actions>
     </mat-card>
     <div aria-label="Divider" class="divider" role="separator"></div>
-    <mat-card id="tile3" tabindex="0" [style]="toggle3Checked ? 'background-color: #333333; color: white;' : ''">
-        <a [href]="'http://localhost:4203?mode=' + (toggle3Checked ? 'dark' : 'light')" style="display: contents;">
+    <mat-card id="tile3" tabindex="0" [style]="toggle3Checked ? 'background-color: #333333; color: white;' : 'background-color:white;'">
+        <a [href]="'http://localhost:4203?mode=' + (toggle3Checked ? 'dark' : 'light')" style="text-decoration:none; display: contents;">
             <mat-card-header>
                 <mat-card-title [style]="toggle3Checked ? 'background-color: #333333; color: white;' : ''"> Angular Frontend </mat-card-title>
                 <mat-card-subtitle [style]="toggle3Checked ? 'background-color: #333333; color: white;' : ''"> Spring Boot Backend </mat-card-subtitle>
@@ -104,3 +104,6 @@
         </mat-card-actions>
     </mat-card>
 </div>
+
+
+

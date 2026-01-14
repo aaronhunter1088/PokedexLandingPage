@@ -1,0 +1,44 @@
+/* Tile-specific styles */
+a {
+    color: inherit;         /* Inherits color from the parent element */
+    text-decoration: none;  /* Removes the default underline */
+    /* Remove the outline that appears on focus for accessibility (use with caution) */
+    outline: none;
+}
+
+/* Ensure all link states (visited, hover, active, focus) also inherit these styles */
+a:link, a:visited, a:hover, a:active, a:focus {
+    color: inherit;
+    text-decoration: none;
+    outline: none;
+}
+
+/* Theme-aware divider for tiles */
+.divider {
+    width: 2px; /* fixed width */
+    flex: 0 0 2px; /* don't shrink or grow */
+    align-self: stretch; /* ensure it stretches vertically inside the inline-flex container */
+    min-height: 80px; /* visible height to match card content */
+    margin-inline: 0.5rem;
+    /* solid purple fallback and vertical gradient (light-mode appearance) */
+    background-color: #7a2cff;
+    background-image: linear-gradient(180deg, #8a2be2 0%, #7a2cff 50%, #6b2cff 100%) !important;
+    display: block;
+    transition: background 160ms ease-in-out, opacity 120ms ease;
+}
+
+@media screen and (max-width: 650px) {
+    .content {
+        flex-direction: column;
+        width: max-content;
+    }
+
+    /* Responsive: when layout stacks on small screens, show horizontal separators */
+    .divider {
+        min-height: 0;
+        height: 2px; /* horizontal thickness */
+        width: 100%;
+        /* use horizontal purple gradient (left-to-right) */
+        background: linear-gradient(90deg, #8a2be2 0%, #7a2cff 50%, #6b2cff 100%);
+    }
+}

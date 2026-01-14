@@ -10,6 +10,7 @@ import {
 import {MatIcon} from "@angular/material/icon";
 import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {NgOptimizedImage} from "@angular/common";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-tiles',
@@ -24,10 +25,11 @@ import {NgOptimizedImage} from "@angular/common";
         MatCardTitle,
         MatIcon,
         MatSlideToggle,
-        NgOptimizedImage
+        NgOptimizedImage,
+        FormsModule
     ],
   templateUrl: './tiles.html',
-  styleUrl: './tiles.css',
+  styleUrls: ['./tiles.css'],
 })
 export class Tiles implements OnInit, OnDestroy {
 

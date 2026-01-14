@@ -1,13 +1,14 @@
-import {Routes} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {App} from "./app";
 import {Tiles} from "../tiles/tiles";
 import {Info} from "../info/info";
+import {NgModule} from "@angular/core";
 
 export const routes: Routes = [
     {
         path: '',
-        title: 'PokedexLandingPage',
-        component: App
+        pathMatch: "full",
+        redirectTo: 'tiles'
     },
     {
         path: 'tiles',
@@ -20,3 +21,13 @@ export const routes: Routes = [
         component: Info
     }
 ];
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+})
+export class AppRoutingModule {
+}
+
+export const routingComponents = [
+    Tiles, Info]

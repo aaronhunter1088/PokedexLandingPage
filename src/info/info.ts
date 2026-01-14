@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {
     MatCard,
     MatCardActions,
@@ -19,16 +19,26 @@ import {NgOptimizedImage} from "@angular/common";
         MatCardContent,
         MatCardFooter,
         MatCardHeader,
-        MatCardImage,
         MatCardSubtitle,
         MatCardTitle,
-        MatIcon,
-        MatSlideToggle,
-        NgOptimizedImage
     ],
   templateUrl: './info.html',
   styleUrl: './info.css',
 })
-export class Info {
+export class Info implements OnInit, OnDestroy {
+
+    intervalId: any;
+
+    constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef) {}
+
+    ngOnInit() {
+
+    }
+
+    ngOnDestroy() {
+        if (this.intervalId) {
+            clearInterval(this.intervalId);
+        }
+    }
 
 }
