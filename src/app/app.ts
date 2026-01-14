@@ -1,10 +1,10 @@
 import {Component, signal} from '@angular/core';
 import {NavigationEnd, NavigationError, NavigationStart, Router, RouterOutlet} from '@angular/router';
-import {MatIcon} from '@angular/material/icon';
+import {MaterialModule} from "./materialModule";
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, MatIcon],
+    imports: [RouterOutlet, MaterialModule],
     templateUrl: './app.html',
     standalone: true,
     styleUrl: './app.css'
