@@ -59,7 +59,7 @@ main {
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    box-sizing: border-box;
+    box-sizing: inherit;
     position: relative;
     overflow: hidden;
 }
