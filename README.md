@@ -64,6 +64,9 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.1.1
+Updated the homepage to fix the darkmode toggles such that the tiles adjust to this settings change.
+
 #### Version 1.1.0
 Updated the homepage to include a background image and 3 tiles. These tiles each link to their
 appropriate flavor of the Pokédex app. The tiles do load their app when they are running however
