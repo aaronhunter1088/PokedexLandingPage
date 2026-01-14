@@ -64,6 +64,9 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.2.0
+Set up router-outlet to switch between tiles and info sections without reloading the page.
+
 #### Version 1.1.2
 Updated tile3 to alternate the logo and content images between Angular and Spring Boot, independentally of each other.
 
