@@ -1,5 +1,4 @@
 import {RouterModule, Routes} from '@angular/router';
-import {App} from "./app";
 import {Tiles} from "../tiles/tiles";
 import {Info} from "../info/info";
 import {NgModule} from "@angular/core";
@@ -12,12 +11,12 @@ export const routes: Routes = [
     },
     {
         path: 'tiles',
-        title: 'PokedexTiles',
+        title: 'Pokédex Tiles',
         component: Tiles
     },
     {
         path: 'info',
-        title: 'PokedexInfo',
+        title: 'Pokédex Info',
         component: Info
     }
 ];
@@ -28,6 +27,3 @@ export const routes: Routes = [
 })
 export class AppRoutingModule {
 }
-
-export const routingComponents = [
-    Tiles, Info]

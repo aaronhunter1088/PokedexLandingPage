@@ -64,6 +64,10 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.3.0
+Remove old list of image filenames since there is a map that contains this information alongside the region name.
+Removed the references to that list and use the map instead.
+
 #### Version 1.2.4
 Used Chat to update the header to display the region name based on the current background image.
 
