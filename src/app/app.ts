@@ -34,8 +34,8 @@ export class App {
     protected readonly title = signal('PokedexLandingPage');
     protected readonly currentIcon = signal(this.icon_info);
     protected readonly backgroundImage = signal(Object.values(this.regionsInfoMap)[0][0]);
-    protected readonly regionName = signal(Object.values(this.regionsInfoMap)[0][1]);
-    protected readonly regionColor = signal(Object.values(this.regionsInfoMap)[0][2]);
+    protected readonly regionName = signal(Object.keys(this.regionsInfoMap)[0]);
+    protected readonly regionColor = signal(Object.values(this.regionsInfoMap)[0][1]);
 
     constructor(private router: Router) {
         this.currentRoute = this.router.url;
