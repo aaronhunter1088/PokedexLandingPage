@@ -16,6 +16,19 @@ export class App {
     protected readonly icon_replay = 'replay';
     protected readonly icon_shuffle = 'shuffle';
 
+    private readonly regionNameMap: { [key: string]: string } = {
+        '1kantoMap.png': 'Kanto',
+        '2johtoMap.png': 'Johto',
+        '3hoennMap.png': 'Hoenn',
+        '41sinnohMap.png': 'Sinnoh',
+        '42hisuiSinnohMap.png': 'Hisui',
+        '5unovaMap.png': 'Unova',
+        '6kalosMap.png': 'Kalos',
+        '7alolaMap.png': 'Alola',
+        '8galarMap.png': 'Galar',
+        '9paldeaMap.png': 'Paldea'
+    };
+
     protected readonly title = signal('PokedexLandingPage');
     protected readonly currentIcon = signal(this.icon_info);
     protected readonly regionName = signal('Kanto');
@@ -98,18 +111,6 @@ export class App {
     }
 
     private getRegionName(filename: string): string {
-        const nameMap: { [key: string]: string } = {
-            '1kantoMap.png': 'Kanto',
-            '2johtoMap.png': 'Johto',
-            '3hoennMap.png': 'Hoenn',
-            '41sinnohMap.png': 'Sinnoh',
-            '42hisuiSinnohMap.png': 'Hisui',
-            '5unovaMap.png': 'Unova',
-            '6kalosMap.png': 'Kalos',
-            '7alolaMap.png': 'Alola',
-            '8galarMap.png': 'Galar',
-            '9paldeaMap.png': 'Paldea'
-        };
-        return nameMap[filename] || 'Unknown';
+        return this.regionNameMap[filename] || 'Unknown';
     }
 }
