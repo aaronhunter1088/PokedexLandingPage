@@ -27,7 +27,6 @@ describe('App', () => {
     it('should update region name when toggleBackground is called', () => {
         const fixture = TestBed.createComponent(App);
         const app = fixture.componentInstance;
-        const initialRegion = app.regionName();
         app.toggleBackground();
         fixture.detectChanges();
         expect(app.regionName()).toBeTruthy();
