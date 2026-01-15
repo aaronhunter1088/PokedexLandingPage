@@ -33,6 +33,10 @@ import {FormsModule} from "@angular/forms";
 })
 export class Tiles implements OnInit, OnDestroy {
 
+    // icons in use
+    protected readonly icon_sunny = 'sunny';
+    protected readonly icon_bedtime = 'bedtime';
+
     toggle1Checked = false;
     toggle2Checked = false;
     toggle3Checked = false;

@@ -64,6 +64,12 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.2.3
+Update help icon to info icon since that is the info section, not a help section. Also updated the scaling effect that
+occurs when the mouse hovers over an icon in the header. I also added some readonly properties in app and tiles that
+reference the icons in use, in that particular component. This may make switching icons around easier but also helps
+ensure that icons don't get forgotten about. Finally, removed some unnecessary comments printed to the dev console.
+
 #### Version 1.2.2
 Added new maps for the background randomizer. Then added logic to randomly select one of these maps
 when the shuffle icon is clicked.
