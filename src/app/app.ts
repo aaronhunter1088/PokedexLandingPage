@@ -18,23 +18,24 @@ export class App {
     protected readonly icon_replay = 'replay';
     protected readonly icon_shuffle = 'shuffle';
 
-    private readonly regionNameMap: { [key: string]: string } = {
-        '1kantoMap.png': 'Kanto',
-        '2johtoMap.png': 'Johto',
-        '3hoennMap.png': 'Hoenn',
-        '41sinnohMap.png': 'Sinnoh',
-        '42hisuiSinnohMap.png': 'Ancient Sinnoh',
-        '5unovaMap.png': 'Unova',
-        '6kalosMap.png': 'Kalos',
-        '7alolaMap.png': 'Alola',
-        '8galarMap.png': 'Galar',
-        '9paldeaMap.png': 'Paldea'
+    private readonly regionsInfoMap: { [key: string]: string[] } = {
+        'Kanto': ['1kantoMap.png', '#C0C0C0'],
+        'Johto': ['2johtoMap.png', '#C0C0C0'],
+        'Hoenn': ['3hoennMap.png', '#C0C0C0'],
+        'Sinnoh': ['41sinnohMap.png', '#C0C0C0'],
+        'Ancient Sinnoh': ['42hisuiSinnohMap.png', '#FFDEAD'],
+        'Unova': ['5unovaMap.png', '#C0C0C0'],
+        'Kalos': ['6kalosMap.png', '#C0C0C0'],
+        'Alola': ['7alolaMap.png', '#C0C0C0'],
+        'Galar': ['8galarMap.png','#C0C0C0'],
+        'Paldea': ['9paldeaMap.png', '#C0C0C0']
     };
 
     protected readonly title = signal('PokedexLandingPage');
     protected readonly currentIcon = signal(this.icon_info);
-    protected readonly backgroundImage = signal(Object.keys(this.regionNameMap)[0]);
-    protected readonly regionName = signal(Object.values(this.regionNameMap)[0]);
+    protected readonly backgroundImage = signal(Object.values(this.regionsInfoMap)[0][0]);
+    protected readonly regionName = signal(Object.values(this.regionsInfoMap)[0][1]);
+    protected readonly regionColor = signal(Object.values(this.regionsInfoMap)[0][2]);
 
     constructor(private router: Router) {
         this.currentRoute = this.router.url;
@@ -81,12 +82,14 @@ export class App {
     }
 
     toggleBackground(): void {
-        const randomIndex = Math.floor(Math.random() * Object.entries(this.regionNameMap).length);
-        const entry = Object.entries(this.regionNameMap)[randomIndex];
-        const image = entry[0];
-        const region = entry[1];
+        const randomIndex = Math.floor(Math.random() * Object.entries(this.regionsInfoMap).length);
+        const entry = Object.entries(this.regionsInfoMap)[randomIndex];
+        const regionNameKey = entry[0];
+        const image = entry[1][0];
+        const color = entry[1][1];
         this.backgroundImage.set(image);
-        this.regionName.set(region);
+        this.regionName.set(regionNameKey);
+        this.regionColor.set(color);
     }
 
     protected getBackgroundImageUrl(): string {
