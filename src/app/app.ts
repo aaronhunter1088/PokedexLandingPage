@@ -10,8 +10,14 @@ import {MaterialModule} from "./materialModule";
     styleUrl: './app.css'
 })
 export class App {
+
+    // icons in use
+    protected readonly icon_info = 'info';
+    protected readonly icon_replay = 'replay';
+    protected readonly icon_shuffle = 'shuffle';
+
     protected readonly title = signal('PokedexLandingPage');
-    protected readonly currentIcon = signal('help');
+    protected readonly currentIcon = signal(this.icon_info);
 
     currentRoute: string;
     previousRoute: string;
@@ -30,7 +36,6 @@ export class App {
     protected readonly backgroundImage = signal(this.backgroundImages[0]);
 
     protected getBackgroundImageUrl(): string {
-        console.debug("Getting background image URL: ", this.backgroundImage());
         return `url('${this.backgroundImage()}')`;
     }
 
@@ -79,15 +84,14 @@ export class App {
 
     private updateIcon(): void {
         if (this.currentRoute.includes('/info')) {
-            this.currentIcon.set('replay');
+            this.currentIcon.set(this.icon_replay);
         } else {
-            this.currentIcon.set('help');
+            this.currentIcon.set(this.icon_info);
         }
     }
 
     toggleBackground(): void {
         const randomIndex = Math.floor(Math.random() * this.backgroundImages.length);
-        console.debug("Random image index: " + randomIndex);
         this.backgroundImage.set(this.backgroundImages[randomIndex]);
     }
 }
