@@ -8,6 +8,7 @@
 
 html {
   height: 100%;
+  overflow: hidden;
   @include mat.theme((
     color: (
       primary: mat.$magenta-palette,
@@ -34,4 +35,5 @@ body {
   // Reset the user agent margin.
   margin: 0;
   height: 100%;
+  overflow: hidden;
 }

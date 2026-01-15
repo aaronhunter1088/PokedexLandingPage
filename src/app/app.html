@@ -6,6 +6,12 @@
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<header class="site-header">
+    <div class="header-icons">
+        <mat-icon class="header-icon">swap_calls</mat-icon>
+        <mat-icon class="header-icon clickable" (click)="toggleRoute()">{{ currentIcon() }}</mat-icon>
+    </div>
+</header>
 <main class="main">
     <div style="width:100%;max-width:900px;">
         <router-outlet/>

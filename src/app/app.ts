@@ -1,22 +1,25 @@
 import {Component, signal} from '@angular/core';
 import {NavigationEnd, NavigationError, NavigationStart, Router, RouterOutlet} from '@angular/router';
+import {MaterialModule} from "./materialModule";
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet],
+    imports: [RouterOutlet, MaterialModule],
     templateUrl: './app.html',
     standalone: true,
     styleUrl: './app.css'
 })
 export class App {
     protected readonly title = signal('PokedexLandingPage');
+    protected readonly currentIcon = signal('help');
 
     currentRoute: string;
     previousRoute: string;
 
     constructor(private router: Router) {
-        this.currentRoute = "";
+        this.currentRoute = this.router.url;
         this.previousRoute = "";
+        this.updateIcon();
         this.router.events.subscribe((event: any) => {
             if (event instanceof NavigationStart) {
                 // Show loading indicator
@@ -27,6 +30,7 @@ export class App {
             if (event instanceof NavigationEnd) {
                 // Hide loading indicator
                 this.currentRoute = event.url;
+                this.updateIcon();
                 //console.log("currentRoute: ", event.url);
             }
 
@@ -44,5 +48,21 @@ export class App {
     }
 
     ngOnChanges() {
+    }
+
+    toggleRoute(): void {
+        if (this.currentRoute.includes('/info')) {
+            this.router.navigate(['/tiles']);
+        } else {
+            this.router.navigate(['/info']);
+        }
+    }
+
+    private updateIcon(): void {
+        if (this.currentRoute.includes('/info')) {
+            this.currentIcon.set('replay');
+        } else {
+            this.currentIcon.set('help');
+        }
     }
 }
