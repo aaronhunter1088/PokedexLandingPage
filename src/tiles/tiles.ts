@@ -5,7 +5,9 @@ import {
     MatCardContent,
     MatCardFooter,
     MatCardHeader,
-    MatCardImage, MatCardSubtitle, MatCardTitle
+    MatCardImage,
+    MatCardSubtitle,
+    MatCardTitle
 } from "@angular/material/card";
 import {MatIcon} from "@angular/material/icon";
 import {MatSlideToggle} from "@angular/material/slide-toggle";
@@ -13,7 +15,7 @@ import {NgOptimizedImage} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 
 @Component({
-  selector: 'app-tiles',
+    selector: 'app-tiles',
     imports: [
         MatCard,
         MatCardActions,
@@ -28,14 +30,10 @@ import {FormsModule} from "@angular/forms";
         NgOptimizedImage,
         FormsModule
     ],
-  templateUrl: './tiles.html',
-  styleUrls: ['./tiles.css'],
+    templateUrl: './tiles.html',
+    styleUrls: ['./tiles.css'],
 })
 export class Tiles implements OnInit, OnDestroy {
-
-    // icons in use
-    protected readonly icon_sunny = 'sunny';
-    protected readonly icon_bedtime = 'bedtime';
 
     toggle1Checked = false;
     toggle2Checked = false;
@@ -44,8 +42,12 @@ export class Tiles implements OnInit, OnDestroy {
     ngLogoImgValue = 'spring-logo-white.png';
     ngFullImgValue = 'angular-full-white.png';
     intervalId: any;
+    // icons in use
+    protected readonly icon_sunny = 'sunny';
+    protected readonly icon_bedtime = 'bedtime';
 
-    constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef) {}
+    constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef) {
+    }
 
     ngOnInit() {
         /* Swap logo on tile3 every 2 seconds */

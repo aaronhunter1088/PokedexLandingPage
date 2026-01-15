@@ -11,6 +11,8 @@ import {MaterialModule} from "./materialModule";
 })
 export class App {
 
+    currentRoute: string;
+    previousRoute: string;
     // icons in use
     protected readonly icon_info = 'info';
     protected readonly icon_replay = 'replay';
@@ -31,27 +33,8 @@ export class App {
 
     protected readonly title = signal('PokedexLandingPage');
     protected readonly currentIcon = signal(this.icon_info);
-    protected readonly regionName = signal('Kanto');
-
-    currentRoute: string;
-    previousRoute: string;
-    backgroundImages = [
-        '1kantoMap.png',
-        '2johtoMap.png',
-        '3hoennMap.png',
-        '41sinnohMap.png',
-        '42hisuiSinnohMap.png',
-        '5unovaMap.png',
-        '6kalosMap.png',
-        '7alolaMap.png',
-        '8galarMap.png',
-        '9paldeaMap.png'
-    ]
-    protected readonly backgroundImage = signal(this.backgroundImages[0]);
-
-    protected getBackgroundImageUrl(): string {
-        return `url('${this.backgroundImage()}')`;
-    }
+    protected readonly backgroundImage = signal(Object.keys(this.regionNameMap)[0]);
+    protected readonly regionName = signal(Object.values(this.regionNameMap)[0]);
 
     constructor(private router: Router) {
         this.currentRoute = this.router.url;
@@ -82,7 +65,6 @@ export class App {
     }
 
     ngOnInit(): void {
-        this.toggleBackground();
     }
 
     ngOnChanges() {
@@ -90,10 +72,25 @@ export class App {
 
     toggleRoute(): void {
         if (this.currentRoute.includes('/info')) {
-            this.router.navigate(['/tiles']);
+            this.router.navigate(['/tiles']).then(() => {
+            });
         } else {
-            this.router.navigate(['/info']);
+            this.router.navigate(['/info']).then(() => {
+            });
         }
+    }
+
+    toggleBackground(): void {
+        const randomIndex = Math.floor(Math.random() * Object.entries(this.regionNameMap).length);
+        const entry = Object.entries(this.regionNameMap)[randomIndex];
+        const image = entry[0];
+        const region = entry[1];
+        this.backgroundImage.set(image);
+        this.regionName.set(region);
+    }
+
+    protected getBackgroundImageUrl(): string {
+        return `url('${this.backgroundImage()}')`;
     }
 
     private updateIcon(): void {
@@ -104,13 +101,4 @@ export class App {
         }
     }
 
-    toggleBackground(): void {
-        const randomIndex = Math.floor(Math.random() * this.backgroundImages.length);
-        this.backgroundImage.set(this.backgroundImages[randomIndex]);
-        this.regionName.set(this.getRegionName(this.backgroundImages[randomIndex]));
-    }
-
-    private getRegionName(filename: string): string {
-        return this.regionNameMap[filename] || 'Unknown';
-    }
 }

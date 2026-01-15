@@ -19,7 +19,7 @@
             </mat-card-content>
             <mat-card-footer [style]="toggle1Checked ? 'background-color: #333333; color: white;' : ''">
                 {{toggle1Checked
-                ? 'Dark mode set. Let\'s go!'
+                        ? 'Dark mode set. Let\'s go!'
                 : 'Light mode set. Let\'s go!'}}
             </mat-card-footer>
         </a>
@@ -62,9 +62,9 @@
             <mat-icon [style]="'color:#FF9933;'">sunny</mat-icon>
             <mat-slide-toggle [(ngModel)]="toggle2Checked" (ngModelChange)="updateMode2($event);"></mat-slide-toggle>
             <mat-icon>
-                        <span class="material-symbols-outlined" [style]="toggle2Checked ? 'color: white;' : ''">
-                        bedtime
-                        </span>
+                <span class="material-symbols-outlined" [style]="toggle2Checked ? 'color: white;' : ''">
+                bedtime
+                </span>
             </mat-icon>
         </mat-card-actions>
     </mat-card>
@@ -97,9 +97,9 @@
             <mat-icon [style]="'color:#FF9933;'">sunny</mat-icon>
             <mat-slide-toggle [(ngModel)]="toggle3Checked" (ngModelChange)="updateMode3($event);"></mat-slide-toggle>
             <mat-icon>
-                        <span class="material-symbols-outlined" [style]="toggle3Checked ? 'color: white;' : ''">
-                        bedtime
-                        </span>
+                <span class="material-symbols-outlined" [style]="toggle3Checked ? 'color: white;' : ''">
+                bedtime
+                </span>
             </mat-icon>
         </mat-card-actions>
     </mat-card>

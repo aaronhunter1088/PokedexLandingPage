@@ -4,19 +4,18 @@ import {NgModule} from "@angular/core";
 import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
 import {MatInput, MatInputModule} from "@angular/material/input";
-import {MatCard} from "@angular/material/card";
-import {MatDialog} from "@angular/material/dialog";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatMenu} from "@angular/material/menu";
-import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {
+    MatCard,
     MatCardActions,
-    MatCardContent, MatCardFooter,
+    MatCardContent,
+    MatCardFooter,
     MatCardHeader,
     MatCardImage,
     MatCardSubtitle,
     MatCardTitle
 } from "@angular/material/card";
+import {MatMenu} from "@angular/material/menu";
+import {MatSlideToggle} from "@angular/material/slide-toggle";
 
 @NgModule({
     //“What other modules can use through me”
@@ -72,4 +71,5 @@ import {
         MatSlideToggle
     ]
 })
-export class MaterialModule {}
+export class MaterialModule {
+}

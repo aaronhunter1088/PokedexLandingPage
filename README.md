@@ -64,6 +64,13 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.3.1
+Reformatted all files to ensure consistent code style across the project.
+
+#### Version 1.3.0
+Remove old list of image filenames since there is a map that contains this information alongside the region name.
+Removed the references to that list and use the map instead.
+
 #### Version 1.2.4
 Used Chat to update the header to display the region name based on the current background image.
 
@@ -103,4 +110,5 @@ Added Angular Material to the project for UI components and styling.
 
 #### Version 1.0.0
 This is the initial release of the Pokedex Landing Page application. It features two main sections for navigating to
-either flavor of my Pokédex applications, and then a brief overview describing the reasons for creating these applications.
+either flavor of my Pokédex applications, and then a brief overview describing the reasons for creating these
+applications.
