@@ -64,6 +64,10 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.2.2
+Added new maps for the background randomizer. Then added logic to randomly select one of these maps
+when the shuffle icon is clicked.
+
 #### Version 1.2.1
 Used Chat to update the homepage to include a header. This header should have two icons, right-justified.
 The first icon is a shuffle icon and will be configured to randomize the background image but is not yet implemented.

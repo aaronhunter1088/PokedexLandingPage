@@ -15,6 +15,24 @@ export class App {
 
     currentRoute: string;
     previousRoute: string;
+    backgroundImages = [
+        '1kantoMap.png',
+        '2johtoMap.png',
+        '3hoennMap.png',
+        '41sinnohMap.png',
+        '42hisuiSinnohMap.png',
+        '5unovaMap.png',
+        '6kalosMap.png',
+        '7alolaMap.png',
+        '8galarMap.png',
+        '9paldeaMap.png'
+    ]
+    protected readonly backgroundImage = signal(this.backgroundImages[0]);
+
+    protected getBackgroundImageUrl(): string {
+        console.debug("Getting background image URL: ", this.backgroundImage());
+        return `url('${this.backgroundImage()}')`;
+    }
 
     constructor(private router: Router) {
         this.currentRoute = this.router.url;
@@ -41,10 +59,11 @@ export class App {
                 console.log(event.error);
             }
         });
-
+        this.toggleBackground();
     }
 
     ngOnInit(): void {
+        this.toggleBackground();
     }
 
     ngOnChanges() {
@@ -64,5 +83,11 @@ export class App {
         } else {
             this.currentIcon.set('help');
         }
+    }
+
+    toggleBackground(): void {
+        const randomIndex = Math.floor(Math.random() * this.backgroundImages.length);
+        console.debug("Random image index: " + randomIndex);
+        this.backgroundImage.set(this.backgroundImages[randomIndex]);
     }
 }
