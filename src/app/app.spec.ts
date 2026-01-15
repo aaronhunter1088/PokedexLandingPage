@@ -29,7 +29,7 @@ describe('App', () => {
         const app = fixture.componentInstance;
         app.toggleBackground();
         fixture.detectChanges();
-        expect(app.regionName()).toBeTruthy();
-        expect(['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Hisui', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea']).toContain(app.regionName());
+        expect((app as any).regionName()).toBeTruthy();
+        expect(['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Ancient Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea']).toContain((app as any).regionName());
     });
 });
