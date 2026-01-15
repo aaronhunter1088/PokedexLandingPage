@@ -21,7 +21,7 @@ export class App {
         '2johtoMap.png': 'Johto',
         '3hoennMap.png': 'Hoenn',
         '41sinnohMap.png': 'Sinnoh',
-        '42hisuiSinnohMap.png': 'Hisui',
+        '42hisuiSinnohMap.png': 'Ancient Sinnoh',
         '5unovaMap.png': 'Unova',
         '6kalosMap.png': 'Kalos',
         '7alolaMap.png': 'Alola',
