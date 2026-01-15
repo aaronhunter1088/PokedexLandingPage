@@ -16,8 +16,22 @@ export class App {
     protected readonly icon_replay = 'replay';
     protected readonly icon_shuffle = 'shuffle';
 
+    private readonly regionNameMap: { [key: string]: string } = {
+        '1kantoMap.png': 'Kanto',
+        '2johtoMap.png': 'Johto',
+        '3hoennMap.png': 'Hoenn',
+        '41sinnohMap.png': 'Sinnoh',
+        '42hisuiSinnohMap.png': 'Ancient Sinnoh',
+        '5unovaMap.png': 'Unova',
+        '6kalosMap.png': 'Kalos',
+        '7alolaMap.png': 'Alola',
+        '8galarMap.png': 'Galar',
+        '9paldeaMap.png': 'Paldea'
+    };
+
     protected readonly title = signal('PokedexLandingPage');
     protected readonly currentIcon = signal(this.icon_info);
+    protected readonly regionName = signal('Kanto');
 
     currentRoute: string;
     previousRoute: string;
@@ -93,5 +107,10 @@ export class App {
     toggleBackground(): void {
         const randomIndex = Math.floor(Math.random() * this.backgroundImages.length);
         this.backgroundImage.set(this.backgroundImages[randomIndex]);
+        this.regionName.set(this.getRegionName(this.backgroundImages[randomIndex]));
+    }
+
+    private getRegionName(filename: string): string {
+        return this.regionNameMap[filename] || 'Unknown';
     }
 }

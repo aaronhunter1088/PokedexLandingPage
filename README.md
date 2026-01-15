@@ -64,6 +64,9 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.2.4
+Used Chat to update the header to display the region name based on the current background image.
+
 #### Version 1.2.3
 Update help icon to info icon since that is the info section, not a help section. Also updated the scaling effect that
 occurs when the mouse hovers over an icon in the header. I also added some readonly properties in app and tiles that
