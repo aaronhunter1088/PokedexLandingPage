@@ -5,14 +5,12 @@ import {
     MatCardContent,
     MatCardFooter,
     MatCardHeader,
-    MatCardImage, MatCardSubtitle, MatCardTitle
+    MatCardSubtitle,
+    MatCardTitle
 } from "@angular/material/card";
-import {MatIcon} from "@angular/material/icon";
-import {MatSlideToggle} from "@angular/material/slide-toggle";
-import {NgOptimizedImage} from "@angular/common";
 
 @Component({
-  selector: 'app-info',
+    selector: 'app-info',
     imports: [
         MatCard,
         MatCardActions,
@@ -22,14 +20,15 @@ import {NgOptimizedImage} from "@angular/common";
         MatCardSubtitle,
         MatCardTitle,
     ],
-  templateUrl: './info.html',
-  styleUrl: './info.css',
+    templateUrl: './info.html',
+    styleUrl: './info.css',
 })
 export class Info implements OnInit, OnDestroy {
 
     intervalId: any;
 
-    constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef) {}
+    constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef) {
+    }
 
     ngOnInit() {
 

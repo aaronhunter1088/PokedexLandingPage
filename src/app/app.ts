@@ -11,6 +11,8 @@ import {MaterialModule} from "./materialModule";
 })
 export class App {
 
+    currentRoute: string;
+    previousRoute: string;
     // icons in use
     protected readonly icon_info = 'info';
     protected readonly icon_replay = 'replay';
@@ -33,9 +35,6 @@ export class App {
     protected readonly currentIcon = signal(this.icon_info);
     protected readonly backgroundImage = signal(Object.keys(this.regionNameMap)[0]);
     protected readonly regionName = signal(Object.values(this.regionNameMap)[0]);
-
-    currentRoute: string;
-    previousRoute: string;
 
     constructor(private router: Router) {
         this.currentRoute = this.router.url;
@@ -73,17 +72,11 @@ export class App {
 
     toggleRoute(): void {
         if (this.currentRoute.includes('/info')) {
-            this.router.navigate(['/tiles']).then(() => {});
+            this.router.navigate(['/tiles']).then(() => {
+            });
         } else {
-            this.router.navigate(['/info']).then(() => {});
-        }
-    }
-
-    private updateIcon(): void {
-        if (this.currentRoute.includes('/info')) {
-            this.currentIcon.set(this.icon_replay);
-        } else {
-            this.currentIcon.set(this.icon_info);
+            this.router.navigate(['/info']).then(() => {
+            });
         }
     }
 
@@ -98,6 +91,14 @@ export class App {
 
     protected getBackgroundImageUrl(): string {
         return `url('${this.backgroundImage()}')`;
+    }
+
+    private updateIcon(): void {
+        if (this.currentRoute.includes('/info')) {
+            this.currentIcon.set(this.icon_replay);
+        } else {
+            this.currentIcon.set(this.icon_info);
+        }
     }
 
 }

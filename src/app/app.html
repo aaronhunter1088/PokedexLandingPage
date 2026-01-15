@@ -9,34 +9,34 @@
      style="background-position:center center;background-repeat:no-repeat;
             background-attachment:fixed;background-size:cover;
             min-height:100vh;justify-content:space-evenly;text-align:center;">
-<header class="site-header">
-    <h1 class="region-name">{{ regionName() }}</h1>
-    <div class="header-icons">
-        <mat-icon class="header-icon clickable" (click)="toggleBackground()">swap_calls</mat-icon>
-        <mat-icon class="header-icon clickable" (click)="toggleRoute()">{{ currentIcon() }}</mat-icon>
-    </div>
-</header>
-<main class="main">
-    <div style="width:100%;max-width:900px;">
-        <router-outlet/>
-<!--        <div class="left-side">-->
-<!--            <h1>Hello, {{ title() }}</h1>-->
-<!--            <p>Congratulations! Your app is running. 🎉</p>-->
-<!--            <div style="display:inline-flex;">-->
-<!--                <img ngSrc="angular-logo-white.png" width="100" height="100" alt="Angular Logo Black"/>-->
-<!--                <img ngSrc="angular-logo-black.png" width="100" height="100" alt="Angular Logo Black"/>-->
-<!--                <img ngSrc="spring-logo-white.png" width="100" height="100" alt="Angular Logo Black"/>-->
-<!--                <img ngSrc="spring-logo-black.png" width="100" height="100" alt="Angular Logo Black"/>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--                <img ngSrc="angular-full-white.png" width="300" height="100" alt="Angular Full White"/>-->
-<!--                <img ngSrc="angular-full-dark-blackText.png" width="300" height="100" alt="Angular Full Dark Black Text"/>-->
-<!--                <img ngSrc="angular-full-dark-whiteText.png" width="300" height="100" style="background-color:black;" alt="Angular Full Dark White Text"/>-->
-<!--                <img ngSrc="spring-full-white.png" width="300" height="75" alt="Spring Full White"/>-->
-<!--                <img ngSrc="spring-full-dark-blackText.png" width="300" height="100" alt="Spring Full Dark Black Text"/>-->
-<!--                <img ngSrc="spring-full-dark-whiteText.png" width="300" height="100" alt="Spring Full Dark White Text"/>-->
-<!--            </div>-->
-<!--        </div>-->
-    </div>
-</main>
+    <header class="site-header">
+        <h1 class="region-name">{{ regionName() }}</h1>
+        <div class="header-icons">
+            <mat-icon (click)="toggleBackground()" class="header-icon clickable">swap_calls</mat-icon>
+            <mat-icon (click)="toggleRoute()" class="header-icon clickable">{{ currentIcon() }}</mat-icon>
+        </div>
+    </header>
+    <main class="main">
+        <div style="width:100%;max-width:900px;">
+            <router-outlet/>
+            <!--        <div class="left-side">-->
+            <!--            <h1>Hello, {{ title() }}</h1>-->
+            <!--            <p>Congratulations! Your app is running. 🎉</p>-->
+            <!--            <div style="display:inline-flex;">-->
+            <!--                <img ngSrc="angular-logo-white.png" width="100" height="100" alt="Angular Logo Black"/>-->
+            <!--                <img ngSrc="angular-logo-black.png" width="100" height="100" alt="Angular Logo Black"/>-->
+            <!--                <img ngSrc="spring-logo-white.png" width="100" height="100" alt="Angular Logo Black"/>-->
+            <!--                <img ngSrc="spring-logo-black.png" width="100" height="100" alt="Angular Logo Black"/>-->
+            <!--            </div>-->
+            <!--            <div>-->
+            <!--                <img ngSrc="angular-full-white.png" width="300" height="100" alt="Angular Full White"/>-->
+            <!--                <img ngSrc="angular-full-dark-blackText.png" width="300" height="100" alt="Angular Full Dark Black Text"/>-->
+            <!--                <img ngSrc="angular-full-dark-whiteText.png" width="300" height="100" style="background-color:black;" alt="Angular Full Dark White Text"/>-->
+            <!--                <img ngSrc="spring-full-white.png" width="300" height="75" alt="Spring Full White"/>-->
+            <!--                <img ngSrc="spring-full-dark-blackText.png" width="300" height="100" alt="Spring Full Dark Black Text"/>-->
+            <!--                <img ngSrc="spring-full-dark-whiteText.png" width="300" height="100" alt="Spring Full Dark White Text"/>-->
+            <!--            </div>-->
+            <!--        </div>-->
+        </div>
+    </main>
 </div>
