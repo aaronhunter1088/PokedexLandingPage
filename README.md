@@ -63,6 +63,10 @@ For more information on using the Angular CLI, including detailed command refere
 the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
 ## History
+#### Version 1.3.2
+Updated the regionsInfoMap to include a custom color for each region. This color is then used
+as the background color for the header when that region's image is being displayed. Some colors
+are not yet finalized so they will use Silver as a placeholder until a color is chosen.
 
 #### Version 1.3.1
 Reformatted all files to ensure consistent code style across the project.

@@ -10,7 +10,7 @@
             background-attachment:fixed;background-size:cover;
             min-height:100vh;justify-content:space-evenly;text-align:center;">
     <header class="site-header">
-        <h1 class="region-name">{{ regionName() }}</h1>
+        <h1 class="region-name" [style.background-color]="regionColor()">{{ regionName() }}</h1>
         <div class="header-icons">
             <mat-icon (click)="toggleBackground()" class="header-icon clickable">swap_calls</mat-icon>
             <mat-icon (click)="toggleRoute()" class="header-icon clickable">{{ currentIcon() }}</mat-icon>
