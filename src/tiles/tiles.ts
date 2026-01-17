@@ -1,32 +1,13 @@
 import {ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit} from '@angular/core';
-import {
-    MatCard,
-    MatCardActions,
-    MatCardContent,
-    MatCardFooter,
-    MatCardHeader,
-    MatCardImage,
-    MatCardSubtitle,
-    MatCardTitle
-} from "@angular/material/card";
-import {MatIcon} from "@angular/material/icon";
-import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {NgOptimizedImage} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {MaterialModule} from "../app/materialModule";
+import {environment} from '../environments/environment';
 
 @Component({
     selector: 'app-tiles',
     imports: [
-        MatCard,
-        MatCardActions,
-        MatCardContent,
-        MatCardFooter,
-        MatCardHeader,
-        MatCardImage,
-        MatCardSubtitle,
-        MatCardTitle,
-        MatIcon,
-        MatSlideToggle,
+        MaterialModule,
         NgOptimizedImage,
         FormsModule
     ],
@@ -45,8 +26,10 @@ export class Tiles implements OnInit, OnDestroy {
     // icons in use
     protected readonly icon_sunny = 'sunny';
     protected readonly icon_bedtime = 'bedtime';
+    protected readonly environment = environment;
 
     constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef) {
+
     }
 
     ngOnInit() {

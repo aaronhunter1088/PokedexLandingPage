@@ -63,6 +63,11 @@ For more information on using the Angular CLI, including detailed command refere
 the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
 ## History
+
+#### Version 1.4.0
+Added two environments: develop and prod. The develop environment uses the local server
+while the prod environment uses the deployed version on the server.
+
 #### Version 1.3.2
 Updated the regionsInfoMap to include a custom color for each region. This color is then used
 as the background color for the header when that region's image is being displayed. Some colors
