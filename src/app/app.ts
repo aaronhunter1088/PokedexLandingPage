@@ -1,27 +1,23 @@
 import {ChangeDetectorRef, Component, signal} from '@angular/core';
 import {NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
 import {MaterialModule} from "./materialModule";
-import {ColorEvent} from 'ngx-color';
+import {Color, ColorEvent} from 'ngx-color';
 import {ColorSketchModule} from "ngx-color/sketch";
 import {Tiles} from "../tiles/tiles";
 import {ColorAlphaModule} from "ngx-color/alpha";
 import {ColorHueModule} from "ngx-color/hue";
 import {ColorCompactModule} from "ngx-color/compact";
+import {MatCheckbox} from "@angular/material/checkbox";
+import {FormsModule} from "@angular/forms";
 
 @Component({
     selector: 'app-root',
-    imports: [MaterialModule, ColorSketchModule, Tiles, ColorAlphaModule, ColorHueModule, ColorCompactModule,],
+    imports: [MaterialModule, ColorSketchModule, Tiles, ColorAlphaModule, ColorHueModule, ColorCompactModule, MatCheckbox, FormsModule,],
     templateUrl: './app.html',
     standalone: true,
     styleUrl: './app.css'
 })
 export class App {
-
-    currentRoute: string;
-    previousRoute: string;
-    transparencySlider: number = 0;
-    blurSlider: number = 0;
-    borderSlider: number = 1;
     // icons in use
     protected readonly icon_info = 'info';
     protected readonly icon_replay = 'replay';
@@ -40,16 +36,23 @@ export class App {
         'Paldea': ['9paldeaMap.png', '#C0C0C0']
     };
 
-    protected readonly title = signal('PokedexLandingPage');
-    protected readonly currentIcon = signal(this.icon_info);
-    protected readonly backgroundImage = signal(Object.values(this.regionsInfoMap)[0][0]);
-    protected readonly regionName = signal(Object.values(this.regionsInfoMap)[0][1]);
-    protected readonly regionColor = signal(Object.values(this.regionsInfoMap)[0][2]);
+    protected readonly title = signal('My Pokédex'); // &#233; é
+    protected currentRoute = signal('');
+    protected previousRoute = signal('');
+    protected currentIcon = signal(this.icon_info);
+    protected backgroundImage = signal(Object.values(this.regionsInfoMap)[0][0]);
+    protected regionName = signal(Object.values(this.regionsInfoMap)[0][1]);
+    protected regionColor = signal(Object.values(this.regionsInfoMap)[0][2]);
+    protected transparency = signal(0);
+    protected blur = signal(0);
+    protected outline = signal(1);
+    protected matchColors = signal(false);
+    protected matchedColor = signal('');
 
     constructor(private router: Router, private cdr: ChangeDetectorRef) {
-        this.currentRoute = this.router.url;
-        this.previousRoute = "";
-        this.updateIcon();
+        this.currentRoute.set(this.router.url);
+        this.previousRoute.set('');
+        //this.updateIcon();
         this.router.events.subscribe((event: any) => {
             if (event instanceof NavigationStart) {
                 // Show loading indicator
@@ -59,7 +62,7 @@ export class App {
 
             if (event instanceof NavigationEnd) {
                 // Hide loading indicator
-                this.currentRoute = event.url;
+                this.currentRoute.set(event.url);
                 this.updateIcon();
                 //console.log("currentRoute: ", event.url);
             }
@@ -98,8 +101,8 @@ export class App {
         return `url('${this.backgroundImage()}')`;
     }
 
-    private updateIcon(): void {
-        if (this.currentRoute.includes('/info')) {
+    updateIcon(): void {
+        if (this.currentIcon() === 'info') {
             this.currentIcon.set(this.icon_replay);
         } else {
             this.currentIcon.set(this.icon_info);
@@ -111,6 +114,7 @@ export class App {
         value = (value.target as HTMLInputElement).valueAsNumber;
         document.documentElement.style.setProperty('--glass-transparency',
             value.toString());
+        this.transparency.set(value);
         this.cdr.detectChanges();
     }
 
@@ -121,6 +125,7 @@ export class App {
             `blur(${value}px)`);
         document.documentElement.style.setProperty('--webkit-backdrop-filter',
             `blur(${value}px)`);
+        this.blur.set(value);
         this.cdr.detectChanges();
     }
 
@@ -129,31 +134,52 @@ export class App {
         value = (value.target as HTMLInputElement).valueAsNumber;
         document.documentElement.style.setProperty('--tile-border',
             value.toString());
+        this.outline.set(value);
         this.cdr.detectChanges();
     }
 
-    // Update Tile Color Variables
+    // Update Tile Color
     updateTileColorVariables(colors: ColorEvent) {
+        this.setTileColorVariables(colors);
+        if (this.matchColors()) {
+            this.setTileBorderColorVariables(colors);
+            this.setMatchedColor(colors);
+        }
+        this.cdr.detectChanges();
+    }
+
+    // Set Tile Color Variables
+    private setTileColorVariables(colors: ColorEvent) {
         document.documentElement.style.setProperty('--red-tile-color',
             colors.color.rgb.r.toString());
         document.documentElement.style.setProperty('--green-tile-color',
             colors.color.rgb.g.toString());
         document.documentElement.style.setProperty('--blue-tile-color',
             colors.color.rgb.b.toString());
-        console.log(colors.color.rgb.r.toString())
+    }
+
+    // Update Tile Border Color
+    updateTileBorderColorVariables(colors: ColorEvent) {
+        this.setTileBorderColorVariables(colors);
+        if (this.matchColors()) {
+            this.setTileColorVariables(colors);
+            this.setMatchedColor(colors);
+        }
         this.cdr.detectChanges();
     }
 
-    // Update Tile Border Color Variables
-    updateTileBorderColorVariables(colors: ColorEvent) {
+    // Set Tile Border Color Variables
+    private setTileBorderColorVariables(colors: ColorEvent) {
         document.documentElement.style.setProperty('--red-tile-border-color',
             colors.color.rgb.r.toString());
         document.documentElement.style.setProperty('--green-tile-border-color',
             colors.color.rgb.g.toString());
         document.documentElement.style.setProperty('--blue-tile-border-color',
             colors.color.rgb.b.toString());
-        console.log(colors.color.rgb.r.toString())
-        this.cdr.detectChanges();
     }
 
+    // Set Matched Color
+    private setMatchedColor(colors: ColorEvent) {
+        this.matchedColor.set(colors.color.hex);
+    }
 }

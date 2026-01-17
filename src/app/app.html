@@ -9,7 +9,7 @@
     <h1 class="region-name" [style.background-color]="regionColor()">{{ regionName() }}</h1>
     <div class="header-icons">
         <mat-icon (click)="toggleBackground()" class="header-icon clickable">swap_calls</mat-icon>
-        <mat-icon (click)="sidenav.toggle()" class="header-icon clickable">{{ currentIcon() }}</mat-icon>
+        <mat-icon (click)="sidenav.toggle(); updateIcon();" class="header-icon clickable">{{ currentIcon() }}</mat-icon>
     </div>
 </header>
 <mat-sidenav-container [style.background-image]="getBackgroundImageUrl()"
@@ -24,14 +24,17 @@
     <mat-sidenav position="end" #sidenav style="background-color:var(--gray-400);">
         <br/><br/><br/>
         <p>Tile Settings</p>
+
+        <mat-checkbox [checked]="matchColors()" (change)="matchColors.set($event.checked)">Match Colors</mat-checkbox>
         <p>Transparency</p>
         <mat-slider min="0" max="1" step="0.01">
             <input matSliderThumb
-                   [(value)]="transparencySlider"
+                   [value]="transparency()"
                    (input)="updateTransparency($event)">
         </mat-slider>
         <div style="display:block;justify-content:center;">
             <color-compact
+                    [color]="matchedColor()"
                     (onChange)="updateTileColorVariables($event)"
             ></color-compact>
         </div>
@@ -40,19 +43,20 @@
         <p>Blur</p>
         <mat-slider min="0" max="20" step="0.1">
             <input matSliderThumb value="0"
-                   [(value)]="blurSlider"
+                   [value]="blur()"
                    (input)="updateBlur($event)">
         </mat-slider>
 
         <p>Outline</p>
         <mat-slider min="0" max="1" step="0.01">
             <input matSliderThumb value="1"
-                   [(value)]="borderSlider"
+                   [value]="outline()"
                    (input)="updateOutline($event)">
         </mat-slider>
         <div style="display:block;justify-content:center;">
             <color-compact
-                (onChange)="updateTileBorderColorVariables($event)">
+                    [color]="matchedColor()"
+                    (onChange)="updateTileBorderColorVariables($event)">
             </color-compact>
         </div>
 

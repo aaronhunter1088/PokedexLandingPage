@@ -56,7 +56,10 @@ outside of it.
     --green-tile-border-color: 255;
     --blue-tile-border-color: 255;
 
-    --tile-color: rgb(var(--red-tile-color), var(--green-tile-color), var(--blue-tile-color));
+    --tile-color: rgba(var(--red-tile-color),
+                       var(--green-tile-color),
+                       var(--blue-tile-color),
+                       var(--glass-transparency, 0));
     --tile-border-color: rgba(var(--red-tile-border-color),
                               var(--green-tile-border-color),
                               var(--blue-tile-border-color),

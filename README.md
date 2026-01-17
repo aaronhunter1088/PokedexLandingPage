@@ -64,6 +64,11 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.5.6
+Implemented a checkbox which controls whether the tiles and border colors should be the same or different.
+I also cleaned up the new variables defined in app.ts to match the current convention of using the Angular
+'signal' to set and get the value of a variable. I also removed the now not used 'info' component.
+
 #### Version 1.5.5
 Implemented the tile color toggle to control the color overlay on the tiles. Also added another
 color picker for the tile border. Each are controlled separetely.

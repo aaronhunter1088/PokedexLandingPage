@@ -37,14 +37,14 @@ a:link, a:visited, a:hover, a:active, a:focus {
 .glass {
     width: 250px;
     height: auto;
-    background: rgba(var(--red-tile-color), var(--green-tile-color), var(--blue-tile-color), var(--glass-transparency, 0));
+    background: var(--tile-color);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     /*backdrop-filter: blur(0px);*/
     /*-webkit-backdrop-filter: blur(0px);*/
     backdrop-filter: var(--backdrop-filter);
     -webkit-backdrop-filter: var(--webkit-backdrop-filter);
-    border: 1px solid rgba(var(--red-tile-border-color), var(--green-tile-border-color), var(--blue-tile-border-color), var(--tile-border, 1));
+    border: 1px solid var(--tile-border-color);
 }
 
 @media screen and (max-width: 650px) {
