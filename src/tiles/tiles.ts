@@ -29,7 +29,6 @@ export class Tiles implements OnInit, OnDestroy {
     protected readonly environment = environment;
 
     constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef) {
-
     }
 
     ngOnInit() {
