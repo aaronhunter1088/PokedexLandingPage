@@ -65,6 +65,10 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 ## History
 
 #### Version 1.4.0
+Changed the tiles from having a white/black background to having a glass-like effect. This will let the user see the
+beautiful background image while still knowing that there is a tile to click on. 
+
+#### Version 1.4.0
 Added two environments: develop and prod. The develop environment uses the local server
 while the prod environment uses the deployed version on the server.
 

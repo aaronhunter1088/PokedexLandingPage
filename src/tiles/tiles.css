@@ -27,6 +27,17 @@ a:link, a:visited, a:hover, a:active, a:focus {
     transition: background 160ms ease-in-out, opacity 120ms ease;
 }
 
+.glass {
+    width: 250px;
+    height: auto;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border: 1px solid rgba(255, 255, 255, 1);
+}
+
 @media screen and (max-width: 650px) {
     .content {
         flex-direction: column;

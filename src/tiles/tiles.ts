@@ -36,9 +36,11 @@ export class Tiles implements OnInit, OnDestroy {
         /* Swap logo on tile3 every 2 seconds */
         setInterval(() => {
             this.ngZone.run(() => {
-                this.ngLogoImgValue = this.ngLogoImgValue === 'spring-logo-white.png'
-                    ? 'angular-logo-white.png'
-                    : 'spring-logo-white.png';
+                // swap to darkmode logo swap based on whether toggle is set or not
+                const color = this.toggle3Checked ? 'black' : 'white';
+                this.ngLogoImgValue = this.ngLogoImgValue.includes('spring')
+                    ? `angular-logo-${color}.png`
+                    : `spring-logo-${color}.png`;
                 this.cdr.detectChanges();
             });
         }, 2000);
