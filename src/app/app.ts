@@ -17,6 +17,7 @@ export class App {
     currentRoute: string;
     previousRoute: string;
     transparencySlider: number = 0;
+    blurSlider: number = 0;
     // icons in use
     protected readonly icon_info = 'info';
     protected readonly icon_replay = 'replay';
@@ -109,6 +110,17 @@ export class App {
         value = (value.target as HTMLInputElement).valueAsNumber;
         document.documentElement.style.setProperty('--glass-transparency',
             value.toString());
+        this.cdr.detectChanges();
+    }
+
+    updateBlur(value: any) {
+        value = (value.target as HTMLInputElement).valueAsNumber;
+        document.documentElement.style.setProperty('--backdrop-filter',
+            `blur(${value}px)`);
+        document.documentElement.style.setProperty('--webkit-backdrop-filter',
+            `blur(${value}px)`);
+        // --backdrop-filter: blur(0);
+        // --webkit-backdrop-filter: blur(0);
         this.cdr.detectChanges();
     }
 

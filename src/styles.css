@@ -46,6 +46,8 @@ outside of it.
     -moz-osx-font-smoothing: grayscale;
 
     --glass-transparency: 0;
+    --backdrop-filter: 0;
+    --webkit-backdrop-filter: 0;
 }
 
 h1 {

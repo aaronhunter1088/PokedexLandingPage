@@ -64,6 +64,9 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.5.3
+Implemented the blur toggle to control how much blur is applied to the background image.
+
 #### Version 1.5.2
 Implemented the transparency toggle to control whether the tiles have a glass-like effect or a solid background.
 

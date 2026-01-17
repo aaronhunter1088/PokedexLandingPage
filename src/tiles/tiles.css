@@ -33,8 +33,10 @@ a:link, a:visited, a:hover, a:active, a:focus {
     background: rgba(255, 255, 255, var(--glass-transparency, 0));
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
+    /*backdrop-filter: blur(0px);*/
+    /*-webkit-backdrop-filter: blur(0px);*/
+    backdrop-filter: var(--backdrop-filter);
+    -webkit-backdrop-filter: var(--webkit-backdrop-filter);
     border: 1px solid rgba(255, 255, 255, 1);
 }
 
