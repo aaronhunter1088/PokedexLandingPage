@@ -1,5 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-:host {
+
+/*
+:root: A pseudo-class that targets the document's root element (the <html>
+element in HTML documents). CSS variables defined in :root have global scope
+and are accessible throughout the entire application.
+
+:host: A pseudo-class used only in component stylesheets (Angular, Web Components)
+that targets the component's host element itself. CSS variables defined in :host
+are scoped to that specific component and its children, but not accessible
+outside of it.
+ */
+:root {
     --bright-blue: oklch(51.01% 0.274 263.83);
     --electric-violet: oklch(53.18% 0.28 296.97);
     --french-violet: oklch(47.66% 0.246 305.88);

@@ -1,10 +1,12 @@
 import {Component, signal} from '@angular/core';
 import {NavigationEnd, NavigationError, NavigationStart, Router, RouterOutlet} from '@angular/router';
 import {MaterialModule} from "./materialModule";
+import { ColorEvent } from 'ngx-color';
+import {ColorSketchModule} from "ngx-color/sketch";
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, MaterialModule],
+    imports: [RouterOutlet, MaterialModule, ColorSketchModule,],
     templateUrl: './app.html',
     standalone: true,
     styleUrl: './app.css'
@@ -104,4 +106,7 @@ export class App {
         }
     }
 
+    handleChange($event: ColorEvent) {
+        console.log($event.color);
+    }
 }

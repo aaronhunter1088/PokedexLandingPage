@@ -17,6 +17,7 @@ import {
 import {MatMenu} from "@angular/material/menu";
 import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
+import {MatSlider, MatSliderThumb} from "@angular/material/slider";
 
 @NgModule({
     //“What other modules can use through me”
@@ -39,6 +40,8 @@ import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/mater
         //MatSnackBar,
         MatCard,
         MatMenu,
+        MatSlider,
+        MatSliderThumb,
 
         MatCardContent,
         MatCardImage,
@@ -67,6 +70,8 @@ import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/mater
         MatInput,
         MatCard,
         MatMenu,
+        MatSlider,
+        MatSliderThumb,
 
         MatCardContent,
         MatCardImage,
@@ -75,7 +80,7 @@ import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/mater
         MatCardSubtitle,
         MatCardActions,
         MatCardFooter,
-        MatSlideToggle
+        MatSlideToggle,
     ]
 })
 export class MaterialModule {
