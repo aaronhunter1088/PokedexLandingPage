@@ -61,7 +61,6 @@ outside of it.
                               var(--green-tile-border-color),
                               var(--blue-tile-border-color),
                               var(--tile-border, 1));
-    );
 }
 
 h1 {
@@ -182,4 +181,17 @@ main {
 
 .social-links a:hover svg path {
     fill: var(--gray-900);
+}
+
+@media screen and (max-width: 650px) {
+    main {
+        width: auto;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        position: relative;
+        overflow: hidden;
+    }
 }

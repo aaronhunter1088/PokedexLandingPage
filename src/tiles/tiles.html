@@ -1,4 +1,4 @@
-<div style="display:inline-flex;width:100%;justify-content:center;margin-top:1rem;">
+<div class="tiles">
     <mat-card [style]="" class="glass" id="tile1" tabindex="0">
         <a [href]="environment.springBootAppUrl + '?mode=' + (toggle1Checked)" style="display: contents;">
             <mat-card-header>
@@ -11,7 +11,8 @@
                      height="40"
                      mat-card-avatar
                      ngSrc="{{ toggle1Checked ? 'spring-logo-black.png' : 'spring-logo-white.png' }}"
-                     width="40"/>
+                     width="40"
+                     style="background:transparent;mix-blend-mode:normal;"/>
             </mat-card-header>
             <mat-card-content>
                 {{
@@ -51,7 +52,8 @@
                      height="40"
                      mat-card-avatar
                      ngSrc="{{ toggle2Checked ? 'angular-logo-black.png' : 'angular-logo-white.png' }}"
-                     width="40"/>
+                     width="40"
+                     style="background:transparent;mix-blend-mode:normal;"/>
             </mat-card-header>
             <mat-card-content>
                 {{
@@ -95,7 +97,8 @@
                      height="40"
                      mat-card-avatar
                      [ngSrc]="ngLogoImgValue"
-                     width="40"/>
+                     width="40"
+                     style="background:transparent;mix-blend-mode:normal;"/>
             </mat-card-header>
             <mat-card-content>
                 {{
