@@ -1,6 +1,6 @@
 <div style="display:inline-flex;width:100%;justify-content:center;margin-top:1rem;">
     <mat-card id="tile1" tabindex="0" [style]="toggle1Checked ? 'background-color: #333333; color: white;' : 'background-color:white;'">
-        <a [href]="'http://localhost:4201?mode=' + (toggle1Checked ? 'dark' : 'light')" style="display: contents;">
+        <a [href]="environment.springBootAppUrl + '?mode=' + (toggle1Checked)" style="display: contents;">
             <mat-card-header>
                 <mat-card-title [style]="toggle1Checked ? 'background-color: #333333; color: white;' : ''"> Spring Boot </mat-card-title>
                 <mat-card-subtitle [style]="toggle1Checked ? 'background-color: #333333; color: white;' : ''"> v4.0.1 </mat-card-subtitle>
@@ -35,7 +35,7 @@
     </mat-card>
     <div aria-label="Divider" class="divider" role="separator"></div>
     <mat-card id="tile2" tabindex="0" [style]="toggle2Checked ? 'background-color: #333333; color: white;' : 'background-color:white;'">
-        <a [href]="'http://localhost:4202?mode=' + (toggle2Checked ? 'dark' : 'light')" style="display: contents;">
+        <a [href]="environment.angularAppUrl + '?mode=' + (toggle2Checked)" style="display: contents;">
             <mat-card-header>
                 <mat-card-title [style]="toggle2Checked ? 'background-color: #333333; color: white;' : ''"> Angular </mat-card-title>
                 <mat-card-subtitle [style]="toggle2Checked ? 'background-color: #333333; color: white;' : ''"> v21 </mat-card-subtitle>
@@ -70,7 +70,7 @@
     </mat-card>
     <div aria-label="Divider" class="divider" role="separator"></div>
     <mat-card id="tile3" tabindex="0" [style]="toggle3Checked ? 'background-color: #333333; color: white;' : 'background-color:white;'">
-        <a [href]="'http://localhost:4203?mode=' + (toggle3Checked ? 'dark' : 'light')" style="text-decoration:none; display: contents;">
+        <a [href]="environment.combinedAppUrl + '?mode=' + (toggle3Checked)" style="text-decoration:none; display: contents;">
             <mat-card-header>
                 <mat-card-title [style]="toggle3Checked ? 'background-color: #333333; color: white;' : ''"> Angular Frontend </mat-card-title>
                 <mat-card-subtitle [style]="toggle3Checked ? 'background-color: #333333; color: white;' : ''"> Spring Boot Backend </mat-card-subtitle>
