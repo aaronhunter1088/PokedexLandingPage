@@ -49,6 +49,19 @@ outside of it.
     --backdrop-filter: 0;
     --webkit-backdrop-filter: 0;
     --tile-border: 1;
+    --red-tile-color: 255;
+    --green-tile-color: 255;
+    --blue-tile-color: 255;
+    --red-tile-border-color: 255;
+    --green-tile-border-color: 255;
+    --blue-tile-border-color: 255;
+
+    --tile-color: rgb(var(--red-tile-color), var(--green-tile-color), var(--blue-tile-color));
+    --tile-border-color: rgba(var(--red-tile-border-color),
+                              var(--green-tile-border-color),
+                              var(--blue-tile-border-color),
+                              var(--tile-border, 1));
+    );
 }
 
 h1 {
@@ -119,7 +132,7 @@ main {
     border-radius: 2.75rem;
     border: 0;
     transition: background 0.3s ease;
-    font-family: var(--inter-font);
+    /*font-family: var(--inter-font);*/
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 500;

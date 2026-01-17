@@ -64,6 +64,10 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.5.5
+Implemented the tile color toggle to control the color overlay on the tiles. Also added another
+color picker for the tile border. Each are controlled separetely.
+
 #### Version 1.5.4
 Implemented the outline toggle to control whether the tiles have an outline or not.
 

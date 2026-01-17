@@ -1,13 +1,16 @@
 import {ChangeDetectorRef, Component, signal} from '@angular/core';
 import {NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
 import {MaterialModule} from "./materialModule";
-import { ColorEvent } from 'ngx-color';
+import {ColorEvent} from 'ngx-color';
 import {ColorSketchModule} from "ngx-color/sketch";
 import {Tiles} from "../tiles/tiles";
+import {ColorAlphaModule} from "ngx-color/alpha";
+import {ColorHueModule} from "ngx-color/hue";
+import {ColorCompactModule} from "ngx-color/compact";
 
 @Component({
     selector: 'app-root',
-    imports: [MaterialModule, ColorSketchModule, Tiles,],
+    imports: [MaterialModule, ColorSketchModule, Tiles, ColorAlphaModule, ColorHueModule, ColorCompactModule,],
     templateUrl: './app.html',
     standalone: true,
     styleUrl: './app.css'
@@ -103,10 +106,7 @@ export class App {
         }
     }
 
-    handleChange($event: ColorEvent) {
-        console.log($event.color);
-    }
-
+    // Update Transparency
     updateTransparency(value: any) {
         value = (value.target as HTMLInputElement).valueAsNumber;
         document.documentElement.style.setProperty('--glass-transparency',
@@ -114,6 +114,7 @@ export class App {
         this.cdr.detectChanges();
     }
 
+    // Update Blur
     updateBlur(value: any) {
         value = (value.target as HTMLInputElement).valueAsNumber;
         document.documentElement.style.setProperty('--backdrop-filter',
@@ -123,10 +124,35 @@ export class App {
         this.cdr.detectChanges();
     }
 
-    updateBorder(value: any) {
+    // Update Outline
+    updateOutline(value: any) {
         value = (value.target as HTMLInputElement).valueAsNumber;
         document.documentElement.style.setProperty('--tile-border',
             value.toString());
+        this.cdr.detectChanges();
+    }
+
+    // Update Tile Color Variables
+    updateTileColorVariables(colors: ColorEvent) {
+        document.documentElement.style.setProperty('--red-tile-color',
+            colors.color.rgb.r.toString());
+        document.documentElement.style.setProperty('--green-tile-color',
+            colors.color.rgb.g.toString());
+        document.documentElement.style.setProperty('--blue-tile-color',
+            colors.color.rgb.b.toString());
+        console.log(colors.color.rgb.r.toString())
+        this.cdr.detectChanges();
+    }
+
+    // Update Tile Border Color Variables
+    updateTileBorderColorVariables(colors: ColorEvent) {
+        document.documentElement.style.setProperty('--red-tile-border-color',
+            colors.color.rgb.r.toString());
+        document.documentElement.style.setProperty('--green-tile-border-color',
+            colors.color.rgb.g.toString());
+        document.documentElement.style.setProperty('--blue-tile-border-color',
+            colors.color.rgb.b.toString());
+        console.log(colors.color.rgb.r.toString())
         this.cdr.detectChanges();
     }
 

@@ -32,7 +32,13 @@
                    [(value)]="transparencySlider"
                    (input)="updateTransparency($event)">
         </mat-slider>
+        <div style="display:block;justify-content:center;">
+            <color-compact
+                    (onChange)="updateTileColorVariables($event)"
+            ></color-compact>
+        </div>
 
+        <br/>
         <p>Blur</p>
         <mat-slider min="0" max="20" step="0.1">
             <input matSliderThumb value="0"
@@ -44,12 +50,13 @@
         <mat-slider min="0" max="1" step="0.01">
             <input matSliderThumb value="1"
                    [(value)]="borderSlider"
-                   (input)="updateBorder($event)">
+                   (input)="updateOutline($event)">
         </mat-slider>
-
-        <p>Tile Color</p>
-        <div style="display:flex;justify-content:center;">
-            <color-sketch (onChange)="handleChange($event)"></color-sketch>
+        <div style="display:block;justify-content:center;">
+            <color-compact
+                (onChange)="updateTileBorderColorVariables($event)">
+            </color-compact>
         </div>
+
     </mat-sidenav>
 </mat-sidenav-container>
