@@ -37,7 +37,7 @@ a:link, a:visited, a:hover, a:active, a:focus {
     /*-webkit-backdrop-filter: blur(0px);*/
     backdrop-filter: var(--backdrop-filter);
     -webkit-backdrop-filter: var(--webkit-backdrop-filter);
-    border: 1px solid rgba(255, 255, 255, 1);
+    border: 1px solid rgba(255, 255, 255, var(--tile-border, 1));
 }
 
 @media screen and (max-width: 650px) {

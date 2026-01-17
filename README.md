@@ -64,6 +64,9 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.5.4
+Implemented the outline toggle to control whether the tiles have an outline or not.
+
 #### Version 1.5.3
 Implemented the blur toggle to control how much blur is applied to the background image.
 

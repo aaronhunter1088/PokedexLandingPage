@@ -48,6 +48,7 @@ outside of it.
     --glass-transparency: 0;
     --backdrop-filter: 0;
     --webkit-backdrop-filter: 0;
+    --tile-border: 1;
 }
 
 h1 {

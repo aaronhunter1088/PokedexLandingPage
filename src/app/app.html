@@ -42,7 +42,9 @@
 
         <p>Outline</p>
         <mat-slider min="0" max="1" step="0.01">
-            <input matSliderThumb value="0.5">
+            <input matSliderThumb value="1"
+                   [(value)]="borderSlider"
+                   (input)="updateBorder($event)">
         </mat-slider>
 
         <p>Tile Color</p>
