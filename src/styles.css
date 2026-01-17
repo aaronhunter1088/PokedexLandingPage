@@ -44,6 +44,8 @@ outside of it.
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    --glass-transparency: 0;
 }
 
 h1 {

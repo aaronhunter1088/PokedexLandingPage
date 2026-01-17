@@ -64,10 +64,12 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.5.2
+Implemented the transparency toggle to control whether the tiles have a glass-like effect or a solid background.
+
 #### Version 1.5.1
-Updated the homepage to have a side panel that will display the information section. It will also house the shuffle
-icon and additional settings to control the tiles. Also fixed the version numbers here and added missing files from
-the last update.
+Updated the homepage to have a side panel that will display the information section. It will have additional settings
+to control the tiles. Also fixed the version numbers here and added missing files from the last update.
 
 #### Version 1.5.0
 Changed the tiles from having a white/black background to having a glass-like effect. This will let the user see the

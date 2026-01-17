@@ -19,14 +19,18 @@
     <mat-sidenav-content>
         <main class="main">
             <div style="width:100%;max-width:900px;">
-                <router-outlet/>
+                <app-tiles></app-tiles>
             </div>
         </main>
     </mat-sidenav-content>
     <mat-sidenav position="end" #sidenav style="background-color:var(--gray-400);">
+        <br/><br/><br/>
+        <p>Tile Settings</p>
         <p>Transparency</p>
         <mat-slider min="0" max="1" step="0.01">
-            <input matSliderThumb value="0.5">
+            <input matSliderThumb
+                   [(value)]="transparencySlider"
+                   (input)="updateTransparency($event)">
         </mat-slider>
 
         <p>Blur</p>

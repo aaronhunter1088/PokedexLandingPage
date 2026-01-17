@@ -1,12 +1,13 @@
-import {Component, signal} from '@angular/core';
-import {NavigationEnd, NavigationError, NavigationStart, Router, RouterOutlet} from '@angular/router';
+import {ChangeDetectorRef, Component, signal} from '@angular/core';
+import {NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
 import {MaterialModule} from "./materialModule";
 import { ColorEvent } from 'ngx-color';
 import {ColorSketchModule} from "ngx-color/sketch";
+import {Tiles} from "../tiles/tiles";
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, MaterialModule, ColorSketchModule,],
+    imports: [MaterialModule, ColorSketchModule, Tiles,],
     templateUrl: './app.html',
     standalone: true,
     styleUrl: './app.css'
@@ -15,6 +16,7 @@ export class App {
 
     currentRoute: string;
     previousRoute: string;
+    transparencySlider: number = 0;
     // icons in use
     protected readonly icon_info = 'info';
     protected readonly icon_replay = 'replay';
@@ -39,7 +41,7 @@ export class App {
     protected readonly regionName = signal(Object.values(this.regionsInfoMap)[0][1]);
     protected readonly regionColor = signal(Object.values(this.regionsInfoMap)[0][2]);
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private cdr: ChangeDetectorRef) {
         this.currentRoute = this.router.url;
         this.previousRoute = "";
         this.updateIcon();
@@ -74,13 +76,6 @@ export class App {
     }
 
     toggleRoute(): void {
-        if (this.currentRoute.includes('/info')) {
-            this.router.navigate(['/tiles']).then(() => {
-            });
-        } else {
-            this.router.navigate(['/info']).then(() => {
-            });
-        }
     }
 
     toggleBackground(): void {
@@ -109,4 +104,12 @@ export class App {
     handleChange($event: ColorEvent) {
         console.log($event.color);
     }
+
+    updateTransparency(value: any) {
+        value = (value.target as HTMLInputElement).valueAsNumber;
+        document.documentElement.style.setProperty('--glass-transparency',
+            value.toString());
+        this.cdr.detectChanges();
+    }
+
 }
