@@ -64,6 +64,11 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.5.7
+Implemented a fix where the info icon wasn't displaying after closing the side panel. There was also a small issue
+that caused the panel to reopen after closing it. I also noticed the dividers were slightly off alignment so I removed
+the property that was causing that.
+
 #### Version 1.5.6
 Implemented a checkbox which controls whether the tiles and border colors should be the same or different.
 I also cleaned up the new variables defined in app.ts to match the current convention of using the Angular

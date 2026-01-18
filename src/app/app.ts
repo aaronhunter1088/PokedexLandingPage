@@ -1,7 +1,6 @@
-import {ChangeDetectorRef, Component, signal} from '@angular/core';
-import {NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
+import {ChangeDetectorRef, Component, signal, ViewChild} from '@angular/core';
 import {MaterialModule} from "./materialModule";
-import {Color, ColorEvent} from 'ngx-color';
+import {ColorEvent} from 'ngx-color';
 import {ColorSketchModule} from "ngx-color/sketch";
 import {Tiles} from "../tiles/tiles";
 import {ColorAlphaModule} from "ngx-color/alpha";
@@ -9,6 +8,7 @@ import {ColorHueModule} from "ngx-color/hue";
 import {ColorCompactModule} from "ngx-color/compact";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {FormsModule} from "@angular/forms";
+import {MatSidenav} from "@angular/material/sidenav";
 
 @Component({
     selector: 'app-root',
@@ -22,7 +22,6 @@ export class App {
     protected readonly icon_info = 'info';
     protected readonly icon_replay = 'replay';
     protected readonly icon_shuffle = 'shuffle';
-
     private readonly regionsInfoMap: { [key: string]: string[] } = {
         'Kanto': ['1kantoMap.png', '#C0C0C0'],
         'Johto': ['2johtoMap.png', '#C0C0C0'],
@@ -37,8 +36,6 @@ export class App {
     };
 
     protected readonly title = signal('My Pokédex'); // &#233; é
-    protected currentRoute = signal('');
-    protected previousRoute = signal('');
     protected currentIcon = signal(this.icon_info);
     protected backgroundImage = signal(Object.values(this.regionsInfoMap)[0][0]);
     protected regionName = signal(Object.values(this.regionsInfoMap)[0][1]);
@@ -48,32 +45,10 @@ export class App {
     protected outline = signal(1);
     protected matchColors = signal(false);
     protected matchedColor = signal('');
+    // obtain reference to the element #sidenav
+    @ViewChild('sidenav') sidenav!: MatSidenav;
 
-    constructor(private router: Router, private cdr: ChangeDetectorRef) {
-        this.currentRoute.set(this.router.url);
-        this.previousRoute.set('');
-        //this.updateIcon();
-        this.router.events.subscribe((event: any) => {
-            if (event instanceof NavigationStart) {
-                // Show loading indicator
-                this.previousRoute = this.currentRoute;
-                //console.log("Route change detected. previousRoute: ", this.previousRoute);
-            }
-
-            if (event instanceof NavigationEnd) {
-                // Hide loading indicator
-                this.currentRoute.set(event.url);
-                this.updateIcon();
-                //console.log("currentRoute: ", event.url);
-            }
-
-            if (event instanceof NavigationError) {
-                // Hide loading indicator
-
-                // Present error to user
-                console.log(event.error);
-            }
-        });
+    constructor(private cdr: ChangeDetectorRef) {
         this.toggleBackground();
     }
 
@@ -83,9 +58,7 @@ export class App {
     ngOnChanges() {
     }
 
-    toggleRoute(): void {
-    }
-
+    // Update the background
     toggleBackground(): void {
         const randomIndex = Math.floor(Math.random() * Object.entries(this.regionsInfoMap).length);
         const entry = Object.entries(this.regionsInfoMap)[randomIndex];
@@ -101,12 +74,16 @@ export class App {
         return `url('${this.backgroundImage()}')`;
     }
 
+    // Update the info/replay icon
     updateIcon(): void {
-        if (this.currentIcon() === 'info') {
+        this.sidenav.toggle();
+        if (this.currentIcon() === this.icon_info) {
             this.currentIcon.set(this.icon_replay);
+
         } else {
             this.currentIcon.set(this.icon_info);
         }
+
     }
 
     // Update Transparency

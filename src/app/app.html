@@ -9,7 +9,7 @@
     <h1 class="region-name" [style.background-color]="regionColor()">{{ regionName() }}</h1>
     <div class="header-icons">
         <mat-icon (click)="toggleBackground()" class="header-icon clickable">swap_calls</mat-icon>
-        <mat-icon (click)="sidenav.toggle(); updateIcon();" class="header-icon clickable">{{ currentIcon() }}</mat-icon>
+        <mat-icon (click)="updateIcon()" class="header-icon clickable">{{ currentIcon() }}</mat-icon>
     </div>
 </header>
 <mat-sidenav-container [style.background-image]="getBackgroundImageUrl()"
@@ -21,17 +21,22 @@
             <app-tiles></app-tiles>
         </main>
     </mat-sidenav-content>
-    <mat-sidenav position="end" #sidenav style="background-color:var(--gray-400);">
+    <mat-sidenav position="end" #sidenav style="background-color:var(--gray-400);"
+    (closed)="this.currentIcon.set(this.icon_info);">
         <br/><br/><br/>
         <p>Tile Settings</p>
 
-        <mat-checkbox [checked]="matchColors()" (change)="matchColors.set($event.checked)">Match Colors</mat-checkbox>
-        <p>Transparency</p>
-        <mat-slider min="0" max="1" step="0.01">
-            <input matSliderThumb
-                   [value]="transparency()"
-                   (input)="updateTransparency($event)">
-        </mat-slider>
+        <mat-checkbox [checked]="matchColors()"
+                      (change)="matchColors.set($event.checked)">Match Colors</mat-checkbox>
+        <br/>
+        <div style="display:inline-flex; align-items:center; gap: 1rem;">
+            <p style="margin: 0;">Transparency</p>
+            <mat-slider min="0" max="1" step="0.01">
+                <input matSliderThumb
+                       [value]="transparency()"
+                       (input)="updateTransparency($event)">
+            </mat-slider>
+        </div>
         <div style="display:block;justify-content:center;">
             <color-compact
                     [color]="matchedColor()"
@@ -40,19 +45,24 @@
         </div>
 
         <br/>
-        <p>Blur</p>
-        <mat-slider min="0" max="20" step="0.1">
-            <input matSliderThumb value="0"
-                   [value]="blur()"
-                   (input)="updateBlur($event)">
-        </mat-slider>
+        <div style="display:inline-flex; align-items:center; gap: 1rem;">
+            <p>Blur</p>
+            <mat-slider min="0" max="20" step="0.1">
+                <input matSliderThumb value="0"
+                       [value]="blur()"
+                       (input)="updateBlur($event)">
+            </mat-slider>
+        </div>
 
-        <p>Outline</p>
-        <mat-slider min="0" max="1" step="0.01">
-            <input matSliderThumb value="1"
-                   [value]="outline()"
-                   (input)="updateOutline($event)">
-        </mat-slider>
+        <br/>
+        <div style="display:inline-flex; align-items:center; gap: 1rem;">
+            <p>Outline</p>
+            <mat-slider min="0" max="1" step="0.01">
+                <input matSliderThumb value="1"
+                       [value]="outline()"
+                       (input)="updateOutline($event)">
+            </mat-slider>
+        </div>
         <div style="display:block;justify-content:center;">
             <color-compact
                     [color]="matchedColor()"
