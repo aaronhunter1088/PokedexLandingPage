@@ -64,6 +64,10 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.5.8
+Implemented a toggle to change the color of the tile text. A few font options were also added and adjust only the text
+on the tiles.
+
 #### Version 1.5.7
 Implemented a fix where the info icon wasn't displaying after closing the side panel. There was also a small issue
 that caused the panel to reopen after closing it. I also noticed the dividers were slightly off alignment so I removed

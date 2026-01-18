@@ -1,18 +1,13 @@
 import {ChangeDetectorRef, Component, signal, ViewChild} from '@angular/core';
-import {MaterialModule} from "./materialModule";
 import {ColorEvent} from 'ngx-color';
-import {ColorSketchModule} from "ngx-color/sketch";
-import {Tiles} from "../tiles/tiles";
-import {ColorAlphaModule} from "ngx-color/alpha";
-import {ColorHueModule} from "ngx-color/hue";
 import {ColorCompactModule} from "ngx-color/compact";
-import {MatCheckbox} from "@angular/material/checkbox";
-import {FormsModule} from "@angular/forms";
+import {MaterialModule} from "./materialModule";
 import {MatSidenav} from "@angular/material/sidenav";
+import {Tiles} from "../tiles/tiles";
 
 @Component({
     selector: 'app-root',
-    imports: [MaterialModule, ColorSketchModule, Tiles, ColorAlphaModule, ColorHueModule, ColorCompactModule, MatCheckbox, FormsModule,],
+    imports: [MaterialModule, Tiles, ColorCompactModule,],
     templateUrl: './app.html',
     standalone: true,
     styleUrl: './app.css'
@@ -45,6 +40,7 @@ export class App {
     protected outline = signal(1);
     protected matchColors = signal(false);
     protected matchedColor = signal('');
+    protected tileTextFontFamily = signal('Roboto, sans-serif');
     // obtain reference to the element #sidenav
     @ViewChild('sidenav') sidenav!: MatSidenav;
 
@@ -70,6 +66,7 @@ export class App {
         this.regionColor.set(color);
     }
 
+    // Get the background image URL as a CSS url() string
     protected getBackgroundImageUrl(): string {
         return `url('${this.backgroundImage()}')`;
     }
@@ -158,5 +155,28 @@ export class App {
     // Set Matched Color
     private setMatchedColor(colors: ColorEvent) {
         this.matchedColor.set(colors.color.hex);
+    }
+
+    // Update Tile Text Font
+    updateTileTextFont(font: string) {
+        document.documentElement.style.setProperty('--tile-text-font-family', font);
+        this.tileTextFontFamily.set(font)
+        this.cdr.detectChanges();
+    }
+
+    // Update Tile Text Color
+    updateTileTextColorVariables(colors: ColorEvent) {
+        this.setTileTextColorVariables(colors);
+        this.cdr.detectChanges();
+    }
+
+    // Set Tile Color Variables
+    private setTileTextColorVariables(colors: ColorEvent) {
+        document.documentElement.style.setProperty('--red-tile-text-color',
+            colors.color.rgb.r.toString());
+        document.documentElement.style.setProperty('--green-tile-text-color',
+            colors.color.rgb.g.toString());
+        document.documentElement.style.setProperty('--blue-tile-text-color',
+            colors.color.rgb.b.toString());
     }
 }

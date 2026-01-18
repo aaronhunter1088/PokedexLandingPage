@@ -55,7 +55,9 @@ outside of it.
     --red-tile-border-color: 255;
     --green-tile-border-color: 255;
     --blue-tile-border-color: 255;
-
+    --red-tile-text-color: 0;
+    --green-tile-text-color: 0;
+    --blue-tile-text-color: 0;
     --tile-color: rgba(var(--red-tile-color),
                        var(--green-tile-color),
                        var(--blue-tile-color),
@@ -64,6 +66,10 @@ outside of it.
                               var(--green-tile-border-color),
                               var(--blue-tile-border-color),
                               var(--tile-border, 1));
+    --tile-text-color: rgb(var(--red-tile-text-color),
+                            var(--green-tile-text-color),
+                            var(--blue-tile-text-color));
+    --tile-text-font-family: 'Roboto', sans-serif;
 }
 
 h1 {

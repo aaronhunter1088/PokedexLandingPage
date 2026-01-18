@@ -18,6 +18,8 @@ import {MatMenu} from "@angular/material/menu";
 import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
 import {MatSlider, MatSliderThumb} from "@angular/material/slider";
+import {MatCheckbox} from "@angular/material/checkbox";
+import {MatOption, MatSelect} from "@angular/material/select";
 
 @NgModule({
     //“What other modules can use through me”
@@ -50,7 +52,10 @@ import {MatSlider, MatSliderThumb} from "@angular/material/slider";
         MatCardSubtitle,
         MatCardActions,
         MatCardFooter,
-        MatSlideToggle
+        MatSlideToggle,
+        MatCheckbox,
+        MatSelect,
+        MatOption
     ],
     //“What this module is allowed to use internally”
     imports: [
@@ -81,6 +86,9 @@ import {MatSlider, MatSliderThumb} from "@angular/material/slider";
         MatCardActions,
         MatCardFooter,
         MatSlideToggle,
+        MatCheckbox,
+        MatSelect,
+        MatOption
     ]
 })
 export class MaterialModule {

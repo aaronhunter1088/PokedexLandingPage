@@ -70,5 +70,22 @@
             </color-compact>
         </div>
 
+        <br/>
+        <p>Tile Fonts</p>
+        <mat-select
+                [value]="tileTextFontFamily()"
+                (selectionChange)="updateTileTextFont($event.value)">
+            <mat-option value="Roboto, sans-serif">Roboto (Default)</mat-option>
+            <mat-option value="'Tangerine', cursive">Tangerine</mat-option>
+            <mat-option value="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</mat-option>
+            <mat-option value="'Lucida Handwriting', cursive">Lucida Handwriting</mat-option>
+            <mat-option value="'Brush Script MT', cursive">Brush Script MT</mat-option>
+        </mat-select>
+        <br/><br/>
+        <p>Tile Text Color</p>
+        <color-compact
+                (onChange)="updateTileTextColorVariables($event)">
+        </color-compact>
+
     </mat-sidenav>
 </mat-sidenav-container>

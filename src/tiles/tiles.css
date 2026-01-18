@@ -6,6 +6,10 @@
     justify-content: center;
     margin-top: 1rem;
 }
+.tileText {
+    color: var(--tile-text-color);
+    font-family: var(--tile-text-font-family), cursive;
+}
 a {
     color: inherit; /* Inherits color from the parent element */
     text-decoration: none; /* Removes the default underline */
