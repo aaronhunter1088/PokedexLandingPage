@@ -31,152 +31,152 @@
         <mat-accordion>
             <div style="max-height: 70vh; overflow-y: auto; overflow-x: hidden; ">
                 <mat-expansion-panel #tileAccordian (opened)="panelTileSettingsOpenState.set(true)" (closed)="panelTileSettingsOpenState.set(false)">
-                <mat-expansion-panel-header>
-<!--                    <mat-panel-title> Tile Settings </mat-panel-title>-->
-                    <mat-panel-description>
-                        Adjust{{panelTileSettingsOpenState() ? 'ing' : ''}} the tile settings
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <mat-checkbox [checked]="matchTileColors()"
-                              (change)="matchTileColors.set($event.checked)">
-                    Match Colors (Transparency and Blur)
-                </mat-checkbox>
-                <br/>
-                <div style="display:inline-flex; align-items:center; gap: 1rem;">
-                    <p style="margin: 0;">Transparency</p>
-                    <mat-slider min="0" max="1" step="0.01">
-                        <input matSliderThumb
-                               [value]="tileTransparency()"
-                               (input)="updateTileTransparency($event)">
-                    </mat-slider>
-                </div>
-                <div style="display:block;justify-content:center;">
-                    <color-compact
-                            [color]="matchedTileColor()"
-                            (onChange)="updateTileColorVariables($event)"
-                    ></color-compact>
-                </div>
+                    <mat-expansion-panel-header>
+                        <!--<mat-panel-title> Tile Settings </mat-panel-title>-->
+                        <mat-panel-description>
+                            Adjust{{panelTileSettingsOpenState() ? 'ing' : ''}} the tile settings
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-checkbox [checked]="matchTileColors()"
+                                  (change)="matchTileColors.set($event.checked)">
+                        Match Colors (Transparency and Blur)
+                    </mat-checkbox>
+                    <br/>
+                    <div style="display:inline-flex; align-items:center; gap: 1rem;">
+                        <p style="margin: 0;">Transparency</p>
+                        <mat-slider min="0" max="1" step="0.01">
+                            <input matSliderThumb
+                                   [value]="tileTransparency()"
+                                   (input)="updateTileTransparency($event)">
+                        </mat-slider>
+                    </div>
+                    <div style="display:block;justify-content:center;">
+                        <color-compact
+                                [color]="matchedTileColor()"
+                                (onChange)="updateTileColorVariables($event)"
+                        ></color-compact>
+                    </div>
 
-                <br/>
-                <div style="display:inline-flex; align-items:center; gap: 1rem;">
-                    <p>Blur</p>
-                    <mat-slider min="0" max="20" step="0.1">
-                        <input matSliderThumb value="0"
-                               [value]="tileBlur()"
-                               (input)="updateTileBlur($event)">
-                    </mat-slider>
-                </div>
+                    <br/>
+                    <div style="display:inline-flex; align-items:center; gap: 1rem;">
+                        <p>Blur</p>
+                        <mat-slider min="0" max="20" step="0.1">
+                            <input matSliderThumb value="0"
+                                   [value]="tileBlur()"
+                                   (input)="updateTileBlur($event)">
+                        </mat-slider>
+                    </div>
 
-                <br/>
-                <div style="display:inline-flex; align-items:center; gap: 1rem;">
-                    <p>Outline</p>
-                    <mat-slider min="0" max="1" step="0.01">
-                        <input matSliderThumb value="1"
-                               [value]="tileOutline()"
-                               (input)="updateTileOutline($event)">
-                    </mat-slider>
-                </div>
-                <div style="display:block;justify-content:center;">
+                    <br/>
+                    <div style="display:inline-flex; align-items:center; gap: 1rem;">
+                        <p>Outline</p>
+                        <mat-slider min="0" max="1" step="0.01">
+                            <input matSliderThumb value="1"
+                                   [value]="tileOutline()"
+                                   (input)="updateTileOutline($event)">
+                        </mat-slider>
+                    </div>
+                    <div style="display:block;justify-content:center;">
+                        <color-compact
+                                [color]="matchedTileColor()"
+                                (onChange)="updateTileBorderColorVariables($event)">
+                        </color-compact>
+                    </div>
+
+                    <br/>
+                    <p>Tile Fonts</p>
+                    <mat-select
+                            [value]="tileTextFontFamily()"
+                            (selectionChange)="updateTileTextFont($event.value)">
+                        <mat-option value="Roboto, sans-serif">Roboto (Default)</mat-option>
+                        <mat-option value="'Tangerine', cursive">Tangerine</mat-option>
+                        <mat-option value="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</mat-option>
+                        <mat-option value="'Lucida Handwriting', cursive">Lucida Handwriting</mat-option>
+                        <mat-option value="'Brush Script MT', cursive">Brush Script MT</mat-option>
+                    </mat-select>
+                    <br/><br/>
+                    <p>Tile Text Color</p>
                     <color-compact
-                            [color]="matchedTileColor()"
-                            (onChange)="updateTileBorderColorVariables($event)">
+                            (onChange)="updateTileTextColorVariables($event)">
                     </color-compact>
-                </div>
-
-                <br/>
-                <p>Tile Fonts</p>
-                <mat-select
-                        [value]="tileTextFontFamily()"
-                        (selectionChange)="updateTileTextFont($event.value)">
-                    <mat-option value="Roboto, sans-serif">Roboto (Default)</mat-option>
-                    <mat-option value="'Tangerine', cursive">Tangerine</mat-option>
-                    <mat-option value="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</mat-option>
-                    <mat-option value="'Lucida Handwriting', cursive">Lucida Handwriting</mat-option>
-                    <mat-option value="'Brush Script MT', cursive">Brush Script MT</mat-option>
-                </mat-select>
-                <br/><br/>
-                <p>Tile Text Color</p>
-                <color-compact
-                        (onChange)="updateTileTextColorVariables($event)">
-                </color-compact>
-            </mat-expansion-panel>
+                </mat-expansion-panel>
             </div>
             <div style="max-height: 70vh; overflow-y: auto; overflow-x: hidden; ">
                 <mat-expansion-panel #regionNameAccordian (opened)="panelRegionNameSettingsOpenState.set(true)" (closed)="panelRegionNameSettingsOpenState.set(false)">
-            <mat-expansion-panel-header>
-<!--                    <mat-panel-title> Self aware panel </mat-panel-title>-->
-                <mat-panel-description>
-                    Adjust{{panelRegionNameSettingsOpenState() ? 'ing' : ''}} the region name settings
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-            <mat-checkbox [checked]="matchRegionNameColors()"
-                          (change)="matchRegionNameColors.set($event.checked)">
-                Match Colors (Transparency and Blur)
-            </mat-checkbox>
-            <br/>
-            <div style="display:inline-flex; align-items:center; gap: 1rem;">
-                <p style="margin: 0;">Transparency</p>
-                <mat-slider min="0" max="1" step="0.01">
-                    <input matSliderThumb
-                           [value]="regionNameTransparency()"
-                           (input)="updateRegionNameTransparency($event)">
-                </mat-slider>
-            </div>
-            <div style="display:block;justify-content:center;">
-                <color-compact
-                        [color]="matchedRegionNameColor()"
-                        (onChange)="updateRegionNameColorVariables($event)"
-                ></color-compact>
-            </div>
+                    <mat-expansion-panel-header>
+                        <!--<mat-panel-title> Self aware panel </mat-panel-title>-->
+                        <mat-panel-description>
+                            Adjust{{panelRegionNameSettingsOpenState() ? 'ing' : ''}} the region name settings
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-checkbox [checked]="matchRegionNameColors()"
+                                  (change)="matchRegionNameColors.set($event.checked)">
+                        Match Colors (Transparency and Blur)
+                    </mat-checkbox>
+                    <br/>
+                    <div style="display:inline-flex; align-items:center; gap: 1rem;">
+                        <p style="margin: 0;">Transparency</p>
+                        <mat-slider min="0" max="1" step="0.01">
+                            <input matSliderThumb
+                                   [value]="regionNameTransparency()"
+                                   (input)="updateRegionNameTransparency($event)">
+                        </mat-slider>
+                    </div>
+                    <div style="display:block;justify-content:center;">
+                        <color-compact
+                                [color]="matchedRegionNameColor()"
+                                (onChange)="updateRegionNameColorVariables($event)"
+                        ></color-compact>
+                    </div>
 
-            <br/>
-            <div style="display:inline-flex; align-items:center; gap: 1rem;">
-                <p>Blur</p>
-                <mat-slider min="0" max="20" step="0.1">
-                    <input matSliderThumb value="0"
-                           [value]="regionNameBlur()"
-                           (input)="updateRegionNameBlur($event)">
-                </mat-slider>
-            </div>
+                    <br/>
+                    <div style="display:inline-flex; align-items:center; gap: 1rem;">
+                        <p>Blur</p>
+                        <mat-slider min="0" max="20" step="0.1">
+                            <input matSliderThumb value="0"
+                                   [value]="regionNameBlur()"
+                                   (input)="updateRegionNameBlur($event)">
+                        </mat-slider>
+                    </div>
 
-            <br/>
-            <div style="display:inline-flex; align-items:center; gap: 1rem;">
-                <p>Outline</p>
-                <mat-slider min="0" max="1" step="0.01">
-                    <input matSliderThumb value="1"
-                           [value]="regionNameOutline()"
-                           (input)="updateRegionNameOutline($event)">
-                </mat-slider>
-            </div>
-            <div style="display:block;justify-content:center;">
-                <color-compact
-                        [color]="matchedRegionNameColor()"
-                        (onChange)="updateRegionNameBorderColorVariables($event)">
-                </color-compact>
-            </div>
+                    <br/>
+                    <div style="display:inline-flex; align-items:center; gap: 1rem;">
+                        <p>Outline</p>
+                        <mat-slider min="0" max="1" step="0.01">
+                            <input matSliderThumb value="1"
+                                   [value]="regionNameOutline()"
+                                   (input)="updateRegionNameOutline($event)">
+                        </mat-slider>
+                    </div>
+                    <div style="display:block;justify-content:center;">
+                        <color-compact
+                                [color]="matchedRegionNameColor()"
+                                (onChange)="updateRegionNameBorderColorVariables($event)">
+                        </color-compact>
+                    </div>
 
-            <br/>
-            <p>Region Name Fonts</p>
-            <mat-select
-                    [value]="regionNameTextFontFamily()"
-                    (selectionChange)="updateRegionNameTextFont($event.value)">
-                <mat-option value="Roboto, sans-serif">Roboto (Default)</mat-option>
-                <mat-option value="'Tangerine', cursive">Tangerine</mat-option>
-                <mat-option value="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</mat-option>
-                <mat-option value="'Lucida Handwriting', cursive">Lucida Handwriting</mat-option>
-                <mat-option value="'Brush Script MT', cursive">Brush Script MT</mat-option>
-            </mat-select>
-            <br/><br/>
-            <p>Region Name Text Color</p>
-            <color-compact
-                    (onChange)="updateRegionNameTextColorVariables($event)">
-            </color-compact>
-        </mat-expansion-panel>
+                    <br/>
+                    <p>Region Name Fonts</p>
+                    <mat-select
+                            [value]="regionNameTextFontFamily()"
+                            (selectionChange)="updateRegionNameTextFont($event.value)">
+                        <mat-option value="Roboto, sans-serif">Roboto (Default)</mat-option>
+                        <mat-option value="'Tangerine', cursive">Tangerine</mat-option>
+                        <mat-option value="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</mat-option>
+                        <mat-option value="'Lucida Handwriting', cursive">Lucida Handwriting</mat-option>
+                        <mat-option value="'Brush Script MT', cursive">Brush Script MT</mat-option>
+                    </mat-select>
+                    <br/><br/>
+                    <p>Region Name Text Color</p>
+                    <color-compact
+                            (onChange)="updateRegionNameTextColorVariables($event)">
+                    </color-compact>
+                </mat-expansion-panel>
             </div>
             <div style="max-height: 70vh; overflow-y: auto; overflow-x: hidden; ">
                 <mat-expansion-panel #aboutAccordian>
                     <mat-expansion-panel-header>
-                        <!--                    <mat-panel-title> Self aware panel </mat-panel-title>-->
+                        <!--<mat-panel-title> Self aware panel </mat-panel-title>-->
                         <mat-panel-description>
                             About this Pok&#233;dex Application
                         </mat-panel-description>
@@ -195,6 +195,5 @@
                 </mat-expansion-panel>
             </div>
         </mat-accordion>
-
     </mat-sidenav>
 </mat-sidenav-container>

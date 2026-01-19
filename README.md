@@ -64,6 +64,11 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.7.0
+Implementing new logic to store the values set in settings to local storage. This way, when the user
+returns to the application, their settings are preserved. This includes dark mode, tile colors,
+region name styles, and tile styles.
+
 #### Version 1.6.2
 Added a new section to display the About this Pokédex application. This section briefly describes the purpose of the
 application and the differences between the three.
