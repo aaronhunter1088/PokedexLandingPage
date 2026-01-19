@@ -204,7 +204,7 @@ export class App {
             colors.color.rgb.b.toString());
     }
 
-    // Set Tile Color Variables
+    // Set Region Name Color Variables
     private setRegionNameColorVariables(colors: ColorEvent) {
         document.documentElement.style.setProperty('--red-region-name-color',
             colors.color.rgb.r.toString());

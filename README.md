@@ -64,6 +64,11 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.6.1
+Fixed an issue with the region name color not updating accordingly. Also adjusted the settings by wrapping them
+in a div to ensure that when viewed on smaller screens, all options are visible without cutting off any of the
+controls at the bottom.
+
 #### Version 1.6.0
 Changed the region name to be more like the tiles. Gave it controls as well to adjust the color,
 font, transparency, and border color.

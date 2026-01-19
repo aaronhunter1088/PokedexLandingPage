@@ -47,10 +47,12 @@ outside of it.
 
     --tile-transparency: 0;
     --region-name-transparency: 0;
+
     --tile-backdrop-filter: 0;
     --tile-webkit-backdrop-filter: 0;
     --region-name-backdrop-filter: 0;
     --region-name-webkit-backdrop-filter: 0;
+
     --tile-border: 1;
     --region-name-border: 1;
     --red-tile-color: 255;
@@ -59,6 +61,7 @@ outside of it.
     --red-region-name-color: 255;
     --green-region-name-color: 255;
     --blue-region-name-color: 255;
+
     --red-tile-border-color: 255;
     --green-tile-border-color: 255;
     --blue-tile-border-color: 255;
