@@ -5,38 +5,87 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<div [style.background-image]="getBackgroundImageUrl()"
-     style="background-position:center center;background-repeat:no-repeat;
+<header class="site-header">
+    <h1 class="region-name" [style.background-color]="regionColor()">{{ regionName() }}</h1>
+    <div class="header-icons">
+        <mat-icon (click)="toggleBackground()" class="header-icon clickable">swap_calls</mat-icon>
+        <mat-icon (click)="updateIcon()" class="header-icon clickable">{{ currentIcon() }}</mat-icon>
+    </div>
+</header>
+<mat-sidenav-container [style.background-image]="getBackgroundImageUrl()"
+                       style="background-position:center center;background-repeat:no-repeat;
             background-attachment:fixed;background-size:cover;
             min-height:100vh;justify-content:space-evenly;text-align:center;">
-    <header class="site-header">
-        <h1 class="region-name" [style.background-color]="regionColor()">{{ regionName() }}</h1>
-        <div class="header-icons">
-            <mat-icon (click)="toggleBackground()" class="header-icon clickable">swap_calls</mat-icon>
-            <mat-icon (click)="toggleRoute()" class="header-icon clickable">{{ currentIcon() }}</mat-icon>
+    <mat-sidenav-content>
+        <main class="main">
+            <app-tiles></app-tiles>
+        </main>
+    </mat-sidenav-content>
+    <mat-sidenav position="end" #sidenav style="background-color:var(--gray-400);"
+    (closed)="this.currentIcon.set(this.icon_info);">
+        <br/><br/><br/>
+        <p>Tile Settings</p>
+
+        <mat-checkbox [checked]="matchColors()"
+                      (change)="matchColors.set($event.checked)">Match Colors</mat-checkbox>
+        <br/>
+        <div style="display:inline-flex; align-items:center; gap: 1rem;">
+            <p style="margin: 0;">Transparency</p>
+            <mat-slider min="0" max="1" step="0.01">
+                <input matSliderThumb
+                       [value]="transparency()"
+                       (input)="updateTransparency($event)">
+            </mat-slider>
         </div>
-    </header>
-    <main class="main">
-        <div style="width:100%;max-width:900px;">
-            <router-outlet/>
-            <!--        <div class="left-side">-->
-            <!--            <h1>Hello, {{ title() }}</h1>-->
-            <!--            <p>Congratulations! Your app is running. 🎉</p>-->
-            <!--            <div style="display:inline-flex;">-->
-            <!--                <img ngSrc="angular-logo-white.png" width="100" height="100" alt="Angular Logo Black"/>-->
-            <!--                <img ngSrc="angular-logo-black.png" width="100" height="100" alt="Angular Logo Black"/>-->
-            <!--                <img ngSrc="spring-logo-white.png" width="100" height="100" alt="Angular Logo Black"/>-->
-            <!--                <img ngSrc="spring-logo-black.png" width="100" height="100" alt="Angular Logo Black"/>-->
-            <!--            </div>-->
-            <!--            <div>-->
-            <!--                <img ngSrc="angular-full-white.png" width="300" height="100" alt="Angular Full White"/>-->
-            <!--                <img ngSrc="angular-full-dark-blackText.png" width="300" height="100" alt="Angular Full Dark Black Text"/>-->
-            <!--                <img ngSrc="angular-full-dark-whiteText.png" width="300" height="100" style="background-color:black;" alt="Angular Full Dark White Text"/>-->
-            <!--                <img ngSrc="spring-full-white.png" width="300" height="75" alt="Spring Full White"/>-->
-            <!--                <img ngSrc="spring-full-dark-blackText.png" width="300" height="100" alt="Spring Full Dark Black Text"/>-->
-            <!--                <img ngSrc="spring-full-dark-whiteText.png" width="300" height="100" alt="Spring Full Dark White Text"/>-->
-            <!--            </div>-->
-            <!--        </div>-->
+        <div style="display:block;justify-content:center;">
+            <color-compact
+                    [color]="matchedColor()"
+                    (onChange)="updateTileColorVariables($event)"
+            ></color-compact>
         </div>
-    </main>
-</div>
+
+        <br/>
+        <div style="display:inline-flex; align-items:center; gap: 1rem;">
+            <p>Blur</p>
+            <mat-slider min="0" max="20" step="0.1">
+                <input matSliderThumb value="0"
+                       [value]="blur()"
+                       (input)="updateBlur($event)">
+            </mat-slider>
+        </div>
+
+        <br/>
+        <div style="display:inline-flex; align-items:center; gap: 1rem;">
+            <p>Outline</p>
+            <mat-slider min="0" max="1" step="0.01">
+                <input matSliderThumb value="1"
+                       [value]="outline()"
+                       (input)="updateOutline($event)">
+            </mat-slider>
+        </div>
+        <div style="display:block;justify-content:center;">
+            <color-compact
+                    [color]="matchedColor()"
+                    (onChange)="updateTileBorderColorVariables($event)">
+            </color-compact>
+        </div>
+
+        <br/>
+        <p>Tile Fonts</p>
+        <mat-select
+                [value]="tileTextFontFamily()"
+                (selectionChange)="updateTileTextFont($event.value)">
+            <mat-option value="Roboto, sans-serif">Roboto (Default)</mat-option>
+            <mat-option value="'Tangerine', cursive">Tangerine</mat-option>
+            <mat-option value="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</mat-option>
+            <mat-option value="'Lucida Handwriting', cursive">Lucida Handwriting</mat-option>
+            <mat-option value="'Brush Script MT', cursive">Brush Script MT</mat-option>
+        </mat-select>
+        <br/><br/>
+        <p>Tile Text Color</p>
+        <color-compact
+                (onChange)="updateTileTextColorVariables($event)">
+        </color-compact>
+
+    </mat-sidenav>
+</mat-sidenav-container>

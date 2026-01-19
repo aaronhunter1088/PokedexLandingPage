@@ -16,6 +16,10 @@ import {
 } from "@angular/material/card";
 import {MatMenu} from "@angular/material/menu";
 import {MatSlideToggle} from "@angular/material/slide-toggle";
+import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
+import {MatSlider, MatSliderThumb} from "@angular/material/slider";
+import {MatCheckbox} from "@angular/material/checkbox";
+import {MatOption, MatSelect} from "@angular/material/select";
 
 @NgModule({
     //“What other modules can use through me”
@@ -25,6 +29,9 @@ import {MatSlideToggle} from "@angular/material/slide-toggle";
         MatIconModule,
         MatFormFieldModule,
         MatInputModule,
+        MatSidenavContainer,
+        MatSidenav,
+        MatSidenavContent,
 
         MatButton,
         MatToolbar,
@@ -35,6 +42,8 @@ import {MatSlideToggle} from "@angular/material/slide-toggle";
         //MatSnackBar,
         MatCard,
         MatMenu,
+        MatSlider,
+        MatSliderThumb,
 
         MatCardContent,
         MatCardImage,
@@ -43,7 +52,10 @@ import {MatSlideToggle} from "@angular/material/slide-toggle";
         MatCardSubtitle,
         MatCardActions,
         MatCardFooter,
-        MatSlideToggle
+        MatSlideToggle,
+        MatCheckbox,
+        MatSelect,
+        MatOption
     ],
     //“What this module is allowed to use internally”
     imports: [
@@ -52,6 +64,9 @@ import {MatSlideToggle} from "@angular/material/slide-toggle";
         MatIconModule,
         MatFormFieldModule,
         MatInputModule,
+        MatSidenavContainer,
+        MatSidenav,
+        MatSidenavContent,
 
         MatButton,
         MatToolbar,
@@ -60,6 +75,8 @@ import {MatSlideToggle} from "@angular/material/slide-toggle";
         MatInput,
         MatCard,
         MatMenu,
+        MatSlider,
+        MatSliderThumb,
 
         MatCardContent,
         MatCardImage,
@@ -68,7 +85,10 @@ import {MatSlideToggle} from "@angular/material/slide-toggle";
         MatCardSubtitle,
         MatCardActions,
         MatCardFooter,
-        MatSlideToggle
+        MatSlideToggle,
+        MatCheckbox,
+        MatSelect,
+        MatOption
     ]
 })
 export class MaterialModule {

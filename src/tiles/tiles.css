@@ -1,4 +1,15 @@
 /* Tile-specific styles */
+
+.tiles {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+}
+.tileText {
+    color: var(--tile-text-color);
+    font-family: var(--tile-text-font-family), cursive;
+}
 a {
     color: inherit; /* Inherits color from the parent element */
     text-decoration: none; /* Removes the default underline */
@@ -19,7 +30,6 @@ a:link, a:visited, a:hover, a:active, a:focus {
     flex: 0 0 2px; /* don't shrink or grow */
     align-self: stretch; /* ensure it stretches vertically inside the inline-flex container */
     min-height: 80px; /* visible height to match card content */
-    margin-inline: 0.5rem;
     /* solid purple fallback and vertical gradient (light-mode appearance) */
     background-color: #7a2cff;
     background-image: linear-gradient(180deg, #8a2be2 0%, #7a2cff 50%, #6b2cff 100%) !important;
@@ -27,7 +37,27 @@ a:link, a:visited, a:hover, a:active, a:focus {
     transition: background 160ms ease-in-out, opacity 120ms ease;
 }
 
+.glass {
+    width: 250px;
+    height: auto;
+    background: var(--tile-color);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    /*backdrop-filter: blur(0px);*/
+    /*-webkit-backdrop-filter: blur(0px);*/
+    backdrop-filter: var(--backdrop-filter);
+    -webkit-backdrop-filter: var(--webkit-backdrop-filter);
+    border: 1px solid var(--tile-border-color);
+}
+
 @media screen and (max-width: 650px) {
+    .tiles {
+        display: block;
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
     .content {
         flex-direction: column;
         width: max-content;

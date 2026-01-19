@@ -1,5 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-:host {
+
+/*
+:root: A pseudo-class that targets the document's root element (the <html>
+element in HTML documents). CSS variables defined in :root have global scope
+and are accessible throughout the entire application.
+
+:host: A pseudo-class used only in component stylesheets (Angular, Web Components)
+that targets the component's host element itself. CSS variables defined in :host
+are scoped to that specific component and its children, but not accessible
+outside of it.
+ */
+:root {
     --bright-blue: oklch(51.01% 0.274 263.83);
     --electric-violet: oklch(53.18% 0.28 296.97);
     --french-violet: oklch(47.66% 0.246 305.88);
@@ -33,6 +44,32 @@
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    --glass-transparency: 0;
+    --backdrop-filter: 0;
+    --webkit-backdrop-filter: 0;
+    --tile-border: 1;
+    --red-tile-color: 255;
+    --green-tile-color: 255;
+    --blue-tile-color: 255;
+    --red-tile-border-color: 255;
+    --green-tile-border-color: 255;
+    --blue-tile-border-color: 255;
+    --red-tile-text-color: 0;
+    --green-tile-text-color: 0;
+    --blue-tile-text-color: 0;
+    --tile-color: rgba(var(--red-tile-color),
+                       var(--green-tile-color),
+                       var(--blue-tile-color),
+                       var(--glass-transparency, 0));
+    --tile-border-color: rgba(var(--red-tile-border-color),
+                              var(--green-tile-border-color),
+                              var(--blue-tile-border-color),
+                              var(--tile-border, 1));
+    --tile-text-color: rgb(var(--red-tile-text-color),
+                            var(--green-tile-text-color),
+                            var(--blue-tile-text-color));
+    --tile-text-font-family: 'Roboto', sans-serif;
 }
 
 h1 {
@@ -103,7 +140,7 @@ main {
     border-radius: 2.75rem;
     border: 0;
     transition: background 0.3s ease;
-    font-family: var(--inter-font);
+    /*font-family: var(--inter-font);*/
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 500;
@@ -153,4 +190,17 @@ main {
 
 .social-links a:hover svg path {
     fill: var(--gray-900);
+}
+
+@media screen and (max-width: 650px) {
+    main {
+        width: auto;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        position: relative;
+        overflow: hidden;
+    }
 }
