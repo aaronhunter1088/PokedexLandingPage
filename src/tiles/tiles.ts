@@ -34,7 +34,10 @@ export class Tiles implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        // Read query parameters
+        // Load darkmode settings from localStorage first
+        this.loadDarkmodeFromLocalStorage();
+        
+        // Read query parameters (these override localStorage if present)
         this.route.queryParamMap.subscribe(params => {
             const tileNumber = params.get('tileNumber');
             const darkmode = params.get('darkmode');
@@ -46,13 +49,16 @@ export class Tiles implements OnInit, OnDestroy {
                 
                 // Validate tileNumber is 1, 2, or 3
                 if (tileNum >= 1 && tileNum <= 3) {
-                    // Set the appropriate toggle
+                    // Set the appropriate toggle and save to localStorage
                     if (tileNum === 1) {
                         this.toggle1Checked = isDarkMode;
+                        localStorage.setItem('tile1Darkmode', isDarkMode.toString());
                     } else if (tileNum === 2) {
                         this.toggle2Checked = isDarkMode;
+                        localStorage.setItem('tile2Darkmode', isDarkMode.toString());
                     } else if (tileNum === 3) {
                         this.toggle3Checked = isDarkMode;
+                        localStorage.setItem('tile3Darkmode', isDarkMode.toString());
                     }
                     this.cdr.detectChanges();
                 }
@@ -88,13 +94,27 @@ export class Tiles implements OnInit, OnDestroy {
 
     updateMode1(checked: boolean): void {
         this.toggle1Checked = checked;
+        localStorage.setItem('tile1Darkmode', checked.toString());
     }
 
     updateMode2(checked: boolean): void {
         this.toggle2Checked = checked;
+        localStorage.setItem('tile2Darkmode', checked.toString());
     }
 
     updateMode3(checked: boolean): void {
         this.toggle3Checked = checked;
+        localStorage.setItem('tile3Darkmode', checked.toString());
+    }
+
+    private loadDarkmodeFromLocalStorage(): void {
+        const tile1Darkmode = localStorage.getItem('tile1Darkmode');
+        const tile2Darkmode = localStorage.getItem('tile2Darkmode');
+        const tile3Darkmode = localStorage.getItem('tile3Darkmode');
+        
+        // Set default values if not present, otherwise use stored values
+        this.toggle1Checked = tile1Darkmode === 'true';
+        this.toggle2Checked = tile2Darkmode === 'true';
+        this.toggle3Checked = tile3Darkmode === 'true';
     }
 }
