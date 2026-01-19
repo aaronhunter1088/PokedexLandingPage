@@ -15,7 +15,9 @@ describe('Tiles', () => {
                 {
                     provide: ActivatedRoute,
                     useValue: {
-                        queryParamMap: of(new Map())
+                        queryParamMap: of({
+                            get: () => null
+                        })
                     }
                 }
             ]
