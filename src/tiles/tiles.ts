@@ -3,6 +3,7 @@ import {NgOptimizedImage} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {MaterialModule} from "../app/materialModule";
 import {environment} from '../environments/environment';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-tiles',
@@ -28,11 +29,35 @@ export class Tiles implements OnInit, OnDestroy {
     protected readonly icon_bedtime = 'bedtime';
     protected readonly environment = environment;
 
-    constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef) {
+    constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef, private route: ActivatedRoute) {
 
     }
 
     ngOnInit() {
+        // Read query parameters
+        this.route.queryParamMap.subscribe(params => {
+            const tileNumber = params.get('tileNumber');
+            const darkmode = params.get('darkmode');
+            
+            // Both parameters must be present
+            if (tileNumber && darkmode) {
+                const tileNum = parseInt(tileNumber, 10);
+                const isDarkMode = darkmode === 'true';
+                
+                // Validate tileNumber is 1, 2, or 3
+                if (tileNum >= 1 && tileNum <= 3) {
+                    // Set the appropriate toggle
+                    if (tileNum === 1) {
+                        this.toggle1Checked = isDarkMode;
+                    } else if (tileNum === 2) {
+                        this.toggle2Checked = isDarkMode;
+                    } else if (tileNum === 3) {
+                        this.toggle3Checked = isDarkMode;
+                    }
+                    this.cdr.detectChanges();
+                }
+            }
+        });
         /* Swap logo on tile3 every 2 seconds */
         setInterval(() => {
             this.ngZone.run(() => {
