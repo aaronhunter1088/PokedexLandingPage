@@ -64,6 +64,9 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.5.9
+Changed the value 'mode' to 'darkmode' to be more descriptive of what the variable controls.
+
 #### Version 1.5.8
 Implemented a toggle to change the color of the tile text. A few font options were also added and adjust only the text
 on the tiles.
