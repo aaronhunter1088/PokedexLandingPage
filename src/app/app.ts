@@ -57,6 +57,8 @@ export class App {
     @ViewChild('tileAccordian') tileAccordian!: MatExpansionPanel;
     // obtain reference to the element #regionNameAccordian
     @ViewChild('regionNameAccordian') regionNameAccordian!: MatExpansionPanel;
+    // obtain reference to the element #aboutAccordian
+    @ViewChild('aboutAccordian') aboutAccordian!: MatExpansionPanel;
 
     constructor(private cdr: ChangeDetectorRef) {
         this.toggleBackground();
@@ -78,9 +80,11 @@ export class App {
      * User interactions occur
      */
     ngAfterViewInit(): void {
+        // Close any accordians when the sidenav is closed if open
         this.sidenav.closedStart.subscribe(() => {
             if (this.tileAccordian?.expanded) this.tileAccordian.close();
             if (this.regionNameAccordian?.expanded) this.regionNameAccordian.close();
+            if (this.aboutAccordian?.expanded) this.aboutAccordian.close();
         });
     }
 

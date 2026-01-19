@@ -38,7 +38,7 @@
             <mat-card-header>
                 <mat-card-title class="tileText"> Angular </mat-card-title>
                 <mat-card-subtitle class="tileText"> v21 </mat-card-subtitle>
-                <img alt="{{ toggle2Checked ? 'spring-logo-black' : 'spring-logo-white' }}"
+                <img alt="{{ toggle2Checked ? 'angular-logo-black' : 'angular-logo-white' }}"
                      height="40"
                      mat-card-avatar
                      ngSrc="{{ toggle2Checked ? 'angular-logo-black.png' : 'angular-logo-white.png' }}"
@@ -74,7 +74,12 @@
                 <mat-card-title class="tileText"> Angular  Frontend </mat-card-title>
                 <mat-card-subtitle class="tileText"> Spring Boot Backend </mat-card-subtitle>
                 <img alt="{{ ngLogoImgValue === 'spring-logo-white.png'
-                        ? 'spring-logo-white' : 'spring-logo-black' }}"
+                        ? 'spring-logo-white'
+                        : ngLogoImgValue === 'spring-logo-black.png'
+                            ? 'spring-logo-black'
+                            : ngLogoImgValue === 'angular-logo-white.png'
+                                ? 'angular-logo-white'
+                                : 'angular-logo-black' }}"
                      height="40"
                      mat-card-avatar
                      [ngSrc]="ngLogoImgValue"
