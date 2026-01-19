@@ -25,69 +25,70 @@
             <app-tiles></app-tiles>
         </main>
     </mat-sidenav-content>
-    <mat-sidenav position="end" #sidenav style="background-color:var(--gray-400);"
-    (closed)="this.currentIcon.set(this.icon_info);">
+    <mat-sidenav #sidenav (closed)="this.currentIcon.set(this.icon_info);" position="end"
+                 style="background-color:var(--gray-400);">
         <br/><br/><br/>
         <mat-accordion>
             <div style="max-height: 70vh; overflow-y: auto; overflow-x: hidden; ">
-                <mat-expansion-panel #tileAccordian (opened)="panelTileSettingsOpenState.set(true)" (closed)="panelTileSettingsOpenState.set(false)">
+                <mat-expansion-panel #tileAccordian (closed)="panelTileSettingsOpenState.set(false)"
+                                     (opened)="panelTileSettingsOpenState.set(true)">
                     <mat-expansion-panel-header>
                         <!--<mat-panel-title> Tile Settings </mat-panel-title>-->
                         <mat-panel-description>
-                            Adjust{{panelTileSettingsOpenState() ? 'ing' : ''}} the tile settings
+                            Adjust{{ panelTileSettingsOpenState() ? 'ing' : '' }} the tile settings
                         </mat-panel-description>
                     </mat-expansion-panel-header>
-                    <mat-checkbox [checked]="matchTileColors()"
-                                  (change)="updateMatchTileColors($event.checked)">
+                    <mat-checkbox (change)="updateMatchTileColors($event.checked)"
+                                  [checked]="matchTileColors()">
                         Match Colors (Transparency and Blur)
                     </mat-checkbox>
                     <br/>
                     <div style="display:inline-flex; align-items:center; gap: 1rem;">
                         <p style="margin: 0;">Transparency</p>
-                        <mat-slider min="0" max="1" step="0.01">
-                            <input matSliderThumb
+                        <mat-slider max="1" min="0" step="0.01">
+                            <input (input)="updateTileTransparency($event)"
                                    [value]="tileTransparency()"
-                                   (input)="updateTileTransparency($event)">
+                                   matSliderThumb>
                         </mat-slider>
                     </div>
                     <div style="display:block;justify-content:center;">
                         <color-compact
-                                [color]="matchedTileColor()"
                                 (onChange)="updateTileColorVariables($event)"
+                                [color]="matchedTileColor()"
                         ></color-compact>
                     </div>
 
                     <br/>
                     <div style="display:inline-flex; align-items:center; gap: 1rem;">
                         <p>Blur</p>
-                        <mat-slider min="0" max="20" step="0.1">
-                            <input matSliderThumb value="0"
-                                   [value]="tileBlur()"
-                                   (input)="updateTileBlur($event)">
+                        <mat-slider max="20" min="0" step="0.1">
+                            <input (input)="updateTileBlur($event)" [value]="tileBlur()"
+                                   matSliderThumb
+                                   value="0">
                         </mat-slider>
                     </div>
 
                     <br/>
                     <div style="display:inline-flex; align-items:center; gap: 1rem;">
                         <p>Outline</p>
-                        <mat-slider min="0" max="1" step="0.01">
-                            <input matSliderThumb value="1"
-                                   [value]="tileOutline()"
-                                   (input)="updateTileOutline($event)">
+                        <mat-slider max="1" min="0" step="0.01">
+                            <input (input)="updateTileOutline($event)" [value]="tileOutline()"
+                                   matSliderThumb
+                                   value="1">
                         </mat-slider>
                     </div>
                     <div style="display:block;justify-content:center;">
                         <color-compact
-                                [color]="matchedTileColor()"
-                                (onChange)="updateTileBorderColorVariables($event)">
+                                (onChange)="updateTileBorderColorVariables($event)"
+                                [color]="matchedTileColor()">
                         </color-compact>
                     </div>
 
                     <br/>
                     <p>Tile Fonts</p>
                     <mat-select
-                            [value]="tileTextFontFamily()"
-                            (selectionChange)="updateTileTextFont($event.value)">
+                            (selectionChange)="updateTileTextFont($event.value)"
+                            [value]="tileTextFontFamily()">
                         <mat-option value="Roboto, sans-serif">Roboto (Default)</mat-option>
                         <mat-option value="'Tangerine', cursive">Tangerine</mat-option>
                         <mat-option value="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</mat-option>
@@ -102,64 +103,65 @@
                 </mat-expansion-panel>
             </div>
             <div style="max-height: 70vh; overflow-y: auto; overflow-x: hidden; ">
-                <mat-expansion-panel #regionNameAccordian (opened)="panelRegionNameSettingsOpenState.set(true)" (closed)="panelRegionNameSettingsOpenState.set(false)">
+                <mat-expansion-panel #regionNameAccordian (closed)="panelRegionNameSettingsOpenState.set(false)"
+                                     (opened)="panelRegionNameSettingsOpenState.set(true)">
                     <mat-expansion-panel-header>
                         <!--<mat-panel-title> Self aware panel </mat-panel-title>-->
                         <mat-panel-description>
-                            Adjust{{panelRegionNameSettingsOpenState() ? 'ing' : ''}} the region name settings
+                            Adjust{{ panelRegionNameSettingsOpenState() ? 'ing' : '' }} the region name settings
                         </mat-panel-description>
                     </mat-expansion-panel-header>
-                    <mat-checkbox [checked]="matchRegionNameColors()"
-                                  (change)="updateMatchRegionNameColors($event.checked)">
+                    <mat-checkbox (change)="updateMatchRegionNameColors($event.checked)"
+                                  [checked]="matchRegionNameColors()">
                         Match Colors (Transparency and Blur)
                     </mat-checkbox>
                     <br/>
                     <div style="display:inline-flex; align-items:center; gap: 1rem;">
                         <p style="margin: 0;">Transparency</p>
-                        <mat-slider min="0" max="1" step="0.01">
-                            <input matSliderThumb
+                        <mat-slider max="1" min="0" step="0.01">
+                            <input (input)="updateRegionNameTransparency($event)"
                                    [value]="regionNameTransparency()"
-                                   (input)="updateRegionNameTransparency($event)">
+                                   matSliderThumb>
                         </mat-slider>
                     </div>
                     <div style="display:block;justify-content:center;">
                         <color-compact
-                                [color]="matchedRegionNameColor()"
                                 (onChange)="updateRegionNameColorVariables($event)"
+                                [color]="matchedRegionNameColor()"
                         ></color-compact>
                     </div>
 
                     <br/>
                     <div style="display:inline-flex; align-items:center; gap: 1rem;">
                         <p>Blur</p>
-                        <mat-slider min="0" max="20" step="0.1">
-                            <input matSliderThumb value="0"
-                                   [value]="regionNameBlur()"
-                                   (input)="updateRegionNameBlur($event)">
+                        <mat-slider max="20" min="0" step="0.1">
+                            <input (input)="updateRegionNameBlur($event)" [value]="regionNameBlur()"
+                                   matSliderThumb
+                                   value="0">
                         </mat-slider>
                     </div>
 
                     <br/>
                     <div style="display:inline-flex; align-items:center; gap: 1rem;">
                         <p>Outline</p>
-                        <mat-slider min="0" max="1" step="0.01">
-                            <input matSliderThumb value="1"
-                                   [value]="regionNameOutline()"
-                                   (input)="updateRegionNameOutline($event)">
+                        <mat-slider max="1" min="0" step="0.01">
+                            <input (input)="updateRegionNameOutline($event)" [value]="regionNameOutline()"
+                                   matSliderThumb
+                                   value="1">
                         </mat-slider>
                     </div>
                     <div style="display:block;justify-content:center;">
                         <color-compact
-                                [color]="matchedRegionNameColor()"
-                                (onChange)="updateRegionNameOutlineColorVariables($event)">
+                                (onChange)="updateRegionNameOutlineColorVariables($event)"
+                                [color]="matchedRegionNameColor()">
                         </color-compact>
                     </div>
 
                     <br/>
                     <p>Region Name Fonts</p>
                     <mat-select
-                            [value]="regionNameTextFontFamily()"
-                            (selectionChange)="updateRegionNameTextFont($event.value)">
+                            (selectionChange)="updateRegionNameTextFont($event.value)"
+                            [value]="regionNameTextFontFamily()">
                         <mat-option value="Roboto, sans-serif">Roboto (Default)</mat-option>
                         <mat-option value="'Tangerine', cursive">Tangerine</mat-option>
                         <mat-option value="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</mat-option>
@@ -182,15 +184,18 @@
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     This Pok&#233;dex application was built originally using Spring Boot as a fun project in order to
-                    practice moreso with the Spring framework. Later on, I needed to learn Angular, so I decided to clone
+                    practice moreso with the Spring framework. Later on, I needed to learn Angular, so I decided to
+                    clone
                     the Pok&#233;dex application since I already had a working version. This allowed me to focus on
                     learning Angular semantics and the best practices without worries about what I was building. The
                     Spring Boot application is 100% Java and Spring Boot. The Angular app is a 100% JavaScript/Angular
                     application.<br/>
-                    One day, I decided to create a version using both technologies together. Using Angular as my font-end
+                    One day, I decided to create a version using both technologies together. Using Angular as my
+                    font-end
                     and Spring Boot as my back-end, the third version of this Pok&#233;dex application was born.<br/>
                     This landing page was created as a means to present all three versions in one place. This app works
-                    with the <a href="http://pokeapi.co/" target="_blank" rel="noopener noreferrer">Pok&#233;API</a> to fetch
+                    with the <a href="http://pokeapi.co/" rel="noopener noreferrer" target="_blank">Pok&#233;API</a> to
+                    fetch
                     and display various Pok&#233;mon data.<br/><br/>
                 </mat-expansion-panel>
             </div>

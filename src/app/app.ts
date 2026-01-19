@@ -15,27 +15,20 @@ import {MatExpansionPanel} from "@angular/material/expansion";
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
+    // obtain reference to the element #sidenav
+    @ViewChild('sidenav') sidenav!: MatSidenav;
+    // obtain reference to the element #tileAccordian
+    @ViewChild('tileAccordian') tileAccordian!: MatExpansionPanel;
+    // obtain reference to the element #regionNameAccordian
+    @ViewChild('regionNameAccordian') regionNameAccordian!: MatExpansionPanel;
+    // obtain reference to the element #aboutAccordian
+    @ViewChild('aboutAccordian') aboutAccordian!: MatExpansionPanel;
     // icons in use
     protected readonly icon_info = 'info';
     protected readonly icon_replay = 'replay';
     protected readonly icon_shuffle = 'shuffle';
-    private readonly regionsInfoMap: { [key: string]: string[] } = {
-        'Kanto': ['1kantoMap.png', '#C0C0C0'],
-        'Johto': ['2johtoMap.png', '#C0C0C0'],
-        'Hoenn': ['3hoennMap.png', '#C0C0C0'],
-        'Sinnoh': ['41sinnohMap.png', '#C0C0C0'],
-        'Ancient Sinnoh': ['42hisuiSinnohMap.png', '#FFDEAD'],
-        'Unova': ['5unovaMap.png', '#C0C0C0'],
-        'Kalos': ['6kalosMap.png', '#C0C0C0'],
-        'Alola': ['7alolaMap.png', '#C0C0C0'],
-        'Galar': ['8galarMap.png','#C0C0C0'],
-        'Paldea': ['9paldeaMap.png', '#C0C0C0']
-    };
-
     protected readonly title = signal('My Pokédex'); // &#233; é
     protected currentIcon = signal(this.icon_info);
-    protected backgroundImage = signal(Object.values(this.regionsInfoMap)[0][0]);
-    protected regionName = signal(Object.values(this.regionsInfoMap)[0][1]);
     protected regionColor = signal('white');
     // tile specific settings
     protected matchTileColors = signal(false);
@@ -58,14 +51,20 @@ export class App {
     protected regionNameTextColor = signal('black');
     protected readonly panelTileSettingsOpenState = signal(false);
     protected readonly panelRegionNameSettingsOpenState = signal(false);
-    // obtain reference to the element #sidenav
-    @ViewChild('sidenav') sidenav!: MatSidenav;
-    // obtain reference to the element #tileAccordian
-    @ViewChild('tileAccordian') tileAccordian!: MatExpansionPanel;
-    // obtain reference to the element #regionNameAccordian
-    @ViewChild('regionNameAccordian') regionNameAccordian!: MatExpansionPanel;
-    // obtain reference to the element #aboutAccordian
-    @ViewChild('aboutAccordian') aboutAccordian!: MatExpansionPanel;
+    private readonly regionsInfoMap: { [key: string]: string[] } = {
+        'Kanto': ['1kantoMap.png', '#C0C0C0'],
+        'Johto': ['2johtoMap.png', '#C0C0C0'],
+        'Hoenn': ['3hoennMap.png', '#C0C0C0'],
+        'Sinnoh': ['41sinnohMap.png', '#C0C0C0'],
+        'Ancient Sinnoh': ['42hisuiSinnohMap.png', '#FFDEAD'],
+        'Unova': ['5unovaMap.png', '#C0C0C0'],
+        'Kalos': ['6kalosMap.png', '#C0C0C0'],
+        'Alola': ['7alolaMap.png', '#C0C0C0'],
+        'Galar': ['8galarMap.png', '#C0C0C0'],
+        'Paldea': ['9paldeaMap.png', '#C0C0C0']
+    };
+    protected backgroundImage = signal(Object.values(this.regionsInfoMap)[0][0]);
+    protected regionName = signal(Object.values(this.regionsInfoMap)[0][1]);
 
     // Component  constructor
     constructor(private cdr: ChangeDetectorRef) {
@@ -103,111 +102,6 @@ export class App {
     ngOnChanges() {
     }
 
-    // Initialize Tile Settings from Local Storage
-    private initializeTileSettingsFromLocalStorage(): void {
-        // Load matchTileColors
-        const matchTileColorsValue = localStorage.getItem("matchTileColors");
-        this.matchTileColors.set(matchTileColorsValue === 'true');
-        
-        // Load matched tile color
-        const matchedTileColorValue = localStorage.getItem("matchedTileColor");
-        this.matchedTileColor.set(matchedTileColorValue || '#ffffff');
-        
-        // Load tile color
-        const tileColorValue = localStorage.getItem("tileColor");
-        this.tileColor.set(tileColorValue || this.matchedTileColor());
-        
-        // Load tile outline color
-        const tileOutlineColorValue = localStorage.getItem("tileOutlineColor");
-        this.tileOutlineColor.set(tileOutlineColorValue || '#ffffff');
-        
-        // Initialize tile color CSS variables
-        const tileColorToUse = this.tileColor();
-        if (tileColorToUse) {
-            this.setTileColorFromHex(tileColorToUse);
-        }
-        
-        // Initialize tile outline color CSS variables
-        const outlineColorToUse = this.tileOutlineColor();
-        if (outlineColorToUse) {
-            this.setTileOutlineColorFromHex(outlineColorToUse);
-        }
-        
-        // Load transparency
-        const tileTransparencyValue = localStorage.getItem("tileTransparency");
-        this.updateTileTransparency({target: {valueAsNumber: Number(tileTransparencyValue || 0)}});
-        
-        // Load blur
-        const tileBlurValue = localStorage.getItem("tileBlur");
-        this.updateTileBlur({target: {valueAsNumber: Number(tileBlurValue || 0)}});
-        
-        // Load outline
-        const tileOutlineValue = localStorage.getItem("tileOutline");
-        this.updateTileOutline({target: {valueAsNumber: Number(tileOutlineValue || 1)}});
-        
-        // Load font family
-        const tileFontValue = localStorage.getItem("tileTextFontFamily");
-        this.updateTileTextFont(tileFontValue || 'Roboto, sans-serif');
-        
-        // Load text color
-        const tileTextColorValue = localStorage.getItem("tileTextColor");
-        this.tileTextColor.set(tileTextColorValue || '#000000');
-        if (tileTextColorValue) {
-            this.setTileTextColorFromHex(tileTextColorValue);
-        }
-    }
-
-    // Initialize Region Name Settings from Local Storage
-    private initializeRegionNameSettingsFromLocalStorage(): void {
-        // Load matchRegionNameColors
-        const matchRegionNameColorsValue = localStorage.getItem("matchRegionNameColors");
-        this.matchRegionNameColors.set(matchRegionNameColorsValue === 'true');
-        
-        // Load matched region name color
-        const matchedRegionNameColorValue = localStorage.getItem("matchedRegionNameColor");
-        this.matchedRegionNameColor.set(matchedRegionNameColorValue || '#ffffff');
-        
-        // Load region name outline color
-        const regionNameOutlineColorValue = localStorage.getItem("regionNameOutlineColor");
-        this.regionNameOutlineColor.set(regionNameOutlineColorValue || '#ffffff');
-        
-        // Initialize region name color CSS variables
-        const regionNameColorToUse = this.matchedRegionNameColor();
-        if (regionNameColorToUse) {
-            this.setRegionNameColorFromHex(regionNameColorToUse);
-        }
-        
-        // Initialize region name outline color CSS variables
-        const outlineColorToUse = this.regionNameOutlineColor();
-        if (outlineColorToUse) {
-            this.setRegionNameOutlineColorFromHex(outlineColorToUse);
-        }
-        
-        // Load transparency
-        const regionNameTransparencyValue = localStorage.getItem("regionNameTransparency");
-        this.updateRegionNameTransparency({target: {valueAsNumber: Number(regionNameTransparencyValue || 0)}});
-        
-        // Load blur
-        const regionNameBlurValue = localStorage.getItem("regionNameBlur");
-        this.updateRegionNameBlur({target: {valueAsNumber: Number(regionNameBlurValue || 0)}});
-        
-        // Load outline
-        const regionNameOutlineValue = localStorage.getItem("regionNameOutline");
-        this.updateRegionNameOutline({target: {valueAsNumber: Number(regionNameOutlineValue || 1)}});
-        
-        // Load font family
-        const regionNameFontValue = localStorage.getItem("regionNameTextFontFamily");
-        this.updateRegionNameTextFont(regionNameFontValue || 'Roboto, sans-serif');
-        
-        // Load text color
-        const regionNameTextColorValue = localStorage.getItem("regionNameTextColor");
-        this.regionNameTextColor.set(regionNameTextColorValue || '#000000');
-        if (regionNameTextColorValue) {
-            this.setRegionNameTextColorFromHex(regionNameTextColorValue);
-        }
-    }
-
-    // =========== Header Actions =========== //
     // Update the background
     toggleBackground(): void {
         const randomIndex = Math.floor(Math.random() * Object.entries(this.regionsInfoMap).length);
@@ -225,6 +119,8 @@ export class App {
         return `url('${this.backgroundImage()}')`;
     }
 
+    // =========== Header Actions =========== //
+
     // Update the info/replay icon
     updateIcon(): void {
         this.sidenav.toggle();
@@ -237,7 +133,6 @@ export class App {
 
     }
 
-    // =========== Tile Settings Methods =========== //
     // Update Match Tile Colors Checkbox
     updateMatchTileColors(checked: boolean) {
         this.matchTileColors.set(checked);
@@ -261,20 +156,7 @@ export class App {
         localStorage.setItem("tileOutlineColor", this.tileOutlineColor());
     }
 
-    // Set Tile Color Variables
-    private setTileColorVariables(colors: ColorEvent) {
-        document.documentElement.style.setProperty('--red-tile-color',
-            colors.color.rgb.r.toString());
-        document.documentElement.style.setProperty('--green-tile-color',
-            colors.color.rgb.g.toString());
-        document.documentElement.style.setProperty('--blue-tile-color',
-            colors.color.rgb.b.toString());
-    }
-
-    // Set Matched Tile Color
-    private setMatchedTileColor(colors: ColorEvent) {
-        this.matchedTileColor.set(colors.color.hex);
-    }
+    // =========== Tile Settings Methods =========== //
 
     // Update Tile Transparency
     updateTileTransparency(value: any) {
@@ -284,16 +166,6 @@ export class App {
         this.tileTransparency.set(value);
         this.cdr.detectChanges();
         localStorage.setItem("tileTransparency", value.toString());
-    }
-
-    // Set Tile Color From Hex (initialization)
-    private setTileColorFromHex(hex: string) {
-        const rgb = this.hexToRgb(hex);
-        if (rgb) {
-            document.documentElement.style.setProperty('--red-tile-color', rgb.r.toString());
-            document.documentElement.style.setProperty('--green-tile-color', rgb.g.toString());
-            document.documentElement.style.setProperty('--blue-tile-color', rgb.b.toString());
-        }
     }
 
     // Update Tile Blur
@@ -334,26 +206,6 @@ export class App {
         localStorage.setItem("tileColor", this.tileColor());
     }
 
-    // Set Tile Outline Color Variables
-    private setTileOutlineColorVariables(colors: ColorEvent) {
-        document.documentElement.style.setProperty('--red-tile-border-color',
-            colors.color.rgb.r.toString());
-        document.documentElement.style.setProperty('--green-tile-border-color',
-            colors.color.rgb.g.toString());
-        document.documentElement.style.setProperty('--blue-tile-border-color',
-            colors.color.rgb.b.toString());
-    }
-
-    // Set Tile Outline Color From Hex (initialization)
-    private setTileOutlineColorFromHex(hex: string) {
-        const rgb = this.hexToRgb(hex);
-        if (rgb) {
-            document.documentElement.style.setProperty('--red-tile-border-color', rgb.r.toString());
-            document.documentElement.style.setProperty('--green-tile-border-color', rgb.g.toString());
-            document.documentElement.style.setProperty('--blue-tile-border-color', rgb.b.toString());
-        }
-    }
-
     // Update Tile Text Font
     updateTileTextFont(font: string) {
         document.documentElement.style.setProperty('--tile-text-font-family', font);
@@ -370,27 +222,6 @@ export class App {
         localStorage.setItem("tileTextColor", this.tileTextColor());
     }
 
-    // Set Tile Color Variables
-    private setTileTextColorVariables(colors: ColorEvent) {
-        document.documentElement.style.setProperty('--red-tile-text-color',
-            colors.color.rgb.r.toString());
-        document.documentElement.style.setProperty('--green-tile-text-color',
-            colors.color.rgb.g.toString());
-        document.documentElement.style.setProperty('--blue-tile-text-color',
-            colors.color.rgb.b.toString());
-    }
-
-    // Set Tile Text Color From Hex (initialization)
-    private setTileTextColorFromHex(hex: string) {
-        const rgb = this.hexToRgb(hex);
-        if (rgb) {
-            document.documentElement.style.setProperty('--red-tile-text-color', rgb.r.toString());
-            document.documentElement.style.setProperty('--green-tile-text-color', rgb.g.toString());
-            document.documentElement.style.setProperty('--blue-tile-text-color', rgb.b.toString());
-        }
-    }
-
-    // =========== Region Name Settings Methods =========== //
     // Update Match Region Name Colors Checkbox
     updateMatchRegionNameColors(checked: boolean) {
         this.matchRegionNameColors.set(checked);
@@ -412,21 +243,6 @@ export class App {
         localStorage.setItem("regionNameOutlineColor", this.regionNameOutlineColor());
     }
 
-    // Set Region Name Color Variables
-    private setRegionNameColorVariables(colors: ColorEvent) {
-        document.documentElement.style.setProperty('--red-region-name-color',
-            colors.color.rgb.r.toString());
-        document.documentElement.style.setProperty('--green-region-name-color',
-            colors.color.rgb.g.toString());
-        document.documentElement.style.setProperty('--blue-region-name-color',
-            colors.color.rgb.b.toString());
-    }
-
-    // Set Matched Region Name Color
-    private setMatchedRegionNameColor(colors: ColorEvent) {
-        this.matchedRegionNameColor.set(colors.color.hex);
-    }
-
     // Update Region Name Transparency
     updateRegionNameTransparency(value: any) {
         value = (value.target as HTMLInputElement).valueAsNumber;
@@ -435,16 +251,6 @@ export class App {
         this.regionNameTransparency.set(value);
         this.cdr.detectChanges();
         localStorage.setItem("regionNameTransparency", value.toString());
-    }
-
-    // Set Region Name Color From Hex (initialization)
-    private setRegionNameColorFromHex(hex: string) {
-        const rgb = this.hexToRgb(hex);
-        if (rgb) {
-            document.documentElement.style.setProperty('--red-region-name-color', rgb.r.toString());
-            document.documentElement.style.setProperty('--green-region-name-color', rgb.g.toString());
-            document.documentElement.style.setProperty('--blue-region-name-color', rgb.b.toString());
-        }
     }
 
     // Update Region Name Blur
@@ -483,6 +289,218 @@ export class App {
         localStorage.setItem("regionNameOutlineColor", this.regionNameOutlineColor());
     }
 
+    // Update Region Name Text Font
+    updateRegionNameTextFont(font: string) {
+        document.documentElement.style.setProperty('--region-name-text-font-family', font);
+        this.regionNameTextFontFamily.set(font)
+        this.cdr.detectChanges();
+        localStorage.setItem("regionNameTextFontFamily", font);
+    }
+
+    // Update Region Name Text Color
+    updateRegionNameTextColorVariables(colors: ColorEvent) {
+        this.setRegionNameTextColorVariables(colors);
+        this.cdr.detectChanges();
+        this.regionNameTextColor.set(colors.color.hex);
+        localStorage.setItem("regionNameTextColor", this.regionNameTextColor());
+    }
+
+    // Initialize Tile Settings from Local Storage
+    private initializeTileSettingsFromLocalStorage(): void {
+        // Load matchTileColors
+        const matchTileColorsValue = localStorage.getItem("matchTileColors");
+        this.matchTileColors.set(matchTileColorsValue === 'true');
+
+        // Load matched tile color
+        const matchedTileColorValue = localStorage.getItem("matchedTileColor");
+        this.matchedTileColor.set(matchedTileColorValue || '#ffffff');
+
+        // Load tile color
+        const tileColorValue = localStorage.getItem("tileColor");
+        this.tileColor.set(tileColorValue || this.matchedTileColor());
+
+        // Load tile outline color
+        const tileOutlineColorValue = localStorage.getItem("tileOutlineColor");
+        this.tileOutlineColor.set(tileOutlineColorValue || '#ffffff');
+
+        // Initialize tile color CSS variables
+        const tileColorToUse = this.tileColor();
+        if (tileColorToUse) {
+            this.setTileColorFromHex(tileColorToUse);
+        }
+
+        // Initialize tile outline color CSS variables
+        const outlineColorToUse = this.tileOutlineColor();
+        if (outlineColorToUse) {
+            this.setTileOutlineColorFromHex(outlineColorToUse);
+        }
+
+        // Load transparency
+        const tileTransparencyValue = localStorage.getItem("tileTransparency");
+        this.updateTileTransparency({target: {valueAsNumber: Number(tileTransparencyValue || 0)}});
+
+        // Load blur
+        const tileBlurValue = localStorage.getItem("tileBlur");
+        this.updateTileBlur({target: {valueAsNumber: Number(tileBlurValue || 0)}});
+
+        // Load outline
+        const tileOutlineValue = localStorage.getItem("tileOutline");
+        this.updateTileOutline({target: {valueAsNumber: Number(tileOutlineValue || 1)}});
+
+        // Load font family
+        const tileFontValue = localStorage.getItem("tileTextFontFamily");
+        this.updateTileTextFont(tileFontValue || 'Roboto, sans-serif');
+
+        // Load text color
+        const tileTextColorValue = localStorage.getItem("tileTextColor");
+        this.tileTextColor.set(tileTextColorValue || '#000000');
+        if (tileTextColorValue) {
+            this.setTileTextColorFromHex(tileTextColorValue);
+        }
+    }
+
+    // =========== Region Name Settings Methods =========== //
+
+    // Initialize Region Name Settings from Local Storage
+    private initializeRegionNameSettingsFromLocalStorage(): void {
+        // Load matchRegionNameColors
+        const matchRegionNameColorsValue = localStorage.getItem("matchRegionNameColors");
+        this.matchRegionNameColors.set(matchRegionNameColorsValue === 'true');
+
+        // Load matched region name color
+        const matchedRegionNameColorValue = localStorage.getItem("matchedRegionNameColor");
+        this.matchedRegionNameColor.set(matchedRegionNameColorValue || '#ffffff');
+
+        // Load region name outline color
+        const regionNameOutlineColorValue = localStorage.getItem("regionNameOutlineColor");
+        this.regionNameOutlineColor.set(regionNameOutlineColorValue || '#ffffff');
+
+        // Initialize region name color CSS variables
+        const regionNameColorToUse = this.matchedRegionNameColor();
+        if (regionNameColorToUse) {
+            this.setRegionNameColorFromHex(regionNameColorToUse);
+        }
+
+        // Initialize region name outline color CSS variables
+        const outlineColorToUse = this.regionNameOutlineColor();
+        if (outlineColorToUse) {
+            this.setRegionNameOutlineColorFromHex(outlineColorToUse);
+        }
+
+        // Load transparency
+        const regionNameTransparencyValue = localStorage.getItem("regionNameTransparency");
+        this.updateRegionNameTransparency({target: {valueAsNumber: Number(regionNameTransparencyValue || 0)}});
+
+        // Load blur
+        const regionNameBlurValue = localStorage.getItem("regionNameBlur");
+        this.updateRegionNameBlur({target: {valueAsNumber: Number(regionNameBlurValue || 0)}});
+
+        // Load outline
+        const regionNameOutlineValue = localStorage.getItem("regionNameOutline");
+        this.updateRegionNameOutline({target: {valueAsNumber: Number(regionNameOutlineValue || 1)}});
+
+        // Load font family
+        const regionNameFontValue = localStorage.getItem("regionNameTextFontFamily");
+        this.updateRegionNameTextFont(regionNameFontValue || 'Roboto, sans-serif');
+
+        // Load text color
+        const regionNameTextColorValue = localStorage.getItem("regionNameTextColor");
+        this.regionNameTextColor.set(regionNameTextColorValue || '#000000');
+        if (regionNameTextColorValue) {
+            this.setRegionNameTextColorFromHex(regionNameTextColorValue);
+        }
+    }
+
+    // Set Tile Color Variables
+    private setTileColorVariables(colors: ColorEvent) {
+        document.documentElement.style.setProperty('--red-tile-color',
+            colors.color.rgb.r.toString());
+        document.documentElement.style.setProperty('--green-tile-color',
+            colors.color.rgb.g.toString());
+        document.documentElement.style.setProperty('--blue-tile-color',
+            colors.color.rgb.b.toString());
+    }
+
+    // Set Matched Tile Color
+    private setMatchedTileColor(colors: ColorEvent) {
+        this.matchedTileColor.set(colors.color.hex);
+    }
+
+    // Set Tile Color From Hex (initialization)
+    private setTileColorFromHex(hex: string) {
+        const rgb = this.hexToRgb(hex);
+        if (rgb) {
+            document.documentElement.style.setProperty('--red-tile-color', rgb.r.toString());
+            document.documentElement.style.setProperty('--green-tile-color', rgb.g.toString());
+            document.documentElement.style.setProperty('--blue-tile-color', rgb.b.toString());
+        }
+    }
+
+    // Set Tile Outline Color Variables
+    private setTileOutlineColorVariables(colors: ColorEvent) {
+        document.documentElement.style.setProperty('--red-tile-border-color',
+            colors.color.rgb.r.toString());
+        document.documentElement.style.setProperty('--green-tile-border-color',
+            colors.color.rgb.g.toString());
+        document.documentElement.style.setProperty('--blue-tile-border-color',
+            colors.color.rgb.b.toString());
+    }
+
+    // Set Tile Outline Color From Hex (initialization)
+    private setTileOutlineColorFromHex(hex: string) {
+        const rgb = this.hexToRgb(hex);
+        if (rgb) {
+            document.documentElement.style.setProperty('--red-tile-border-color', rgb.r.toString());
+            document.documentElement.style.setProperty('--green-tile-border-color', rgb.g.toString());
+            document.documentElement.style.setProperty('--blue-tile-border-color', rgb.b.toString());
+        }
+    }
+
+    // Set Tile Color Variables
+    private setTileTextColorVariables(colors: ColorEvent) {
+        document.documentElement.style.setProperty('--red-tile-text-color',
+            colors.color.rgb.r.toString());
+        document.documentElement.style.setProperty('--green-tile-text-color',
+            colors.color.rgb.g.toString());
+        document.documentElement.style.setProperty('--blue-tile-text-color',
+            colors.color.rgb.b.toString());
+    }
+
+    // Set Tile Text Color From Hex (initialization)
+    private setTileTextColorFromHex(hex: string) {
+        const rgb = this.hexToRgb(hex);
+        if (rgb) {
+            document.documentElement.style.setProperty('--red-tile-text-color', rgb.r.toString());
+            document.documentElement.style.setProperty('--green-tile-text-color', rgb.g.toString());
+            document.documentElement.style.setProperty('--blue-tile-text-color', rgb.b.toString());
+        }
+    }
+
+    // Set Region Name Color Variables
+    private setRegionNameColorVariables(colors: ColorEvent) {
+        document.documentElement.style.setProperty('--red-region-name-color',
+            colors.color.rgb.r.toString());
+        document.documentElement.style.setProperty('--green-region-name-color',
+            colors.color.rgb.g.toString());
+        document.documentElement.style.setProperty('--blue-region-name-color',
+            colors.color.rgb.b.toString());
+    }
+
+    // Set Matched Region Name Color
+    private setMatchedRegionNameColor(colors: ColorEvent) {
+        this.matchedRegionNameColor.set(colors.color.hex);
+    }
+
+    // Set Region Name Color From Hex (initialization)
+    private setRegionNameColorFromHex(hex: string) {
+        const rgb = this.hexToRgb(hex);
+        if (rgb) {
+            document.documentElement.style.setProperty('--red-region-name-color', rgb.r.toString());
+            document.documentElement.style.setProperty('--green-region-name-color', rgb.g.toString());
+            document.documentElement.style.setProperty('--blue-region-name-color', rgb.b.toString());
+        }
+    }
+
     // Set Tile Border Color Variables
     private setRegionNameOutlineColorVariables(colors: ColorEvent) {
         document.documentElement.style.setProperty('--red-region-name-border-color',
@@ -501,22 +519,6 @@ export class App {
             document.documentElement.style.setProperty('--green-region-name-border-color', rgb.g.toString());
             document.documentElement.style.setProperty('--blue-region-name-border-color', rgb.b.toString());
         }
-    }
-
-    // Update Region Name Text Font
-    updateRegionNameTextFont(font: string) {
-        document.documentElement.style.setProperty('--region-name-text-font-family', font);
-        this.regionNameTextFontFamily.set(font)
-        this.cdr.detectChanges();
-        localStorage.setItem("regionNameTextFontFamily", font);
-    }
-
-    // Update Region Name Text Color
-    updateRegionNameTextColorVariables(colors: ColorEvent) {
-        this.setRegionNameTextColorVariables(colors);
-        this.cdr.detectChanges();
-        this.regionNameTextColor.set(colors.color.hex);
-        localStorage.setItem("regionNameTextColor", this.regionNameTextColor());
     }
 
     // Set Region Name Color Variables

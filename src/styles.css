@@ -60,48 +60,48 @@ outside of it.
     --green-tile-color: 0;
     --blue-tile-color: 0;
     --tile-color: rgba(var(--red-tile-color),
-                       var(--green-tile-color),
-                       var(--blue-tile-color),
-                       var(--tile-transparency, 0));
+    var(--green-tile-color),
+    var(--blue-tile-color),
+    var(--tile-transparency, 0));
 
     --red-tile-border-color: 0;
     --green-tile-border-color: 0;
     --blue-tile-border-color: 0;
     --tile-border-color: rgba(var(--red-tile-border-color),
-                              var(--green-tile-border-color),
-                              var(--blue-tile-border-color),
-                              var(--tile-border, 1));
+    var(--green-tile-border-color),
+    var(--blue-tile-border-color),
+    var(--tile-border, 1));
 
     --red-tile-text-color: 0;
     --green-tile-text-color: 0;
     --blue-tile-text-color: 0;
     --tile-text-color: rgb(var(--red-tile-text-color),
-                            var(--green-tile-text-color),
-                            var(--blue-tile-text-color));
+    var(--green-tile-text-color),
+    var(--blue-tile-text-color));
     --tile-text-font-family: 'Roboto', sans-serif;
 
     --red-region-name-color: 0;
     --green-region-name-color: 0;
     --blue-region-name-color: 0;
     --region-name-color: rgba(var(--red-region-name-color),
-                              var(--green-region-name-color),
-                              var(--blue-region-name-color),
-                              var(--region-name-transparency, 0));
+    var(--green-region-name-color),
+    var(--blue-region-name-color),
+    var(--region-name-transparency, 0));
 
     --red-region-name-border-color: 0;
     --green-region-name-border-color: 0;
     --blue-region-name-border-color: 0;
     --region-name-border-color: rgba(var(--red-region-name-border-color),
-                                     var(--green-region-name-border-color),
-                                     var(--blue-region-name-border-color),
-                                     var(--region-name-border, 1));
+    var(--green-region-name-border-color),
+    var(--blue-region-name-border-color),
+    var(--region-name-border, 1));
 
     --red-region-name-text-color: 0;
     --green-region-name-text-color: 0;
     --blue-region-name-text-color: 0;
     --region-name-text-color: rgb(var(--red-region-name-text-color),
-                                  var(--green-region-name-text-color),
-                                  var(--blue-region-name-text-color));
+    var(--green-region-name-text-color),
+    var(--blue-region-name-text-color));
     --region-name-text-font-family: 'Roboto', sans-serif;
 }
 

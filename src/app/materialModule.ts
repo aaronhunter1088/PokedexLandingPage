@@ -22,7 +22,8 @@ import {MatCheckbox} from "@angular/material/checkbox";
 import {MatOption, MatSelect} from "@angular/material/select";
 import {
     MatAccordion,
-    MatExpansionPanel, MatExpansionPanelDescription,
+    MatExpansionPanel,
+    MatExpansionPanelDescription,
     MatExpansionPanelHeader,
     MatExpansionPanelTitle
 } from "@angular/material/expansion";
