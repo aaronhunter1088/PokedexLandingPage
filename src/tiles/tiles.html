@@ -2,14 +2,14 @@
     <mat-card [style]="" class="glass" id="tile1" tabindex="0">
         <a [href]="environment.springBootAppUrl + '?darkmode=' + (toggle1Checked)" style="display: contents;">
             <mat-card-header>
-                <mat-card-title class="tileText"> Spring Boot </mat-card-title>
-                <mat-card-subtitle class="tileText"> v4.0.1 </mat-card-subtitle>
+                <mat-card-title class="tileText"> Spring Boot</mat-card-title>
+                <mat-card-subtitle class="tileText"> v4.0.1</mat-card-subtitle>
                 <img alt="{{ toggle1Checked ? 'spring-logo-black' : 'spring-logo-white' }}"
                      height="40"
                      mat-card-avatar
                      ngSrc="{{ toggle1Checked ? 'spring-logo-black.png' : 'spring-logo-white.png' }}"
-                     width="40"
-                     style="background:transparent;mix-blend-mode:normal;"/>
+                     style="background:transparent;mix-blend-mode:normal;"
+                     width="40"/>
             </mat-card-header>
             <mat-card-content class="tileText">
                 {{
@@ -36,14 +36,14 @@
     <mat-card [style]="" class="glass" id="tile2" tabindex="0">
         <a [href]="environment.angularAppUrl + '?darkmode=' + (toggle2Checked)" style="display: contents;">
             <mat-card-header>
-                <mat-card-title class="tileText"> Angular </mat-card-title>
-                <mat-card-subtitle class="tileText"> v21 </mat-card-subtitle>
+                <mat-card-title class="tileText"> Angular</mat-card-title>
+                <mat-card-subtitle class="tileText"> v21</mat-card-subtitle>
                 <img alt="{{ toggle2Checked ? 'angular-logo-black' : 'angular-logo-white' }}"
                      height="40"
                      mat-card-avatar
                      ngSrc="{{ toggle2Checked ? 'angular-logo-black.png' : 'angular-logo-white.png' }}"
-                     width="40"
-                     style="background:transparent;mix-blend-mode:normal;"/>
+                     style="background:transparent;mix-blend-mode:normal;"
+                     width="40"/>
             </mat-card-header>
             <mat-card-content class="tileText">
                 {{
@@ -71,9 +71,10 @@
         <a [href]="environment.combinedAppUrl + '?darkmode=' + (toggle3Checked)"
            style="text-decoration:none; display: contents;">
             <mat-card-header>
-                <mat-card-title class="tileText"> Angular  Frontend </mat-card-title>
-                <mat-card-subtitle class="tileText"> Spring Boot Backend </mat-card-subtitle>
-                <img alt="{{ ngLogoImgValue === 'spring-logo-white.png'
+                <mat-card-title class="tileText"> Angular Frontend</mat-card-title>
+                <mat-card-subtitle class="tileText"> Spring Boot Backend</mat-card-subtitle>
+                <img [ngSrc]="ngLogoImgValue"
+                     alt="{{ ngLogoImgValue === 'spring-logo-white.png'
                         ? 'spring-logo-white'
                         : ngLogoImgValue === 'spring-logo-black.png'
                             ? 'spring-logo-black'
@@ -82,9 +83,8 @@
                                 : 'angular-logo-black' }}"
                      height="40"
                      mat-card-avatar
-                     [ngSrc]="ngLogoImgValue"
-                     width="40"
-                     style="background:transparent;mix-blend-mode:normal;"/>
+                     style="background:transparent;mix-blend-mode:normal;"
+                     width="40"/>
             </mat-card-header>
             <mat-card-content class="tileText">
                 {{
