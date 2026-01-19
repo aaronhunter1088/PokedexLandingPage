@@ -38,7 +38,7 @@
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <mat-checkbox [checked]="matchTileColors()"
-                                  (change)="matchTileColors.set($event.checked)">
+                                  (change)="updateMatchTileColors($event.checked)">
                         Match Colors (Transparency and Blur)
                     </mat-checkbox>
                     <br/>
@@ -110,7 +110,7 @@
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <mat-checkbox [checked]="matchRegionNameColors()"
-                                  (change)="matchRegionNameColors.set($event.checked)">
+                                  (change)="updateMatchRegionNameColors($event.checked)">
                         Match Colors (Transparency and Blur)
                     </mat-checkbox>
                     <br/>
