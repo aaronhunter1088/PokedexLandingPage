@@ -64,6 +64,12 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.7.2
+
+Implemented routing so that when the user navigates back to the Landing Page from any app, the current
+darkmode value will be preserved for that app, This is also saved in the local storage so the app is
+always in the mode the user last set it to.
+
 #### Version 1.7.1
 
 Rearranged some of the logic in app.ts. There are a lot of methods and variables in that file now so
