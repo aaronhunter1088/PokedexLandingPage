@@ -64,6 +64,10 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.6.0
+Changed the region name to be more like the tiles. Gave it controls as well to adjust the color,
+font, transparency, and border color.
+
 #### Version 1.5.9
 Changed the value 'mode' to 'darkmode' to be more descriptive of what the variable controls.
 

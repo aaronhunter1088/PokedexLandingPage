@@ -20,6 +20,12 @@ import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/mater
 import {MatSlider, MatSliderThumb} from "@angular/material/slider";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {MatOption, MatSelect} from "@angular/material/select";
+import {
+    MatAccordion,
+    MatExpansionPanel, MatExpansionPanelDescription,
+    MatExpansionPanelHeader,
+    MatExpansionPanelTitle
+} from "@angular/material/expansion";
 
 @NgModule({
     //“What other modules can use through me”
@@ -32,6 +38,11 @@ import {MatOption, MatSelect} from "@angular/material/select";
         MatSidenavContainer,
         MatSidenav,
         MatSidenavContent,
+        MatAccordion,
+        MatExpansionPanel,
+        MatExpansionPanelHeader,
+        MatExpansionPanelTitle,
+        MatExpansionPanelDescription,
 
         MatButton,
         MatToolbar,
@@ -67,6 +78,11 @@ import {MatOption, MatSelect} from "@angular/material/select";
         MatSidenavContainer,
         MatSidenav,
         MatSidenavContent,
+        MatAccordion,
+        MatExpansionPanel,
+        MatExpansionPanelHeader,
+        MatExpansionPanelTitle,
+        MatExpansionPanelDescription,
 
         MatButton,
         MatToolbar,

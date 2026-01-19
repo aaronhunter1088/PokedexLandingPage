@@ -10,6 +10,13 @@
     color: var(--tile-text-color);
     font-family: var(--tile-text-font-family), cursive;
 }
+.regionNameText {
+    color: var(--region-name-text-color);
+    font-family: var(--region-name-text-font-family), cursive;
+    /*font-size: 1.25rem;*/
+    /*font-weight: 500;*/
+    /*margin-top: 0.5rem;*/
+}
 a {
     color: inherit; /* Inherits color from the parent element */
     text-decoration: none; /* Removes the default underline */
@@ -45,8 +52,8 @@ a:link, a:visited, a:hover, a:active, a:focus {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     /*backdrop-filter: blur(0px);*/
     /*-webkit-backdrop-filter: blur(0px);*/
-    backdrop-filter: var(--backdrop-filter);
-    -webkit-backdrop-filter: var(--webkit-backdrop-filter);
+    backdrop-filter: var(--tile-backdrop-filter);
+    -webkit-backdrop-filter: var(--tile-webkit-backdrop-filter);
     border: 1px solid var(--tile-border-color);
 }
 

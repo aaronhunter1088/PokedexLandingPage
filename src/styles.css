@@ -45,23 +45,37 @@ outside of it.
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    --glass-transparency: 0;
-    --backdrop-filter: 0;
-    --webkit-backdrop-filter: 0;
+    --tile-transparency: 0;
+    --region-name-transparency: 0;
+    --tile-backdrop-filter: 0;
+    --tile-webkit-backdrop-filter: 0;
+    --region-name-backdrop-filter: 0;
+    --region-name-webkit-backdrop-filter: 0;
     --tile-border: 1;
+    --region-name-border: 1;
     --red-tile-color: 255;
     --green-tile-color: 255;
     --blue-tile-color: 255;
+    --red-region-name-color: 255;
+    --green-region-name-color: 255;
+    --blue-region-name-color: 255;
     --red-tile-border-color: 255;
     --green-tile-border-color: 255;
     --blue-tile-border-color: 255;
+    --red-region-name-border-color: 255;
+    --green-region-name-border-color: 255;
+    --blue-region-name-border-color: 255;
+
     --red-tile-text-color: 0;
     --green-tile-text-color: 0;
     --blue-tile-text-color: 0;
+    --red-region-name-text-color: 0;
+    --green-region-name-text-color: 0;
+    --blue-region-name-text-color: 0;
     --tile-color: rgba(var(--red-tile-color),
                        var(--green-tile-color),
                        var(--blue-tile-color),
-                       var(--glass-transparency, 0));
+                       var(--tile-transparency, 0));
     --tile-border-color: rgba(var(--red-tile-border-color),
                               var(--green-tile-border-color),
                               var(--blue-tile-border-color),
@@ -70,6 +84,19 @@ outside of it.
                             var(--green-tile-text-color),
                             var(--blue-tile-text-color));
     --tile-text-font-family: 'Roboto', sans-serif;
+
+    --region-name-color: rgba(var(--red-region-name-color),
+                              var(--green-region-name-color),
+                              var(--blue-region-name-color),
+                              var(--region-name-transparency, 0));
+    --region-name-border-color: rgba(var(--red-region-name-border-color),
+                                     var(--green-region-name-border-color),
+                                     var(--blue-region-name-border-color),
+                                     var(--region-name-border, 1));
+    --region-name-text-color: rgb(var(--red-region-name-text-color),
+                                  var(--green-region-name-text-color),
+                                  var(--blue-region-name-text-color));
+    --region-name-text-font-family: 'Roboto', sans-serif;
 }
 
 h1 {

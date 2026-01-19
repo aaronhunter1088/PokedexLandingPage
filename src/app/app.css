@@ -18,8 +18,9 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0);
-    color: black;
+    background: var(--region-name-color);
+    color: var(--region-name-text-color);
+    font-family: var(--region-name-text-font-family), cursive;
     font-size: 28px;
     font-weight: bold;
     margin: 0;
@@ -28,9 +29,9 @@
     border-radius: 16px;
 
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
-    border: 1px solid rgba(255, 255, 255, 1);
+    backdrop-filter: var(--region-name-backdrop-filter);
+    -webkit-backdrop-filter: var(--region-name-webkit-backdrop-filter);
+    border: 1px solid var(--region-name-border-color);
 }
 
 .header-icons {
