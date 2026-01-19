@@ -64,6 +64,10 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.7.1
+Rearranged some of the logic in app.ts. There are a lot of methods and variables in that file now so
+I wanted to group them better.
+
 #### Version 1.7.0
 Implementing new logic to store the values set in settings to local storage. This way, when the user
 returns to the application, their settings are preserved. This includes dark mode, tile colors,
