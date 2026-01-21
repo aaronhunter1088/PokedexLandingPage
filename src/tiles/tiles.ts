@@ -30,7 +30,6 @@ export class Tiles implements OnInit, OnDestroy {
     protected readonly environment = environment;
 
     constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef, private route: ActivatedRoute) {
-
     }
 
     ngOnInit() {
@@ -92,21 +91,25 @@ export class Tiles implements OnInit, OnDestroy {
         }
     }
 
+    // Update darkmode for tile 1 and save to localStorage
     updateMode1(checked: boolean): void {
         this.toggle1Checked = checked;
         localStorage.setItem('tile1Darkmode', checked.toString());
     }
 
+    // Update darkmode for tile 2 and save to localStorage
     updateMode2(checked: boolean): void {
         this.toggle2Checked = checked;
         localStorage.setItem('tile2Darkmode', checked.toString());
     }
 
+    // Update darkmode for tile 3 and save to localStorage
     updateMode3(checked: boolean): void {
         this.toggle3Checked = checked;
         localStorage.setItem('tile3Darkmode', checked.toString());
     }
 
+    // Load darkmode settings from localStorage
     private loadDarkmodeFromLocalStorage(): void {
         const tile1Darkmode = localStorage.getItem('tile1Darkmode');
         const tile2Darkmode = localStorage.getItem('tile2Darkmode');

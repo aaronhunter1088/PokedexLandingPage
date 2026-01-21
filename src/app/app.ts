@@ -28,6 +28,7 @@ export class App {
     protected readonly icon_replay = 'replay';
     protected readonly icon_shuffle = 'shuffle';
     protected readonly title = signal('My Pokédex'); // &#233; é
+    protected readonly copyrightText = signal('2026');
     protected currentIcon = signal(this.icon_info);
     protected regionColor = signal('white');
     // tile specific settings
@@ -76,6 +77,7 @@ export class App {
         // Initialize settings from local storage. this ensures a consistent experience for users
         this.initializeTileSettingsFromLocalStorage();
         this.initializeRegionNameSettingsFromLocalStorage();
+        this.initializeCopyrightText();
     }
 
     /*
@@ -117,6 +119,14 @@ export class App {
     // Get the background image URL as a CSS url() string
     getBackgroundImageUrl(): string {
         return `url('${this.backgroundImage()}')`;
+    }
+
+    // Initialize Copyright Text
+    private initializeCopyrightText(): void {
+        const currentYear = new Date().getFullYear().toString();
+        (currentYear === this.copyrightText())
+            ? this.copyrightText.set(`© ${this.copyrightText()}`)
+            : this.copyrightText.set(`© ${this.copyrightText()} - ${currentYear}`);
     }
 
     // =========== Header Actions =========== //

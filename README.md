@@ -64,7 +64,12 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
-#### Version 1.7.2
+#### Version 1.7.4
+
+Fixed a few issues when verifying the deployment of all the applications to my server. Added a copyright to the
+bottom of the landing page.
+
+#### Version 1.7.3
 
 Implemented routing so that when the user navigates back to the Landing Page from any app, the current
 darkmode value will be preserved for that app, This is also saved in the local storage so the app is

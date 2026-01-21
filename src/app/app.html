@@ -23,6 +23,9 @@
     <mat-sidenav-content>
         <main class="main">
             <app-tiles></app-tiles>
+            <p id="copyright" style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); color: black; z-index: 1000;">
+                {{ copyrightText() }}
+            </p>
         </main>
     </mat-sidenav-content>
     <mat-sidenav #sidenav (closed)="this.currentIcon.set(this.icon_info);" position="end"
@@ -183,22 +186,58 @@
                             About this Pok&#233;dex Application
                         </mat-panel-description>
                     </mat-expansion-panel-header>
-                    This Pok&#233;dex application was built originally using Spring Boot as a fun project in order to
-                    practice moreso with the Spring framework. Later on, I needed to learn Angular, so I decided to
-                    clone
-                    the Pok&#233;dex application since I already had a working version. This allowed me to focus on
-                    learning Angular semantics and the best practices without worries about what I was building. The
-                    Spring Boot application is 100% Java and Spring Boot. The Angular app is a 100% JavaScript/Angular
-                    application.<br/>
-                    One day, I decided to create a version using both technologies together. Using Angular as my
-                    font-end
-                    and Spring Boot as my back-end, the third version of this Pok&#233;dex application was born.<br/>
-                    This landing page was created as a means to present all three versions in one place. This app works
-                    with the <a href="http://pokeapi.co/" rel="noopener noreferrer" target="_blank">Pok&#233;API</a> to
-                    fetch
-                    and display various Pok&#233;mon data.<br/><br/>
+                    This Pok&#233;dex application was originally built using Spring Boot as a fun project in order to
+                    practice the Spring framework version 2.x (it had been a couple years since having used it specifically).
+                    Later, I needed to learn Angular for work, so I decided to clone the Pok&#233;dex application since I
+                    already had a working version. This allowed me to focus on learning Angular semantics and the best
+                    practices without worries about what I was building and how it should function. The Spring Boot app
+                    was working perfectly fine so all I needed to do was translate Spring Boot to Angular. So, the
+                    Spring Boot application is a 100% Java/Spring Boot app. The Angular app is a 100% JavaScript/Angular
+                    Single Page Application app, built using Angular version 15.<br/>
+                    One day, I decided to create a version using both technologies together: Angular as the font-end
+                    and Spring Boot as my back-end, hence the third version of the Pok&#233;dex application was born.<br/>
+                    While I felt this was a great exercise, not just in learning Angular, not just how the two can work
+                    independently and together, but, something felt missing and that 'was' the ability to show it off.
+                    Well, was is the keyword because as it turns out, I did, do, actually own a pokedex domain which I
+                    had created way back in 2022. I just never did anything with it... until now.<br/>
+                    The domain was created using NameHero and I ported it over to my new hosting provider, Hostinger.
+                    Bringing the domain and my Angular skills back from the dead (because now it has been a couple yeasrs
+                    since I've touched Angular, but not Spring Boot, lol), and all my experience hence forth, I quickly
+                    created this landing page using the latest Angular version, 21, to display all three versions of the
+                    Pok&#233;dex application in one place. That's a total of 5 applications to bring this entire site to
+                    life: one Spring Boot app, one Angular app, one combo app that has both an Angular front end (app),
+                    and a jar file to fetch the Pok&#233;mon data for the back-end (app), and this landing page (app).
+                    The amount of work getting all these applications to the server is not crazy but still... I'll just
+                    say it is a bit of a process. But I enjoy every second of it too. <br/>
+                    The <a href="http://pokeapi.co/" rel="noopener noreferrer" target="_blank">Pok&#233;API</a> is where
+                    I obtained references to the Pok&#233;mon code however I created my own versions of the Java library
+                    to enhance its functionality since Java is my primary coding language, and all others are second. You
+                    can view this enhanced functionality by navigating to the code's <a href="https://mypokedex.us/pokedexapi/swagger-ui/index.html" rel="noopener noreferrer" target="_blank">Swagger UI</a>
+                    page. There you can view all the same requests this app makes (pokemon-api/pokemon for example).
+                    While the app doesn't use all of the endpoints specifically, anyone could use the jar/library in their
+                    own Java applications for their own Pok&#233;dex/Pok&#233;mon needs!<br/><br/>
+                    This application allows you to tailor the appearance of the tiles and region name to your liking and
+                    persists across the device and sessions using local storage. This allows you to set up the site with
+                    custom settings different from someone else. Again, that is per device. But set it up once and never
+                    again unless you decide it should be different. It is not possible to save the background at this
+                    time but you can change it while on the landing page. More updates to come but please enjoy using
+                    my latest creation!<br/><br/>
                 </mat-expansion-panel>
             </div>
         </mat-accordion>
     </mat-sidenav>
 </mat-sidenav-container>
+
+<script>
+    (function() {
+        const startYear = 2026;
+        const currentYear = new Date().getFullYear();
+        const el = document.getElementById('copyright');
+        if (!el) return;
+        el.style.color = 'black';
+        // Use actual copyright symbol
+        el.textContent = (currentYear === startYear)
+            ? `© ${startYear}`
+            : `© ${startYear} - ${currentYear}`;
+    })();
+</script>
