@@ -49,7 +49,7 @@ export class App {
     protected regionNameBlur = signal(0);
     protected regionNameOutline = signal(1);
     protected regionNameTextFontFamily = signal('Roboto, sans-serif');
-    protected regionNameTextColor = signal('black');
+    protected regionNameTextColor = signal('#000000');
     protected readonly panelTileSettingsOpenState = signal(false);
     protected readonly panelRegionNameSettingsOpenState = signal(false);
     private readonly regionsInfoMap: { [key: string]: string[] } = {
@@ -78,6 +78,7 @@ export class App {
         this.initializeTileSettingsFromLocalStorage();
         this.initializeRegionNameSettingsFromLocalStorage();
         this.initializeCopyrightText();
+        this.cdr.detectChanges();
     }
 
     /*
@@ -201,19 +202,18 @@ export class App {
     }
 
     // Update Tile Outline Color
-    updateTileBorderColorVariables(colors: ColorEvent) {
+    updateTileOutlineColorVariables(colors: ColorEvent) {
         this.setTileOutlineColorVariables(colors);
         this.tileOutlineColor.set(colors.color.hex);
         if (this.matchTileColors()) {
             this.setTileColorVariables(colors);
             this.setMatchedTileColor(colors);
             this.tileColor.set(colors.color.hex);
+            localStorage.setItem("tileColor", this.tileColor());
         }
         this.cdr.detectChanges();
-        localStorage.setItem("matchTileColors", this.matchTileColors().toString());
         localStorage.setItem("matchedTileColor", this.matchedTileColor());
         localStorage.setItem("tileOutlineColor", this.tileOutlineColor());
-        localStorage.setItem("tileColor", this.tileColor());
     }
 
     // Update Tile Text Font
@@ -313,6 +313,7 @@ export class App {
         this.cdr.detectChanges();
         this.regionNameTextColor.set(colors.color.hex);
         localStorage.setItem("regionNameTextColor", this.regionNameTextColor());
+        console.debug("updating region name text color to: " + this.regionNameTextColor());
     }
 
     // Initialize Tile Settings from Local Storage
@@ -323,7 +324,7 @@ export class App {
 
         // Load matched tile color
         const matchedTileColorValue = localStorage.getItem("matchedTileColor");
-        this.matchedTileColor.set(matchedTileColorValue || '#ffffff');
+        this.matchedTileColor.set(matchedTileColorValue || '');
 
         // Load tile color
         const tileColorValue = localStorage.getItem("tileColor");
@@ -361,12 +362,13 @@ export class App {
         const tileFontValue = localStorage.getItem("tileTextFontFamily");
         this.updateTileTextFont(tileFontValue || 'Roboto, sans-serif');
 
-        // Load text color
+        // Load tile text color
+        const hex = this.hexToRgb(this.tileTextColor());
+
         const tileTextColorValue = localStorage.getItem("tileTextColor");
-        this.tileTextColor.set(tileTextColorValue || '#000000');
-        if (tileTextColorValue) {
-            this.setTileTextColorFromHex(tileTextColorValue);
-        }
+        this.tileTextColor.set(tileTextColorValue || this.tileTextColor());
+        console.debug("setting tile text color to: " + this.tileTextColor());
+        this.setTileTextColorFromHex(this.tileTextColor());
     }
 
     // =========== Region Name Settings Methods =========== //
@@ -413,12 +415,12 @@ export class App {
         const regionNameFontValue = localStorage.getItem("regionNameTextFontFamily");
         this.updateRegionNameTextFont(regionNameFontValue || 'Roboto, sans-serif');
 
-        // Load text color
+        // Load region name text color
         const regionNameTextColorValue = localStorage.getItem("regionNameTextColor");
-        this.regionNameTextColor.set(regionNameTextColorValue || '#000000');
-        if (regionNameTextColorValue) {
-            this.setRegionNameTextColorFromHex(regionNameTextColorValue);
-        }
+        console.debug("loaded region name text color from local storage: " + regionNameTextColorValue);
+        this.regionNameTextColor.set(regionNameTextColorValue || this.regionNameTextColor());
+        console.debug("setting region name text color to: " + this.regionNameTextColor());
+        this.setRegionNameTextColorFromHex(this.regionNameTextColor());
     }
 
     // Set Tile Color Variables
@@ -484,6 +486,7 @@ export class App {
             document.documentElement.style.setProperty('--green-tile-text-color', rgb.g.toString());
             document.documentElement.style.setProperty('--blue-tile-text-color', rgb.b.toString());
         }
+
     }
 
     // Set Region Name Color Variables
@@ -544,6 +547,9 @@ export class App {
     // Set Region Name Text Color From Hex (initialization)
     private setRegionNameTextColorFromHex(hex: string) {
         const rgb = this.hexToRgb(hex);
+        console.debug("region name text color, red: " + rgb?.r.toString());
+        console.debug("region name text color, green: " + rgb?.g.toString());
+        console.debug("region name text color, blue: " + rgb?.b.toString());
         if (rgb) {
             document.documentElement.style.setProperty('--red-region-name-text-color', rgb.r.toString());
             document.documentElement.style.setProperty('--green-region-name-text-color', rgb.g.toString());

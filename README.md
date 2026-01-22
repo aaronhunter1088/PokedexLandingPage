@@ -64,6 +64,12 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.8.0
+
+After first deploy to the server, there were a few issues noticed. While most were easily fixed, the region name text
+color was not updating and using the selected color properly. This has been fixed and persists when you refresh the
+page.
+
 #### Version 1.7.4
 
 Fixed a few issues when verifying the deployment of all the applications to my server. Added a copyright to the

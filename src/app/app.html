@@ -32,6 +32,7 @@
                  style="background-color:var(--gray-400);">
         <br/><br/><br/>
         <mat-accordion>
+            <!-- Tile Settings Accordion -->
             <div style="max-height: 70vh; overflow-y: auto; overflow-x: hidden; ">
                 <mat-expansion-panel #tileAccordian (closed)="panelTileSettingsOpenState.set(false)"
                                      (opened)="panelTileSettingsOpenState.set(true)">
@@ -43,7 +44,7 @@
                     </mat-expansion-panel-header>
                     <mat-checkbox (change)="updateMatchTileColors($event.checked)"
                                   [checked]="matchTileColors()">
-                        Match Colors (Transparency and Blur)
+                        Match Colors (Transparency & Outline)
                     </mat-checkbox>
                     <br/>
                     <div style="display:inline-flex; align-items:center; gap: 1rem;">
@@ -57,7 +58,6 @@
                     <div style="display:block;justify-content:center;">
                         <color-compact
                                 (onChange)="updateTileColorVariables($event)"
-                                [color]="matchedTileColor()"
                         ></color-compact>
                     </div>
 
@@ -82,7 +82,7 @@
                     </div>
                     <div style="display:block;justify-content:center;">
                         <color-compact
-                                (onChange)="updateTileBorderColorVariables($event)"
+                                (onChange)="updateTileOutlineColorVariables($event)"
                                 [color]="matchedTileColor()">
                         </color-compact>
                     </div>
@@ -105,6 +105,7 @@
                     </color-compact>
                 </mat-expansion-panel>
             </div>
+            <!-- Region Name Settings Accordion -->
             <div style="max-height: 70vh; overflow-y: auto; overflow-x: hidden; ">
                 <mat-expansion-panel #regionNameAccordian (closed)="panelRegionNameSettingsOpenState.set(false)"
                                      (opened)="panelRegionNameSettingsOpenState.set(true)">
@@ -116,7 +117,7 @@
                     </mat-expansion-panel-header>
                     <mat-checkbox (change)="updateMatchRegionNameColors($event.checked)"
                                   [checked]="matchRegionNameColors()">
-                        Match Colors (Transparency and Blur)
+                        Match Colors (Transparency & Outline)
                     </mat-checkbox>
                     <br/>
                     <div style="display:inline-flex; align-items:center; gap: 1rem;">
@@ -174,10 +175,12 @@
                     <br/><br/>
                     <p>Region Name Text Color</p>
                     <color-compact
+                            [color]="regionNameTextColor()"
                             (onChange)="updateRegionNameTextColorVariables($event)">
                     </color-compact>
                 </mat-expansion-panel>
             </div>
+            <!-- About This Application Accordion -->
             <div style="max-height: 70vh; overflow-y: auto; overflow-x: hidden; ">
                 <mat-expansion-panel #aboutAccordian>
                     <mat-expansion-panel-header>
@@ -220,9 +223,11 @@
                     This application allows you to tailor the appearance of the tiles and region name to your liking and
                     persists across the device and sessions using local storage. This allows you to set up the site with
                     custom settings different from someone else. Again, that is per device. But set it up once and never
-                    again unless you decide it should be different. It is not possible to save the background at this
-                    time but you can change it while on the landing page. More updates to come but please enjoy using
-                    my latest creation!<br/><br/>
+                    again unless you decide it should be different. Having trouble seeing the tile changes while on your
+                    phone? Updating the region name will give you a "preview" of the controls and changes that will be
+                    applied to the tiles just as you are for the region name. It is not possible to save the background
+                    at this time but you can change it while on the landing page. <br/><br/>
+                    More updates to come but please enjoy using my latest creation!<br/><br/>
                 </mat-expansion-panel>
             </div>
         </mat-accordion>
