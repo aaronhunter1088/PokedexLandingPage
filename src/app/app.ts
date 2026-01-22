@@ -34,17 +34,18 @@ export class App {
     // tile specific settings
     protected matchTileColors = signal(false);
     protected matchedTileColor = signal('');
-    protected tileColor = signal('');
-    protected tileOutlineColor = signal('');
+    protected tileBackgroundColor = signal('#FFFFFF');
+    protected tileOutlineColor = signal('#FFFFFF');
     protected tileTransparency = signal(0);
     protected tileBlur = signal(0);
     protected tileOutline = signal(1);
     protected tileTextFontFamily = signal('Roboto, sans-serif');
-    protected tileTextColor = signal('black');
+    protected tileTextColor = signal('#000000');
     // region name specific settings
     protected matchRegionNameColors = signal(false);
     protected matchedRegionNameColor = signal('');
-    protected regionNameOutlineColor = signal('');
+    protected regionNameBackgroundColor = signal('#FFFFFF');
+    protected regionNameOutlineColor = signal('#FFFFFF');
     protected regionNameTransparency = signal(0);
     protected regionNameBlur = signal(0);
     protected regionNameOutline = signal(1);
@@ -52,24 +53,23 @@ export class App {
     protected regionNameTextColor = signal('#000000');
     protected readonly panelTileSettingsOpenState = signal(false);
     protected readonly panelRegionNameSettingsOpenState = signal(false);
-    private readonly regionsInfoMap: { [key: string]: string[] } = {
-        'Kanto': ['1kantoMap.png', '#C0C0C0'],
-        'Johto': ['2johtoMap.png', '#C0C0C0'],
-        'Hoenn': ['3hoennMap.png', '#C0C0C0'],
-        'Sinnoh': ['41sinnohMap.png', '#C0C0C0'],
-        'Ancient Sinnoh': ['42hisuiSinnohMap.png', '#FFDEAD'],
-        'Unova': ['5unovaMap.png', '#C0C0C0'],
-        'Kalos': ['6kalosMap.png', '#C0C0C0'],
-        'Alola': ['7alolaMap.png', '#C0C0C0'],
-        'Galar': ['8galarMap.png', '#C0C0C0'],
-        'Paldea': ['9paldeaMap.png', '#C0C0C0']
+    private readonly regionsNameMap: { [key: string]: string } = {
+        'Kanto': '1kantoMap.png',
+        'Johto': '2johtoMap.png',
+        'Hoenn': '3hoennMap.png',
+        'Sinnoh': '41sinnohMap.png',
+        'Ancient Sinnoh': '42hisuiSinnohMap.png',
+        'Unova': '5unovaMap.png',
+        'Kalos': '6kalosMap.png',
+        'Alola': '7alolaMap.png',
+        'Galar': '8galarMap.png',
+        'Paldea': '9paldeaMap.png'
     };
-    protected backgroundImage = signal(Object.values(this.regionsInfoMap)[0][0]);
-    protected regionName = signal(Object.values(this.regionsInfoMap)[0][1]);
+    protected backgroundImage = signal(Object.values(this.regionsNameMap)[0]);
+    protected regionName = signal(Object.keys(this.regionsNameMap)[0]);
 
     // Component  constructor
     constructor(private cdr: ChangeDetectorRef) {
-        this.toggleBackground();
     }
 
     // Runs once when the component is initialized
@@ -107,14 +107,12 @@ export class App {
 
     // Update the background
     toggleBackground(): void {
-        const randomIndex = Math.floor(Math.random() * Object.entries(this.regionsInfoMap).length);
-        const entry = Object.entries(this.regionsInfoMap)[randomIndex];
+        const randomIndex = Math.floor(Math.random() * Object.values(this.regionsNameMap).length);
+        const entry = Object.entries(this.regionsNameMap)[randomIndex];
         const regionNameKey = entry[0];
-        const image = entry[1][0];
-        const color = entry[1][1];
+        const image = entry[1];
         this.backgroundImage.set(image);
         this.regionName.set(regionNameKey);
-        this.regionColor.set(color);
     }
 
     // Get the background image URL as a CSS url() string
@@ -151,20 +149,20 @@ export class App {
         this.cdr.detectChanges();
     }
 
-    // Update Tile Color
-    updateTileColorVariables(colors: ColorEvent) {
-        this.setTileColorVariables(colors);
-        this.tileColor.set(colors.color.hex);
+    // Update Tile Background Color
+    updateTileBackgroundColorVariables(colors: ColorEvent) {
+        this.setTileBackgroundColorVariables(colors);
+        this.tileBackgroundColor.set(colors.color.hex);
         if (this.matchTileColors()) {
-            this.setTileOutlineColorVariables(colors);
             this.setMatchedTileColor(colors);
+            localStorage.setItem("matchedTileColor", this.matchedTileColor());
+            localStorage.setItem("matchTileColors", this.matchTileColors().toString());
+            this.setTileOutlineColorVariables(colors);
             this.tileOutlineColor.set(colors.color.hex);
+            localStorage.setItem("tileOutlineColor", this.tileOutlineColor());
         }
+        localStorage.setItem("tileColor", this.tileBackgroundColor());
         this.cdr.detectChanges();
-        localStorage.setItem("matchedTileColor", this.matchedTileColor());
-        localStorage.setItem("matchTileColors", this.matchTileColors().toString());
-        localStorage.setItem("tileColor", this.tileColor());
-        localStorage.setItem("tileOutlineColor", this.tileOutlineColor());
     }
 
     // =========== Tile Settings Methods =========== //
@@ -206,10 +204,10 @@ export class App {
         this.setTileOutlineColorVariables(colors);
         this.tileOutlineColor.set(colors.color.hex);
         if (this.matchTileColors()) {
-            this.setTileColorVariables(colors);
+            this.setTileBackgroundColorVariables(colors);
             this.setMatchedTileColor(colors);
-            this.tileColor.set(colors.color.hex);
-            localStorage.setItem("tileColor", this.tileColor());
+            this.tileBackgroundColor.set(colors.color.hex);
+            localStorage.setItem("tileColor", this.tileBackgroundColor());
         }
         this.cdr.detectChanges();
         localStorage.setItem("matchedTileColor", this.matchedTileColor());
@@ -328,14 +326,14 @@ export class App {
 
         // Load tile color
         const tileColorValue = localStorage.getItem("tileColor");
-        this.tileColor.set(tileColorValue || this.matchedTileColor());
+        this.tileBackgroundColor.set(tileColorValue || this.matchedTileColor());
 
         // Load tile outline color
         const tileOutlineColorValue = localStorage.getItem("tileOutlineColor");
         this.tileOutlineColor.set(tileOutlineColorValue || '#ffffff');
 
         // Initialize tile color CSS variables
-        const tileColorToUse = this.tileColor();
+        const tileColorToUse = this.tileBackgroundColor();
         if (tileColorToUse) {
             this.setTileColorFromHex(tileColorToUse);
         }
@@ -424,7 +422,7 @@ export class App {
     }
 
     // Set Tile Color Variables
-    private setTileColorVariables(colors: ColorEvent) {
+    private setTileBackgroundColorVariables(colors: ColorEvent) {
         document.documentElement.style.setProperty('--red-tile-color',
             colors.color.rgb.r.toString());
         document.documentElement.style.setProperty('--green-tile-color',

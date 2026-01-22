@@ -64,6 +64,10 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.8.1
+
+Updated the regionsNameMap to remove the color property since that is now controlled by the settings.
+
 #### Version 1.8.0
 
 After first deploy to the server, there were a few issues noticed. While most were easily fixed, the region name text
