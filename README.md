@@ -67,6 +67,9 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 #### Version 1.8.1
 
 Updated the regionsNameMap to remove the color property since that is now controlled by the settings.
+Still noticed issues with the background on the tiles and region name. When you click on the checkbox, Match Colors
+(Transparency & Outline), then clicking on either color option for Transparency or Outline should update the color
+for both options. This was not happening both ways. This has been fixed.
 
 #### Version 1.8.0
 

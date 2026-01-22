@@ -57,6 +57,7 @@
                     </div>
                     <div style="display:block;justify-content:center;">
                         <color-compact
+                                [color]="tileBackgroundColor()"
                                 (onChange)="updateTileBackgroundColorVariables($event)"
                         ></color-compact>
                     </div>
@@ -82,8 +83,8 @@
                     </div>
                     <div style="display:block;justify-content:center;">
                         <color-compact
-                                (onChange)="updateTileOutlineColorVariables($event)"
-                                [color]="matchedTileColor()">
+                                [color]="tileOutlineColor()"
+                                (onChange)="updateTileOutlineColorVariables($event)">
                         </color-compact>
                     </div>
 
@@ -101,6 +102,7 @@
                     <br/><br/>
                     <p>Tile Text Color</p>
                     <color-compact
+                            [color]="tileTextColor()"
                             (onChange)="updateTileTextColorVariables($event)">
                     </color-compact>
                 </mat-expansion-panel>
@@ -130,8 +132,8 @@
                     </div>
                     <div style="display:block;justify-content:center;">
                         <color-compact
-                                (onChange)="updateRegionNameColorVariables($event)"
-                                [color]="matchedRegionNameColor()"
+                                [color]="regionNameBackgroundColor()"
+                                (onChange)="updateRegionNameBackgroundColorVariables($event)"
                         ></color-compact>
                     </div>
 
@@ -156,8 +158,8 @@
                     </div>
                     <div style="display:block;justify-content:center;">
                         <color-compact
-                                (onChange)="updateRegionNameOutlineColorVariables($event)"
-                                [color]="matchedRegionNameColor()">
+                                [color]="regionNameOutlineColor()"
+                                (onChange)="updateRegionNameOutlineColorVariables($event)">
                         </color-compact>
                     </div>
 
