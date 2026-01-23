@@ -64,6 +64,11 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.8.2
+
+Implementing a change in the Tiles Settings to allow each tile to have individual settings or control all tiles as
+we currently are.
+
 #### Version 1.8.1
 
 Updated the regionsNameMap to remove the color property since that is now controlled by the settings.

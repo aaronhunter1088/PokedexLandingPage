@@ -33,80 +33,117 @@
         <br/><br/><br/>
         <mat-accordion>
             <!-- Tile Settings Accordion -->
-            <div style="max-height: 70vh; overflow-y: auto; overflow-x: hidden; ">
-                <mat-expansion-panel #tileAccordian (closed)="panelTileSettingsOpenState.set(false)"
-                                     (opened)="panelTileSettingsOpenState.set(true)">
-                    <mat-expansion-panel-header>
-                        <!--<mat-panel-title> Tile Settings </mat-panel-title>-->
-                        <mat-panel-description>
-                            Adjust{{ panelTileSettingsOpenState() ? 'ing' : '' }} the tile settings
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <mat-checkbox (change)="updateMatchTileColors($event.checked)"
-                                  [checked]="matchTileColors()">
-                        Match Colors (Transparency & Outline)
-                    </mat-checkbox>
-                    <br/>
-                    <div style="display:inline-flex; align-items:center; gap: 1rem;">
-                        <p style="margin: 0;">Transparency</p>
-                        <mat-slider max="1" min="0" step="0.01">
-                            <input (input)="updateTileTransparency($event)"
-                                   [value]="tileTransparency()"
-                                   matSliderThumb>
-                        </mat-slider>
-                    </div>
-                    <div style="display:block;justify-content:center;">
+            <mat-expansion-panel #tileAccordian (closed)="panelTileSettingsOpenState.set(false)"
+                                 (opened)="panelTileSettingsOpenState.set(true)">
+                <mat-expansion-panel-header>
+                    <!--<mat-panel-title> Tile Settings </mat-panel-title>-->
+                    <mat-panel-description>
+                        Adjust{{ panelTileSettingsOpenState() ? 'ing' : '' }} the tile settings
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <button matFab extended (click)="updateSettingsTile1ButtonIcon()">
+                    <mat-icon>{{ tile1ButtonIcon() }}</mat-icon>
+                    Tile 1
+                </button>
+                <button matFab extended>
+                    <mat-icon>apps</mat-icon>
+                    Tile 2
+                </button>
+                <button matFab extended>
+                    <mat-icon>apps</mat-icon>
+                    Tile 3
+                </button>
+                <mat-tab-group style="overflow: hidden;">
+                    <mat-tab #tab1Transparency style="overflow:hidden;">
+                        <ng-template mat-tab-label>
+                            <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+                            Transparency
+                        </ng-template>
+                        <div style="display:flex;align-items:center;justify-content:center;">
+                            <mat-slider max="1" min="0" step="0.01">
+                                <input (input)="updateTileTransparency($event)"
+                                       [value]="tileTransparency()"
+                                       matSliderThumb>
+                            </mat-slider>
+                            <p>{{ Math.round(tileTransparency() * 100) }}%</p>
+                        </div>
                         <color-compact
                                 [color]="tileBackgroundColor()"
                                 (onChange)="updateTileBackgroundColorVariables($event)"
                         ></color-compact>
-                    </div>
+                        <mat-checkbox (change)="updateMatchTileColors($event.checked)"
+                                      [checked]="matchTileColors()">
+                            Match Transparency & Outline Color
+                        </mat-checkbox>
+                        <mat-checkbox (change)="updateMatchTileColors($event.checked)"
+                                      [checked]="matchTileColors()">
+                            Match Transparency & Outline Shade, TODO
+                        </mat-checkbox>
+                    </mat-tab>
 
-                    <br/>
-                    <div style="display:inline-flex; align-items:center; gap: 1rem;">
-                        <p>Blur</p>
-                        <mat-slider max="20" min="0" step="0.1">
-                            <input (input)="updateTileBlur($event)" [value]="tileBlur()"
-                                   matSliderThumb
-                                   value="0">
-                        </mat-slider>
-                    </div>
-
-                    <br/>
-                    <div style="display:inline-flex; align-items:center; gap: 1rem;">
-                        <p>Outline</p>
-                        <mat-slider max="1" min="0" step="0.01">
-                            <input (input)="updateTileOutline($event)" [value]="tileOutline()"
-                                   matSliderThumb
-                                   value="1">
-                        </mat-slider>
-                    </div>
-                    <div style="display:block;justify-content:center;">
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+                            Outline
+                        </ng-template>
+                        <div style="display:flex;align-items:center;justify-content:center;">
+                            <mat-slider max="1" min="0" step="0.01">
+                                <input (input)="updateTileOutline($event)" [value]="tileOutline()"
+                                       matSliderThumb
+                                       value="1">
+                            </mat-slider>
+                            <p>{{ Math.round(tileOutline() * 100) }}%</p>
+                        </div>
                         <color-compact
                                 [color]="tileOutlineColor()"
                                 (onChange)="updateTileOutlineColorVariables($event)">
                         </color-compact>
-                    </div>
+                        <mat-checkbox (change)="updateMatchTileColors($event.checked)"
+                                      [checked]="matchTileColors()">
+                            Match Transparency & Outline Color
+                        </mat-checkbox>
+                        <mat-checkbox (change)="updateMatchTileColors($event.checked)"
+                                      [checked]="matchTileColors()">
+                            Match Transparency & Outline Shade, TODO
+                        </mat-checkbox>
+                    </mat-tab>
 
-                    <br/>
-                    <p>Tile Fonts</p>
-                    <mat-select
-                            (selectionChange)="updateTileTextFont($event.value)"
-                            [value]="tileTextFontFamily()">
-                        <mat-option value="Roboto, sans-serif">Roboto (Default)</mat-option>
-                        <mat-option value="'Tangerine', cursive">Tangerine</mat-option>
-                        <mat-option value="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</mat-option>
-                        <mat-option value="'Lucida Handwriting', cursive">Lucida Handwriting</mat-option>
-                        <mat-option value="'Brush Script MT', cursive">Brush Script MT</mat-option>
-                    </mat-select>
-                    <br/><br/>
-                    <p>Tile Text Color</p>
-                    <color-compact
-                            [color]="tileTextColor()"
-                            (onChange)="updateTileTextColorVariables($event)">
-                    </color-compact>
-                </mat-expansion-panel>
-            </div>
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+                            Blur
+                        </ng-template>
+                        <div style="display:flex;align-items:center;justify-content:center;">
+                            <mat-slider max="20" min="0" step="0.1">
+                                <input (input)="updateTileBlur($event)" [value]="tileBlur()"
+                                       matSliderThumb
+                                       value="0">
+                            </mat-slider>
+                            <p>{{ Math.round(tileBlur() * 5) }}%</p>
+                        </div>
+                    </mat-tab>
+
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+                            Font
+                        </ng-template>
+                        <mat-select
+                                (selectionChange)="updateTileTextFont($event.value)"
+                                [value]="tileTextFontFamily()">
+                            <mat-option value="Roboto, sans-serif">Roboto (Default)</mat-option>
+                            <mat-option value="'Tangerine', cursive">Tangerine</mat-option>
+                            <mat-option value="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</mat-option>
+                            <mat-option value="'Lucida Handwriting', cursive">Lucida Handwriting</mat-option>
+                            <mat-option value="'Brush Script MT', cursive">Brush Script MT</mat-option>
+                        </mat-select>
+                        <color-compact
+                                [color]="tileTextColor()"
+                                (onChange)="updateTileTextColorVariables($event)">
+                        </color-compact>
+                    </mat-tab>
+                </mat-tab-group>
+            </mat-expansion-panel>
             <!-- Region Name Settings Accordion -->
             <div style="max-height: 70vh; overflow-y: auto; overflow-x: hidden; ">
                 <mat-expansion-panel #regionNameAccordian (closed)="panelRegionNameSettingsOpenState.set(false)"

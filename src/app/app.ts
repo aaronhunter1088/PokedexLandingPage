@@ -27,12 +27,17 @@ export class App {
     protected readonly icon_info = 'info';
     protected readonly icon_replay = 'replay';
     protected readonly icon_shuffle = 'shuffle';
+    protected readonly icon_apps = 'apps';
+    protected readonly icon_check_box = 'check_box';
     protected readonly title = signal('My Pokédex'); // &#233; é
     protected readonly copyrightText = signal('2026');
     protected readonly color_white = '#FFFFFF';
     protected readonly color_black = '#000000';
 
     protected currentIcon = signal(this.icon_info);
+    protected tile1ButtonIcon = signal(this.icon_apps);
+    protected tile2ButtonIcon = signal(this.icon_apps);
+    protected tile3ButtonIcon = signal(this.icon_apps);
     protected regionColor = signal(this.color_white);
     // tile specific settings
     protected matchTileColors = signal(false);
@@ -82,6 +87,8 @@ export class App {
         this.initializeRegionNameSettingsFromLocalStorage();
         this.initializeCopyrightText();
         this.cdr.detectChanges();
+        // Used while testing sidenav settings
+        this.sidenav.open();
     }
 
     /*
@@ -135,6 +142,16 @@ export class App {
             this.currentIcon.set(this.icon_info);
         }
 
+    }
+
+    // Update the Settings Tile 1 Button Icon
+    updateSettingsTile1ButtonIcon(): void {
+        if (this.tile1ButtonIcon() === this.icon_apps) {
+            this.tile1ButtonIcon.set(this.icon_check_box)
+        }
+        else {
+            this.tile1ButtonIcon.set(this.icon_apps);
+        }
     }
 
     // =========== Tile Settings Methods =========== //
@@ -575,4 +592,5 @@ export class App {
         } : null;
     }
 
+    protected readonly Math = Math;
 }

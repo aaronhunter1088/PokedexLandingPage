@@ -57,3 +57,7 @@
 .header-icon.clickable:hover {
     transform: scale(1.5);
 }
+
+.example-tab-icon {
+    margin-right: 8px;
+}

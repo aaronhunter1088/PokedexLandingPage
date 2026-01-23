@@ -27,6 +27,7 @@ import {
     MatExpansionPanelHeader,
     MatExpansionPanelTitle
 } from "@angular/material/expansion";
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
     //“What other modules can use through me”
@@ -44,6 +45,8 @@ import {
         MatExpansionPanelHeader,
         MatExpansionPanelTitle,
         MatExpansionPanelDescription,
+        MatTabsModule,
+        MatIconModule,
 
         MatButton,
         MatToolbar,
@@ -84,6 +87,8 @@ import {
         MatExpansionPanelHeader,
         MatExpansionPanelTitle,
         MatExpansionPanelDescription,
+        MatTabsModule,
+        MatIconModule,
 
         MatButton,
         MatToolbar,
