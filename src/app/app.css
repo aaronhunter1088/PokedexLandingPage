@@ -61,25 +61,3 @@
 .example-tab-icon {
     margin-right: 8px;
 }
-
-/* Remove scrollbars from mat-tab-group and mat-tab content */
-mat-tab-group {
-    overflow: hidden !important;
-}
-
-.mat-mdc-tab-body-wrapper {
-    overflow: hidden !important;
-}
-
-.mat-mdc-tab-body-content {
-    overflow: hidden !important;
-}
-
-mat-tab {
-    overflow: hidden !important;
-}
-
-/* Ensure tab panels don't overflow */
-.mat-mdc-tab-body {
-    overflow: hidden !important;
-}
