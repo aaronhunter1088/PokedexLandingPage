@@ -238,24 +238,11 @@ main {
     }
 }
 
-/* Remove scrollbars from mat-tab-group and mat-tab content */
-mat-tab-group {
-    overflow: hidden !important;
-}
-
-.mat-mdc-tab-body-wrapper {
-    overflow: hidden !important;
-}
-
-.mat-mdc-tab-body-content {
-    overflow: hidden !important;
-}
-
-mat-tab {
-    overflow: hidden !important;
-}
-
-/* Ensure tab panels don't overflow */
-.mat-mdc-tab-body {
+/* Remove scrollbars from Tile Settings mat-tab-group and mat-tab content */
+.tile-settings-panel mat-tab-group,
+.tile-settings-panel .mat-mdc-tab-body-wrapper,
+.tile-settings-panel .mat-mdc-tab-body-content,
+.tile-settings-panel mat-tab,
+.tile-settings-panel .mat-mdc-tab-body {
     overflow: hidden !important;
 }
