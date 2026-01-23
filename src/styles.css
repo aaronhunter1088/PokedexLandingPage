@@ -239,6 +239,7 @@ main {
 }
 
 /* Remove scrollbars from Tile Settings mat-tab-group and mat-tab content */
+/* Using !important is necessary to override Angular Material's default tab styles */
 .tile-settings-panel mat-tab-group,
 .tile-settings-panel .mat-mdc-tab-body-wrapper,
 .tile-settings-panel .mat-mdc-tab-body-content,
