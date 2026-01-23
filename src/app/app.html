@@ -33,7 +33,7 @@
         <br/><br/><br/>
         <mat-accordion>
             <!-- Tile Settings Accordion -->
-            <mat-expansion-panel #tileAccordian (closed)="panelTileSettingsOpenState.set(false)"
+            <mat-expansion-panel #tileAccordian class="tile-settings-panel" (closed)="panelTileSettingsOpenState.set(false)"
                                  (opened)="panelTileSettingsOpenState.set(true)">
                 <mat-expansion-panel-header>
                     <!--<mat-panel-title> Tile Settings </mat-panel-title>-->
@@ -53,8 +53,8 @@
                     <mat-icon>apps</mat-icon>
                     Tile 3
                 </button>
-                <mat-tab-group style="overflow: hidden;">
-                    <mat-tab #tab1Transparency style="overflow:hidden;">
+                <mat-tab-group>
+                    <mat-tab #tab1Transparency>
                         <ng-template mat-tab-label>
                             <mat-icon class="example-tab-icon">thumb_up</mat-icon>
                             Transparency
