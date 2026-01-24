@@ -1,9 +1,9 @@
 <div class="tiles">
-    <mat-card [style]="" class="glass" id="tile1" tabindex="0">
+    <mat-card [style]="" class="glass1" id="tile1" tabindex="0">
         <a [href]="environment.springBootAppUrl + '?darkmode=' + (toggle1Checked)" style="display: contents;">
             <mat-card-header>
-                <mat-card-title class="tileText"> Spring Boot</mat-card-title>
-                <mat-card-subtitle class="tileText"> v4.0.1</mat-card-subtitle>
+                <mat-card-title class="tile1Text"> Spring Boot</mat-card-title>
+                <mat-card-subtitle class="tile1Text"> v4.0.1</mat-card-subtitle>
                 <img alt="{{ toggle1Checked ? 'spring-logo-black' : 'spring-logo-white' }}"
                      height="40"
                      mat-card-avatar
@@ -11,7 +11,7 @@
                      style="background:transparent;mix-blend-mode:normal;"
                      width="40"/>
             </mat-card-header>
-            <mat-card-content class="tileText">
+            <mat-card-content class="tile1Text">
                 {{
                     toggle1Checked
                         ? 'Dark mode set. Let\'s go!'
@@ -33,11 +33,11 @@
         </mat-card-footer>
     </mat-card>
     <div aria-label="Divider" class="divider" role="separator"></div>
-    <mat-card [style]="" class="glass" id="tile2" tabindex="0">
+    <mat-card [style]="" class="glass2" id="tile2" tabindex="0">
         <a [href]="environment.angularAppUrl + '?darkmode=' + (toggle2Checked)" style="display: contents;">
             <mat-card-header>
-                <mat-card-title class="tileText"> Angular</mat-card-title>
-                <mat-card-subtitle class="tileText"> v21</mat-card-subtitle>
+                <mat-card-title class="tile2Text"> Angular</mat-card-title>
+                <mat-card-subtitle class="tile2Text"> v21</mat-card-subtitle>
                 <img alt="{{ toggle2Checked ? 'angular-logo-black' : 'angular-logo-white' }}"
                      height="40"
                      mat-card-avatar
@@ -45,7 +45,7 @@
                      style="background:transparent;mix-blend-mode:normal;"
                      width="40"/>
             </mat-card-header>
-            <mat-card-content class="tileText">
+            <mat-card-content class="tile2Text">
                 {{
                     toggle2Checked
                         ? 'Dark mode set. Let\'s go!'
@@ -67,12 +67,12 @@
         </mat-card-footer>
     </mat-card>
     <div aria-label="Divider" class="divider" role="separator"></div>
-    <mat-card [style]="" class="glass" id="tile3" tabindex="0">
+    <mat-card [style]="" class="glass3" id="tile3" tabindex="0">
         <a [href]="environment.combinedAppUrl + '?darkmode=' + (toggle3Checked)"
            style="text-decoration:none; display: contents;">
             <mat-card-header>
-                <mat-card-title class="tileText"> Angular Frontend</mat-card-title>
-                <mat-card-subtitle class="tileText"> Spring Boot Backend</mat-card-subtitle>
+                <mat-card-title class="tile3Text"> Angular Frontend</mat-card-title>
+                <mat-card-subtitle class="tile3Text"> Spring Boot Backend</mat-card-subtitle>
                 <img [ngSrc]="ngLogoImgValue"
                      alt="{{ ngLogoImgValue === 'spring-logo-white.png'
                         ? 'spring-logo-white'
@@ -86,7 +86,7 @@
                      style="background:transparent;mix-blend-mode:normal;"
                      width="40"/>
             </mat-card-header>
-            <mat-card-content class="tileText">
+            <mat-card-content class="tile3Text">
                 {{
                     toggle3Checked
                         ? 'Dark mode set. Let\'s go!'

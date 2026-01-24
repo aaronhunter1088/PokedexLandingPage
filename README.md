@@ -66,7 +66,7 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 #### Version 1.8.2
 
-Implementing a change in the Tiles Settings to allow each tile to have individual settings or control all tiles as
+Implementing a change in the Tiles Settings to allow each tile to have individual settings, or, control all tiles as
 we currently are.
 
 #### Version 1.8.1

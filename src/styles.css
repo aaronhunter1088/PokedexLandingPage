@@ -45,40 +45,119 @@ outside of it.
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    --tile-transparency: 0;
+    /* Tile Background Color Variables */
+    --tile1-red-color: 0;
+    --tile1-green-color: 0;
+    --tile1-blue-color: 0;
+    --tile1-transparency: 0;
+    --tile1-color: rgba(
+    var(--tile1-red-color),
+    var(--tile1-green-color),
+    var(--tile1-blue-color),
+    var(--tile1-transparency, 0));
+
+    --tile2-red-color: 0;
+    --tile2-green-color: 0;
+    --tile2-blue-color: 0;
+    --tile2-transparency: 0;
+    --tile2-color: rgba(
+    var(--tile2-red-color),
+    var(--tile2-green-color),
+    var(--tile2-blue-color),
+    var(--tile2-transparency, 0));
+
+    --tile3-red-color: 0;
+    --tile3-green-color: 0;
+    --tile3-blue-color: 0;
+    --tile3-transparency: 0;
+    --tile3-color: rgba(
+    var(--tile3-red-color),
+    var(--tile3-green-color),
+    var(--tile3-blue-color),
+    var(--tile3-transparency, 0));
+
+    /* Tile Outline Variables */
+    --tile1-outline-red-color: 0;
+    --tile1-outline-green-color: 0;
+    --tile1-outline-blue-color: 0;
+    --tile1-outline: 1;
+    --tile1-outline-color: rgba(
+    var(--tile1-outline-red-color),
+    var(--tile1-outline-green-color),
+    var(--tile1-outline-blue-color),
+    var(--tile1-outline, 1));
+
+    --tile2-outline-red-color: 0;
+    --tile2-outline-green-color: 0;
+    --tile2-outline-blue-color: 0;
+    --tile2-outline: 1;
+    --tile2-outline-color: rgba(
+    var(--tile2-outline-red-color),
+    var(--tile2-outline-green-color),
+    var(--tile2-outline-blue-color),
+    var(--tile2-outline, 1));
+
+    --tile3-outline-red-color: 0;
+    --tile3-outline-green-color: 0;
+    --tile3-outline-blue-color: 0;
+    --tile3-outline: 1;
+    --tile3-outline-color: rgba(
+    var(--tile3-outline-red-color),
+    var(--tile3-outline-green-color),
+    var(--tile3-outline-blue-color),
+    var(--tile3-outline, 1));
+
+    /* Tile Blur Variables */
+    --tile1-backdrop-filter: 0;
+    --tile1-webkit-backdrop-filter: 0;
+
+    --tile2-backdrop-filter: 0;
+    --tile2-webkit-backdrop-filter: 0;
+
+    --tile3-backdrop-filter: 0;
+    --tile3-webkit-backdrop-filter: 0;
+
+    /* Tile Text Variables */
+    --tile1-text-font-family: 'Roboto', sans-serif;
+    --tile1-text-red-color: 0;
+    --tile1-text-green-color: 0;
+    --tile1-text-blue-color: 0;
+    --tile1-text-color: rgb(
+    var(--tile1-text-red-color),
+    var(--tile1-text-green-color),
+    var(--tile1-text-blue-color));
+
+    --tile2-text-font-family: 'Roboto', sans-serif;
+    --tile2-text-red-color: 0;
+    --tile2-text-green-color: 0;
+    --tile2-text-blue-color: 0;
+    --tile2-text-color: rgb(
+    var(--tile2-text-red-color),
+    var(--tile2-text-green-color),
+    var(--tile2-text-blue-color));
+
+    --tile3-text-font-family: 'Roboto', sans-serif;
+    --tile3-text-red-color: 0;
+    --tile3-text-green-color: 0;
+    --tile3-text-blue-color: 0;
+    --tile3-text-color: rgb(
+    var(--tile3-text-red-color),
+    var(--tile3-text-green-color),
+    var(--tile3-text-blue-color));
+
+
     --region-name-transparency: 0;
 
-    --tile-backdrop-filter: 0;
-    --tile-webkit-backdrop-filter: 0;
+
     --region-name-backdrop-filter: 0;
     --region-name-webkit-backdrop-filter: 0;
 
-    --tile-border: 1;
-    --region-name-border: 1;
 
-    --red-tile-color: 0;
-    --green-tile-color: 0;
-    --blue-tile-color: 0;
-    --tile-color: rgba(var(--red-tile-color),
-    var(--green-tile-color),
-    var(--blue-tile-color),
-    var(--tile-transparency, 0));
+    --region-name-outline: 1;
 
-    --red-tile-border-color: 0;
-    --green-tile-border-color: 0;
-    --blue-tile-border-color: 0;
-    --tile-border-color: rgba(var(--red-tile-border-color),
-    var(--green-tile-border-color),
-    var(--blue-tile-border-color),
-    var(--tile-border, 1));
 
-    --red-tile-text-color: 0;
-    --green-tile-text-color: 0;
-    --blue-tile-text-color: 0;
-    --tile-text-color: rgb(var(--red-tile-text-color),
-    var(--green-tile-text-color),
-    var(--blue-tile-text-color));
-    --tile-text-font-family: 'Roboto', sans-serif;
+
+
 
     --red-region-name-color: 0;
     --green-region-name-color: 0;
@@ -88,13 +167,13 @@ outside of it.
     var(--blue-region-name-color),
     var(--region-name-transparency, 0));
 
-    --red-region-name-border-color: 0;
-    --green-region-name-border-color: 0;
-    --blue-region-name-border-color: 0;
-    --region-name-border-color: rgba(var(--red-region-name-border-color),
-    var(--green-region-name-border-color),
-    var(--blue-region-name-border-color),
-    var(--region-name-border, 1));
+    --red-region-name-outline-color: 0;
+    --green-region-name-outline-color: 0;
+    --blue-region-name-outline-color: 0;
+    --region-name-outline-color: rgba(var(--red-region-name-outline-color),
+    var(--green-region-name-outline-color),
+    var(--blue-region-name-outline-color),
+    var(--region-name-outline, 1));
 
     --red-region-name-text-color: 0;
     --green-region-name-text-color: 0;
