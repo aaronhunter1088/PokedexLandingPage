@@ -145,43 +145,40 @@ outside of it.
     var(--tile3-text-green-color),
     var(--tile3-text-blue-color));
 
-
+    /* Region Name Background Color Variables */
+    --region-name-red-color: 0;
+    --region-name-green-color: 0;
+    --region-name-blue-color: 0;
     --region-name-transparency: 0;
+    --region-name-color: rgba(
+    var(--region-name-red-color),
+    var(--region-name-green-color),
+    var(--region-name-blue-color),
+    var(--region-name-transparency, 0));
 
+    --region-name-outline-red-color: 0;
+    --region-name-outline-green-color: 0;
+    --region-name-outline-blue-color: 0;
+    --region-name-outline: 1;
+    --region-name-outline-color: rgba(
+    var(--region-name-outline-red-color),
+    var(--region-name-outline-blue-color),
+    var(--region-name-outline-green-color),
+    var(--region-name-outline, 1));
 
+    /* Region Name Blur Variables */
     --region-name-backdrop-filter: 0;
     --region-name-webkit-backdrop-filter: 0;
 
-
-    --region-name-outline: 1;
-
-
-
-
-
-    --red-region-name-color: 0;
-    --green-region-name-color: 0;
-    --blue-region-name-color: 0;
-    --region-name-color: rgba(var(--red-region-name-color),
-    var(--green-region-name-color),
-    var(--blue-region-name-color),
-    var(--region-name-transparency, 0));
-
-    --red-region-name-outline-color: 0;
-    --green-region-name-outline-color: 0;
-    --blue-region-name-outline-color: 0;
-    --region-name-outline-color: rgba(var(--red-region-name-outline-color),
-    var(--green-region-name-outline-color),
-    var(--blue-region-name-outline-color),
-    var(--region-name-outline, 1));
-
-    --red-region-name-text-color: 0;
-    --green-region-name-text-color: 0;
-    --blue-region-name-text-color: 0;
-    --region-name-text-color: rgb(var(--red-region-name-text-color),
-    var(--green-region-name-text-color),
-    var(--blue-region-name-text-color));
+    /* Region Name Text Variables */
     --region-name-text-font-family: 'Roboto', sans-serif;
+    --region-name-text-red-color: 0;
+    --region-name-text-green-color: 0;
+    --region-name-text-blue-color: 0;
+    --region-name-text-color: rgb(
+    var(--region-name-text-red-color),
+    var(--region-name-text-green-color),
+    var(--region-name-text-blue-color));
 }
 
 h1 {

@@ -70,8 +70,8 @@ export class App {
     protected readonly TILE_1_TEXT_COLOR = "tile1TextColor"
     protected readonly TILE_2_TEXT_COLOR = "tile2TextColor"
     protected readonly TILE_3_TEXT_COLOR = "tile3TextColor"
-    protected readonly MATCH_REGION_NAME_COLORS = "matchRegionNameColors"
-    protected readonly MATCHED_REGION_NAME_COLOR = "matchedRegionNameColor"
+    protected readonly MATCH_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR = "matchRegionNameBackgroundColor"
+    protected readonly MATCHED_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR = "matchedRegionNameColor"
     protected readonly REGION_NAME_BACKGROUND_COLOR = "regionNameBackgroundColor"
     protected readonly REGION_NAME_OUTLINE_COLOR = "regionNameOutlineColor"
     protected readonly REGION_NAME_TRANSPARENCY = "regionNameTransparency"
@@ -111,8 +111,10 @@ export class App {
     protected tile2TextColor = signal(this.COLOR_BLACK)
     protected tile3TextColor = signal(this.COLOR_BLACK)
     // region name specific settings
-    protected matchRegionNameColors = signal(false)
-    protected matchedRegionNameColor = signal(this.COLOR_BLACK)
+    protected matchRegionNameBackgroundAndOutlineColor = signal(false)
+    protected matchRegionNameTransparencyAndOutlineShade = signal(false)
+    protected matchedRegionNameBackgroundAndOutlineColor = signal(this.COLOR_BLACK)
+    protected matchedRegionNameTransparencyAndOutlineShade = signal(0)
     protected regionNameBackgroundColor = signal(this.COLOR_WHITE)
     protected regionNameOutlineColor = signal(this.COLOR_WHITE)
     protected regionNameTransparency = signal(0)
@@ -150,7 +152,7 @@ export class App {
         this.initializeCopyrightText()
         this.cdr.detectChanges()
         // Used while testing sidenav settings
-        //this.sidenav.open()
+        this.sidenav.open()
     }
 
     /*
@@ -303,18 +305,18 @@ export class App {
     // Initialize Region Name Settings from Local Storage
     private initializeRegionNameSettingsFromLocalStorage(): void {
         // Load matchRegionNameColors
-        const matchRegionNameColorsValue = localStorage.getItem(this.MATCH_REGION_NAME_COLORS)
-        this.matchRegionNameColors.set(matchRegionNameColorsValue === 'true')
-        localStorage.setItem(this.MATCH_REGION_NAME_COLORS, this.matchRegionNameColors().toString())
-        console.log("matchRegionNameColors loaded:", this.matchRegionNameColors())
+        const matchRegionNameColorsValue = localStorage.getItem(this.MATCH_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR)
+        this.matchRegionNameBackgroundAndOutlineColor.set(matchRegionNameColorsValue === 'true')
+        localStorage.setItem(this.MATCH_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR, this.matchRegionNameBackgroundAndOutlineColor().toString())
+        console.log("matchRegionNameColors loaded:", this.matchRegionNameBackgroundAndOutlineColor())
 
-        if (this.matchRegionNameColors()) {
+        if (this.matchRegionNameBackgroundAndOutlineColor()) {
             console.debug("matchRegionNameColors is true")
             // Load matched region name color
-            const matchedRegionNameColorValue = localStorage.getItem(this.MATCHED_REGION_NAME_COLOR)
+            const matchedRegionNameColorValue = localStorage.getItem(this.MATCHED_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR)
             console.debug("matchedRegionNameColorValue:", matchedRegionNameColorValue)
-            this.matchedRegionNameColor.set(matchedRegionNameColorValue || this.matchedRegionNameColor())
-            localStorage.setItem(this.MATCHED_REGION_NAME_COLOR, this.matchedRegionNameColor())
+            this.matchedRegionNameBackgroundAndOutlineColor.set(matchedRegionNameColorValue || this.matchedRegionNameBackgroundAndOutlineColor())
+            localStorage.setItem(this.MATCHED_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR, this.matchedRegionNameBackgroundAndOutlineColor())
         }
 
         // Load region name background color
@@ -465,15 +467,29 @@ export class App {
         const lastTileClicked = localStorage.getItem(this.LAST_TILE_SETTINGS_BUTTON_CLICKED)
         if (lastTileClicked === this.TILE_1) {
             this.matchedTileTransparencyAndOutline.set(this.tile1Transparency())
-        } else if (lastTileClicked === this.TILE_2) {
+        }
+        else if (lastTileClicked === this.TILE_2) {
             this.matchedTileTransparencyAndOutline.set(this.tile2Transparency())
-        } else if (lastTileClicked === this.TILE_3) {
+        }
+        else if (lastTileClicked === this.TILE_3) {
             this.matchedTileTransparencyAndOutline.set(this.tile3Transparency())
-        } else {
+        }
+        else {
             // PROBLEM: what if user clicks matchTileShade without selecting any tiles first?
             this.matchedTileTransparencyAndOutline.set(0) // default shade
         }
         localStorage.setItem(this.MATCHED_TILE_TRANSPARENCY, this.matchedTileTransparencyAndOutline().toString())
+        this.cdr.detectChanges()
+    }
+
+    // Update Match Tile Shade Checkbox
+    updateMatchRegionNameShade(checked: boolean) {
+        this.matchRegionNameTransparencyAndOutlineShade.set(checked)
+        this.matchedRegionNameTransparencyAndOutlineShade.set(this.regionNameTransparency())
+        document.documentElement
+        localStorage.setItem(this.MATCH_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR, checked.toString())
+        this.matchedRegionNameTransparencyAndOutlineShade.set(this.regionNameTransparency())
+        localStorage.setItem(this.MATCHED_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR, this.matchedRegionNameTransparencyAndOutlineShade().toString())
         this.cdr.detectChanges()
     }
 
@@ -923,8 +939,8 @@ export class App {
 
     // Update Match Region Name Colors Checkbox
     updateMatchRegionNameColors(checked: boolean) {
-        this.matchRegionNameColors.set(checked)
-        localStorage.setItem(this.MATCH_REGION_NAME_COLORS, checked.toString())
+        this.matchRegionNameBackgroundAndOutlineColor.set(checked)
+        localStorage.setItem(this.MATCH_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR, checked.toString())
         this.cdr.detectChanges()
     }
 
@@ -932,9 +948,9 @@ export class App {
     updateRegionNameBackgroundColorVariables(colors: ColorEvent) {
         this.setRegionNameBackgroundColorVariables(colors)
         this.regionNameBackgroundColor.set(colors.color.hex)
-        if (this.matchRegionNameColors()) {
+        if (this.matchRegionNameBackgroundAndOutlineColor()) {
             this.setMatchedRegionNameColor(colors)
-            localStorage.setItem(this.MATCHED_REGION_NAME_COLOR, this.matchedRegionNameColor())
+            localStorage.setItem(this.MATCHED_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR, this.matchedRegionNameBackgroundAndOutlineColor())
             this.setRegionNameOutlineColorVariables(colors)
             this.regionNameOutlineColor.set(colors.color.hex)
             localStorage.setItem(this.REGION_NAME_OUTLINE_COLOR, this.regionNameOutlineColor())
@@ -949,8 +965,21 @@ export class App {
         document.documentElement.style.setProperty('--region-name-transparency',
             value.toString())
         this.regionNameTransparency.set(value)
+        if (this.matchRegionNameTransparencyAndOutlineShade()) {
+            this.matchedRegionNameTransparencyAndOutlineShade.set(value)
+        }
         this.cdr.detectChanges()
         localStorage.setItem(this.REGION_NAME_TRANSPARENCY, value.toString())
+    }
+
+    showThisRegionNameTransparency(): any {
+        if (this.matchRegionNameTransparencyAndOutlineShade()) {
+            document.documentElement.style.setProperty('--region-name-transparency', this.matchedRegionNameTransparencyAndOutlineShade().toString())
+            document.documentElement.style.setProperty('--region-name-outline', this.matchedRegionNameTransparencyAndOutlineShade().toString())
+            return this.matchedRegionNameTransparencyAndOutlineShade()
+        } else {
+            return this.regionNameTransparency()
+        }
     }
 
     // Update Region Name Blur
@@ -967,29 +996,43 @@ export class App {
 
     // Update Region Name Outline
     updateRegionNameOutline(value: any) {
-        value = (value.target as HTMLInputElement).valueAsNumber
-        document.documentElement.style.setProperty('--region-name-outline',
-            value.toString())
-        this.regionNameOutline.set(value)
+        if (this.matchRegionNameTransparencyAndOutlineShade()) {
+            document.documentElement.style.setProperty('--region-name-transparency', value.toString())
+            document.documentElement.style.setProperty('--region-name-outline', value.toString())
+            localStorage.setItem(this.REGION_NAME_TRANSPARENCY, value.toString())
+            localStorage.setItem(this.REGION_NAME_OUTLINE, value.toString())
+            return this.matchedRegionNameTransparencyAndOutlineShade()
+        } else {
+            return this.regionNameOutline()
+        }
         this.cdr.detectChanges()
-        localStorage.setItem(this.REGION_NAME_OUTLINE, value.toString())
+    }
+
+    showThisRegionNameOutline(): any {
+        if (this.matchRegionNameTransparencyAndOutlineShade()) {
+            document.documentElement.style.setProperty('--region-name-transparency', this.matchedRegionNameTransparencyAndOutlineShade().toString())
+            document.documentElement.style.setProperty('--region-name-outline', this.matchedRegionNameTransparencyAndOutlineShade().toString())
+            return this.matchedRegionNameTransparencyAndOutlineShade()
+        } else {
+            return this.regionNameOutline()
+        }
     }
 
     // Update Region Name Outline Color
     updateRegionNameOutlineColorVariables(colors: ColorEvent) {
         this.setRegionNameOutlineColorVariables(colors)
         this.regionNameOutlineColor.set(colors.color.hex)
-        if (this.matchRegionNameColors()) {
+        if (this.matchRegionNameBackgroundAndOutlineColor()) {
             this.setMatchedRegionNameColor(colors)
-            localStorage.setItem(this.MATCHED_REGION_NAME_COLOR, this.matchedRegionNameColor())
+            localStorage.setItem(this.MATCHED_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR, this.matchedRegionNameBackgroundAndOutlineColor())
             this.setRegionNameBackgroundColorVariables(colors)
             this.regionNameBackgroundColor.set(colors.color.hex)
             localStorage.setItem(this.REGION_NAME_BACKGROUND_COLOR, this.regionNameBackgroundColor())
         }
 
         this.cdr.detectChanges()
-        localStorage.setItem(this.MATCH_REGION_NAME_COLORS, this.matchRegionNameColors().toString())
-        localStorage.setItem(this.MATCHED_REGION_NAME_COLOR, this.matchedRegionNameColor())
+        localStorage.setItem(this.MATCH_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR, this.matchRegionNameBackgroundAndOutlineColor().toString())
+        localStorage.setItem(this.MATCHED_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR, this.matchedRegionNameBackgroundAndOutlineColor())
         localStorage.setItem(this.REGION_NAME_OUTLINE_COLOR, this.regionNameOutlineColor())
     }
 
@@ -1255,9 +1298,7 @@ export class App {
 
     // Set Region Name Background Color Variables
     private setRegionNameBackgroundColorVariables(colors: ColorEvent) {
-        document.documentElement.style.setProperty('--red-region-name-color', colors.color.rgb.r.toString())
-        document.documentElement.style.setProperty('--green-region-name-color', colors.color.rgb.g.toString())
-        document.documentElement.style.setProperty('--blue-region-name-color', colors.color.rgb.b.toString())
+        this.setRegionNameColorFromHex(colors.color.hex)
     }
 
     // Set Matched Region Name Color
@@ -1269,9 +1310,9 @@ export class App {
         console.debug("Setting matched region name color to: " + hex)
         const rgb = this.hexToRgb(hex)
         if (rgb) {
-            document.documentElement.style.setProperty('--red-region-name-color', rgb.r.toString())
-            document.documentElement.style.setProperty('--green-region-name-color', rgb.g.toString())
-            document.documentElement.style.setProperty('--blue-region-name-color', rgb.b.toString())
+            document.documentElement.style.setProperty('--region-name-red-color', rgb.r.toString())
+            document.documentElement.style.setProperty('--region-name-green-color',  rgb.g.toString())
+            document.documentElement.style.setProperty('--region-name-blue-color',  rgb.b.toString())
         }
     }
 
@@ -1284,9 +1325,9 @@ export class App {
         console.debug("Setting region name outline color to: " + hex)
         const rgb = this.hexToRgb(hex)
         if (rgb) {
-            document.documentElement.style.setProperty('--red-region-name-outline-color', rgb.r.toString())
-            document.documentElement.style.setProperty('--green-region-name-outline-color', rgb.g.toString())
-            document.documentElement.style.setProperty('--blue-region-name-outline-color', rgb.b.toString())
+            document.documentElement.style.setProperty('--region-name-outline-red-color', rgb.r.toString())
+            document.documentElement.style.setProperty('--region-name-outline-green-color', rgb.g.toString())
+            document.documentElement.style.setProperty('--region-name-outline-blue-color', rgb.b.toString())
         }
     }
 

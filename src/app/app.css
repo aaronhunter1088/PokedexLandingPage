@@ -31,7 +31,7 @@
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: var(--region-name-backdrop-filter);
     -webkit-backdrop-filter: var(--region-name-webkit-backdrop-filter);
-    border: 1px solid var(--region-name-border-color);
+    border: 1px solid var(--region-name-outline-color);
 }
 
 .header-icons {

@@ -157,17 +157,22 @@
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <mat-checkbox (change)="updateMatchRegionNameColors($event.checked)"
-                                  [checked]="matchRegionNameColors()">
-                        Match Colors (Transparency & Outline)
+                                  [checked]="matchRegionNameBackgroundAndOutlineColor()">
+                        Match Transparency & Outline Color
+                    </mat-checkbox>
+                    <mat-checkbox (change)="updateMatchRegionNameShade($event.checked)"
+                                  [checked]="matchRegionNameTransparencyAndOutlineShade()">
+                        Match Transparency & Outline Shade
                     </mat-checkbox>
                     <br/>
                     <div style="display:inline-flex; align-items:center; gap: 1rem;">
                         <p style="margin: 0;">Transparency</p>
                         <mat-slider max="1" min="0" step="0.01">
                             <input (input)="updateRegionNameTransparency($event)"
-                                   [value]="regionNameTransparency()"
+                                   [value]="showThisRegionNameTransparency()"
                                    matSliderThumb>
                         </mat-slider>
+                        {{ Math.round(showThisRegionNameTransparency() * 100) }}%
                     </div>
                     <div style="display:block;justify-content:center;">
                         <color-compact
@@ -191,11 +196,12 @@
                     <div style="display:inline-flex; align-items:center; gap: 1rem;">
                         <p>Outline</p>
                         <mat-slider max="1" min="0" step="0.01">
-                            <input (input)="updateRegionNameOutline($event)"
-                                   [value]="regionNameOutline()"
+                            <input (input)="updateRegionNameOutline($event.target)"
+                                   [value]="showThisRegionNameOutline()"
                                    matSliderThumb
                                    value="1">
                         </mat-slider>
+                        {{ Math.round(showThisRegionNameOutline() * 100) }}%
                     </div>
                     <div style="display:block;justify-content:center;">
                         <color-compact
