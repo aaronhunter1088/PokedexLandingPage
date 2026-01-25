@@ -202,17 +202,17 @@ export class App {
         const tile1BackgroundColorValue = localStorage.getItem(this.TILE_1_BACKGROUND_COLOR)
         this.tile1BackgroundColor.set(tile1BackgroundColorValue || this.tile1BackgroundColor())
         const tile2BackgroundColorValue = localStorage.getItem(this.TILE_2_BACKGROUND_COLOR)
-        this.tile2BackgroundColor.set(tile2BackgroundColorValue || this.tile1BackgroundColor())
+        this.tile2BackgroundColor.set(tile2BackgroundColorValue || this.tile2BackgroundColor())
         const tile3BackgroundColorValue = localStorage.getItem(this.TILE_3_BACKGROUND_COLOR)
-        this.tile3BackgroundColor.set(tile3BackgroundColorValue || this.tile1BackgroundColor())
+        this.tile3BackgroundColor.set(tile3BackgroundColorValue || this.tile3BackgroundColor())
         this.setTile1BackgroundColorFromHex(this.tile1BackgroundColor())
         this.setTile2BackgroundColorFromHex(this.tile2BackgroundColor())
         this.setTile3BackgroundColorFromHex(this.tile3BackgroundColor())
 
         // set variables
         localStorage.setItem(this.TILE_1_BACKGROUND_COLOR, this.tile1BackgroundColor())
-        localStorage.setItem(this.TILE_2_BACKGROUND_COLOR, this.tile1BackgroundColor())
-        localStorage.setItem(this.TILE_3_BACKGROUND_COLOR, this.tile1BackgroundColor())
+        localStorage.setItem(this.TILE_2_BACKGROUND_COLOR, this.tile2BackgroundColor())
+        localStorage.setItem(this.TILE_3_BACKGROUND_COLOR, this.tile3BackgroundColor())
         console.log("Initialized tile background colors from local storage.")
 
         // Load tile outline color
