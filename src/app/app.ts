@@ -32,6 +32,7 @@ export class App {
     protected readonly icon_shuffle = 'shuffle'
     protected readonly icon_apps = 'apps'
     protected readonly icon_check_box = 'check_box'
+    protected readonly icon_save = 'save'
     protected readonly Math = Math
     // Colors
     protected readonly COLOR_WHITE = '#FFFFFF'
@@ -79,8 +80,12 @@ export class App {
     protected readonly REGION_NAME_OUTLINE = "regionNameOutline"
     protected readonly REGION_NAME_TEXT_FONT_FAMILY = "regionNameTextFontFamily"
     protected readonly REGION_NAME_TEXT_COLOR = "regionNameTextColor"
+    protected readonly BACKGROUND_IMAGE = '1kantoMap.png'
+    protected readonly REGION_NAME = 'Kanto'
+    protected readonly BACKGROUND_IMAGE_REMOVED = 'backgroundImageRemoved'
     // Default Properties
     protected settingsIcon = signal(this.icon_info)
+    protected saveIcon = signal(this.icon_save)
     // tile specific settings
     protected tile1SettingsButtonIcon = signal(this.icon_apps)
     protected tile2SettingsButtonIcon = signal(this.icon_apps)
@@ -124,6 +129,8 @@ export class App {
     protected regionNameTextColor = signal(this.COLOR_BLACK)
     protected panelTileSettingsOpenState = signal(false)
     protected panelRegionNameSettingsOpenState = signal(false)
+    protected backgroundImageAndNameSaved = signal(false)
+    protected backgroundImageAndNameRemoved = signal(false)
     private readonly regionsNameMap: { [key: string]: string } = {
         'Kanto': '1kantoMap.png',
         'Johto': '2johtoMap.png',
@@ -293,13 +300,25 @@ export class App {
 
         // Load tile text color
         const tile1TextColorValue = localStorage.getItem(this.TILE_1_TEXT_COLOR)
-        console.debug("tile1TextColorValue:", tile1TextColorValue)
         this.setTile1TextColorFromHex(tile1TextColorValue || this.tile1TextColor())
         const tile2TextColorValue = localStorage.getItem(this.TILE_2_TEXT_COLOR)
         this.setTile2TextColorFromHex(tile2TextColorValue || this.tile2TextColor())
         const tile3TextColorValue = localStorage.getItem(this.TILE_3_TEXT_COLOR)
         this.setTile3TextColorFromHex(tile3TextColorValue || this.tile3TextColor())
-        console.log("Initialized tile text colors from local storage.")
+
+        const backgroundImage = localStorage.getItem(this.BACKGROUND_IMAGE)
+        const regionName = localStorage.getItem(this.REGION_NAME)
+        if (backgroundImage && regionName) {
+            this.backgroundImage.set(backgroundImage)
+            this.regionName.set(regionName)
+            this.backgroundImageAndNameSaved.set(true)
+        }
+        const removeBackgroundImage = localStorage.getItem(this.BACKGROUND_IMAGE_REMOVED)
+        if (removeBackgroundImage === 'true') {
+            this.backgroundImageAndNameSaved.set(false)
+            this.backgroundImageAndNameRemoved.set(false)
+            this.toggleBackground()
+        }
     }
 
     // Initialize Region Name Settings from Local Storage
@@ -1041,6 +1060,26 @@ export class App {
         this.regionNameTextColor.set(colors.color.hex)
         localStorage.setItem(this.REGION_NAME_TEXT_COLOR, this.regionNameTextColor())
         console.debug("updating region name text color to: " + this.regionNameTextColor())
+    }
+
+    // =========== Background Settings Methods =========== //
+
+    saveBackgroundImage(image: string, regionName: string): void {
+        this.backgroundImage.set(image)
+        this.regionName.set(regionName)
+        this.backgroundImageAndNameSaved.set(true)
+        this.backgroundImageAndNameRemoved.set(false)
+        localStorage.setItem(this.BACKGROUND_IMAGE, this.backgroundImage())
+        localStorage.setItem(this.REGION_NAME, this.regionName())
+        localStorage.setItem(this.BACKGROUND_IMAGE_REMOVED, false.toString())
+    }
+
+    removeBackgroundImage(): void {
+        this.backgroundImageAndNameSaved.set(false)
+        this.backgroundImageAndNameRemoved.set(true)
+        localStorage.setItem(this.BACKGROUND_IMAGE, '')
+        localStorage.setItem(this.REGION_NAME, '')
+        localStorage.setItem(this.BACKGROUND_IMAGE_REMOVED, true.toString())
     }
 
     // =========== Private Helper Methods =========== //

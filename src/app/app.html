@@ -229,6 +229,23 @@
                     </color-compact>
                 </mat-expansion-panel>
             </div>
+            <!-- Background Settings Accordion -->
+            <mat-expansion-panel #backgroundAccordian>
+                <mat-expansion-panel-header>
+                    <!--<mat-panel-title> panel title </mat-panel-title>-->
+                    <mat-panel-description>
+                        Adjust{{ panelTileSettingsOpenState() ? 'ing' : '' }} the background settings
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <button matFab extended (click)="saveBackgroundImage(this.backgroundImage(), this.regionName())">
+                    <mat-icon>{{ saveIcon() }}</mat-icon>
+                    Save{{backgroundImageAndNameSaved() ? 'd':''}} Background
+                </button>
+                <button matFab extended (click)="removeBackgroundImage()">
+                    <mat-icon>{{ saveIcon() }}</mat-icon>
+                    Remove{{backgroundImageAndNameRemoved() ? 'd':''}} Background
+                </button>
+            </mat-expansion-panel>
             <!-- About This Application Accordion -->
             <div style="max-height: 70vh; overflow-y: auto; overflow-x: hidden; ">
                 <mat-expansion-panel #aboutAccordian>

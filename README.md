@@ -64,6 +64,14 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.8.3
+
+Implemented a new setting to save the background and region name. Simply click on the 'Save Background' button
+and from then on, that background and region name will be the default, like the other settings. To reset this, simply
+click the 'Remove Background' button and the next time you load the application, a random background and region name
+will be selected. You can still shuffle the background but unless you resave that new choice, it will show what was
+chosen to be saved.
+
 #### Version 1.8.2
 
 Implementing a change in the Tiles Settings to allow each tile to have individual settings, or, control all tiles as
