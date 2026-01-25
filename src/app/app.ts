@@ -152,7 +152,7 @@ export class App {
         this.initializeCopyrightText()
         this.cdr.detectChanges()
         // Used while testing sidenav settings
-        this.sidenav.open()
+        //this.sidenav.open()
     }
 
     /*
