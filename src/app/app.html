@@ -13,7 +13,7 @@
     </mat-card>
     <div class="header-icons">
         <mat-icon (click)="toggleBackground()" class="header-icon clickable">swap_calls</mat-icon>
-        <mat-icon (click)="updateIcon()" class="header-icon clickable">{{ currentIcon() }}</mat-icon>
+        <mat-icon (click)="updateSettingsIcon()" class="header-icon clickable">{{ settingsIcon() }}</mat-icon>
     </div>
 </header>
 <mat-sidenav-container [style.background-image]="getBackgroundImageUrl()"
@@ -28,7 +28,7 @@
             </p>
         </main>
     </mat-sidenav-content>
-    <mat-sidenav #sidenav (closed)="this.currentIcon.set(this.icon_info);" position="end"
+    <mat-sidenav #sidenav (closed)="this.settingsIcon.set(this.icon_info);" position="end"
                  style="background-color:var(--gray-400);">
         <br/><br/><br/>
         <mat-accordion>
@@ -68,15 +68,15 @@
                             <p>{{ Math.round(showThisTransparency() * 100) }}%</p>
                         </div>
                         <color-compact
-                                [color]="matchedTileColor()"
+                                [color]="matchedTileBackgroundAndOutlineColor()"
                                 (onChange)="updateTileBackgroundColorVariables($event)">
                         </color-compact>
                         <mat-checkbox (change)="updateMatchTileShade($event.checked)"
-                                      [checked]="matchTileShade()">
+                                      [checked]="matchTileBackgroundAndOutlineShade()">
                             Match Transparency & Outline Shade
                         </mat-checkbox>
                         <mat-checkbox (change)="updateMatchTileColors($event.checked)"
-                                      [checked]="matchTileColors()">
+                                      [checked]="matchTileBackgroundAndOutlineColor()">
                             Match Transparency & Outline Color
                         </mat-checkbox>
                     </mat-tab>
@@ -96,20 +96,20 @@
                             <p>{{ Math.round(showThisOutline() * 100) }}%</p>
                         </div>
                         <color-compact
-                                [color]="matchedTileColor()"
+                                [color]="matchedTileBackgroundAndOutlineColor()"
                                 (onChange)="updateTileOutlineColorVariables($event)">
                         </color-compact>
                         <mat-checkbox (change)="updateMatchTileShade($event.checked)"
-                                      [checked]="matchTileShade()">
+                                      [checked]="matchTileBackgroundAndOutlineShade()">
                             Match Transparency & Outline Shade
                         </mat-checkbox>
                         <mat-checkbox (change)="updateMatchTileColors($event.checked)"
-                                      [checked]="matchTileColors()">
+                                      [checked]="matchTileBackgroundAndOutlineColor()">
                             Match Transparency & Outline Color
                         </mat-checkbox>
                     </mat-tab>
 
-                    <mat-tab>
+                    <mat-tab #tab3Blur>
                         <ng-template mat-tab-label>
                             <mat-icon class="example-tab-icon">blur_on</mat-icon>
                             Blur
@@ -125,7 +125,7 @@
                         </div>
                     </mat-tab>
 
-                    <mat-tab>
+                    <mat-tab #tab3Font>
                         <ng-template mat-tab-label>
                             <mat-icon class="example-tab-icon">font_download</mat-icon>
                             Font
@@ -140,7 +140,7 @@
                             <mat-option value="'Brush Script MT', cursive">Brush Script MT</mat-option>
                         </mat-select>
                         <color-compact
-                                [color]="tile1TextColor()"
+                                [color]="showThisFontColor()"
                                 (onChange)="updateTileTextColorVariables($event)">
                         </color-compact>
                     </mat-tab>
@@ -276,17 +276,3 @@
         </mat-accordion>
     </mat-sidenav>
 </mat-sidenav-container>
-
-<script>
-    (function() {
-        const startYear = 2026;
-        const currentYear = new Date().getFullYear();
-        const el = document.getElementById('copyright');
-        if (!el) return;
-        el.style.color = 'black';
-        // Use actual copyright symbol
-        el.textContent = (currentYear === startYear)
-            ? `© ${startYear}`
-            : `© ${startYear} - ${currentYear}`;
-    })();
-</script>
