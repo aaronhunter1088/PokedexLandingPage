@@ -25,9 +25,6 @@
 .regionNameText {
     color: var(--region-name-text-color);
     font-family: var(--region-name-text-font-family), cursive;
-    /*font-size: 1.25rem;*/
-    /*font-weight: 500;*/
-    /*margin-top: 0.5rem;*/
 }
 
 a {

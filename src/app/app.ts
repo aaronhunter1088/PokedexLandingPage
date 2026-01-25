@@ -308,13 +308,10 @@ export class App {
         const matchRegionNameColorsValue = localStorage.getItem(this.MATCH_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR)
         this.matchRegionNameBackgroundAndOutlineColor.set(matchRegionNameColorsValue === 'true')
         localStorage.setItem(this.MATCH_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR, this.matchRegionNameBackgroundAndOutlineColor().toString())
-        console.log("matchRegionNameColors loaded:", this.matchRegionNameBackgroundAndOutlineColor())
 
         if (this.matchRegionNameBackgroundAndOutlineColor()) {
-            console.debug("matchRegionNameColors is true")
             // Load matched region name color
             const matchedRegionNameColorValue = localStorage.getItem(this.MATCHED_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR)
-            console.debug("matchedRegionNameColorValue:", matchedRegionNameColorValue)
             this.matchedRegionNameBackgroundAndOutlineColor.set(matchedRegionNameColorValue || this.matchedRegionNameBackgroundAndOutlineColor())
             localStorage.setItem(this.MATCHED_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR, this.matchedRegionNameBackgroundAndOutlineColor())
         }
@@ -323,13 +320,11 @@ export class App {
         const regionNameBackgroundColorValue = localStorage.getItem(this.REGION_NAME_BACKGROUND_COLOR)
         this.regionNameBackgroundColor.set(regionNameBackgroundColorValue || this.regionNameBackgroundColor())
         localStorage.setItem(this.REGION_NAME_BACKGROUND_COLOR, this.regionNameBackgroundColor())
-        console.debug("regionNameBackgroundColor loaded:", this.regionNameBackgroundColor())
 
         // Load region name outline color
         const regionNameOutlineColorValue = localStorage.getItem(this.REGION_NAME_OUTLINE_COLOR)
         this.regionNameOutlineColor.set(regionNameOutlineColorValue || this.regionNameOutlineColor())
         localStorage.setItem(this.REGION_NAME_OUTLINE_COLOR, this.regionNameOutlineColor())
-        console.debug("regionNameOutlineColor loaded:", this.regionNameOutlineColor())
 
         // Initialize region name color CSS variables
         this.setRegionNameColorFromHex(this.regionNameBackgroundColor())
@@ -352,15 +347,12 @@ export class App {
         // Load font family
         const regionNameFontValue = localStorage.getItem(this.REGION_NAME_TEXT_FONT_FAMILY)
         this.updateRegionNameTextFont(regionNameFontValue || this.DEFAULT_TEXT_FONT_FAMILY)
-        console.log("Initialized region name font family from local storage.")
 
         // Load region name text color
         const regionNameTextColorValue = localStorage.getItem(this.REGION_NAME_TEXT_COLOR)
-        console.debug("regionNameTextColorValue:", regionNameTextColorValue)
         this.regionNameTextColor.set(regionNameTextColorValue || this.regionNameTextColor())
         this.setRegionNameTextColorFromHex(this.regionNameTextColor())
         localStorage.setItem(this.REGION_NAME_TEXT_COLOR, this.regionNameTextColor())
-        console.log("Initialized region name settings from local storage.")
     }
 
     // Initialize Copyright Text
@@ -996,16 +988,14 @@ export class App {
 
     // Update Region Name Outline
     updateRegionNameOutline(value: any) {
+        value = (value.target as HTMLInputElement).valueAsNumber
+        this.regionNameOutline.set(value)
         if (this.matchRegionNameTransparencyAndOutlineShade()) {
-            document.documentElement.style.setProperty('--region-name-transparency', value.toString())
-            document.documentElement.style.setProperty('--region-name-outline', value.toString())
-            localStorage.setItem(this.REGION_NAME_TRANSPARENCY, value.toString())
-            localStorage.setItem(this.REGION_NAME_OUTLINE, value.toString())
-            return this.matchedRegionNameTransparencyAndOutlineShade()
-        } else {
-            return this.regionNameOutline()
+            this.matchedRegionNameTransparencyAndOutlineShade.set(value)
         }
+        document.documentElement.style.setProperty('--region-name-outline', value.toString())
         this.cdr.detectChanges()
+        localStorage.setItem(this.REGION_NAME_OUTLINE, value.toString())
     }
 
     showThisRegionNameOutline(): any {
