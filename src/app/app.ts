@@ -150,7 +150,7 @@ export class App {
         this.initializeCopyrightText()
         this.cdr.detectChanges()
         // Used while testing sidenav settings
-        this.sidenav.open()
+        //this.sidenav.open()
     }
 
     /*
@@ -211,6 +211,7 @@ export class App {
         localStorage.setItem(this.TILE_1_BACKGROUND_COLOR, this.tile1BackgroundColor())
         localStorage.setItem(this.TILE_2_BACKGROUND_COLOR, this.tile1BackgroundColor())
         localStorage.setItem(this.TILE_3_BACKGROUND_COLOR, this.tile1BackgroundColor())
+        console.log("Initialized tile background colors from local storage.")
 
         // Load tile outline color
         const tile1OutlineColorValue = localStorage.getItem(this.TILE_1_OUTLINE_COLOR)
@@ -224,6 +225,7 @@ export class App {
         this.setTile1OutlineColorFromHex(this.tile1OutlineColor())
         this.setTile2OutlineColorFromHex(this.tile2OutlineColor())
         this.setTile3OutlineColorFromHex(this.tile3OutlineColor())
+        console.log("Initialized tile outline colors from local storage.")
 
         // Load outline
         const tile1OutlineValue = localStorage.getItem(this.TILE_1_OUTLINE)
@@ -240,6 +242,7 @@ export class App {
         this.setTile2Blur(Number(tile2BlurValue || this.tile2Blur()))
         const tile3BlurValue = localStorage.getItem(this.TILE_3_BLUR)
         this.setTile3Blur(Number(tile3BlurValue || this.tile3Blur()))
+        console.log("Initialized tile blur from local storage.")
 
         // Load matchTileColors
         const matchTileColorsValue = localStorage.getItem(this.MATCH_TILE_COLORS)
@@ -276,6 +279,7 @@ export class App {
         }
         localStorage.setItem(this.MATCH_TILE_TRANSPARENCY, this.matchTileBackgroundAndOutlineShade().toString())
         localStorage.setItem(this.MATCHED_TILE_TRANSPARENCY, this.matchedTileTransparencyAndOutline().toString())
+        console.log("Initialized matched tile color and transparency from local storage.")
 
         // Load font family
         const tile1FontValue = localStorage.getItem(this.TILE_1_TEXT_FONT_FAMILY)
@@ -287,11 +291,13 @@ export class App {
 
         // Load tile text color
         const tile1TextColorValue = localStorage.getItem(this.TILE_1_TEXT_COLOR)
+        console.debug("tile1TextColorValue:", tile1TextColorValue)
         this.setTile1TextColorFromHex(tile1TextColorValue || this.tile1TextColor())
         const tile2TextColorValue = localStorage.getItem(this.TILE_2_TEXT_COLOR)
         this.setTile2TextColorFromHex(tile2TextColorValue || this.tile2TextColor())
         const tile3TextColorValue = localStorage.getItem(this.TILE_3_TEXT_COLOR)
         this.setTile3TextColorFromHex(tile3TextColorValue || this.tile3TextColor())
+        console.log("Initialized tile text colors from local storage.")
     }
 
     // Initialize Region Name Settings from Local Storage
@@ -300,23 +306,28 @@ export class App {
         const matchRegionNameColorsValue = localStorage.getItem(this.MATCH_REGION_NAME_COLORS)
         this.matchRegionNameColors.set(matchRegionNameColorsValue === 'true')
         localStorage.setItem(this.MATCH_REGION_NAME_COLORS, this.matchRegionNameColors().toString())
+        console.log("matchRegionNameColors loaded:", this.matchRegionNameColors())
 
         if (this.matchRegionNameColors()) {
+            console.debug("matchRegionNameColors is true")
             // Load matched region name color
             const matchedRegionNameColorValue = localStorage.getItem(this.MATCHED_REGION_NAME_COLOR)
+            console.debug("matchedRegionNameColorValue:", matchedRegionNameColorValue)
             this.matchedRegionNameColor.set(matchedRegionNameColorValue || this.matchedRegionNameColor())
             localStorage.setItem(this.MATCHED_REGION_NAME_COLOR, this.matchedRegionNameColor())
         }
 
         // Load region name background color
         const regionNameBackgroundColorValue = localStorage.getItem(this.REGION_NAME_BACKGROUND_COLOR)
-        this.regionNameBackgroundColor.set(regionNameBackgroundColorValue || this.COLOR_WHITE)
+        this.regionNameBackgroundColor.set(regionNameBackgroundColorValue || this.regionNameBackgroundColor())
         localStorage.setItem(this.REGION_NAME_BACKGROUND_COLOR, this.regionNameBackgroundColor())
+        console.debug("regionNameBackgroundColor loaded:", this.regionNameBackgroundColor())
 
         // Load region name outline color
         const regionNameOutlineColorValue = localStorage.getItem(this.REGION_NAME_OUTLINE_COLOR)
         this.regionNameOutlineColor.set(regionNameOutlineColorValue || this.regionNameOutlineColor())
         localStorage.setItem(this.REGION_NAME_OUTLINE_COLOR, this.regionNameOutlineColor())
+        console.debug("regionNameOutlineColor loaded:", this.regionNameOutlineColor())
 
         // Initialize region name color CSS variables
         this.setRegionNameColorFromHex(this.regionNameBackgroundColor())
@@ -339,12 +350,15 @@ export class App {
         // Load font family
         const regionNameFontValue = localStorage.getItem(this.REGION_NAME_TEXT_FONT_FAMILY)
         this.updateRegionNameTextFont(regionNameFontValue || this.DEFAULT_TEXT_FONT_FAMILY)
+        console.log("Initialized region name font family from local storage.")
 
         // Load region name text color
         const regionNameTextColorValue = localStorage.getItem(this.REGION_NAME_TEXT_COLOR)
+        console.debug("regionNameTextColorValue:", regionNameTextColorValue)
         this.regionNameTextColor.set(regionNameTextColorValue || this.regionNameTextColor())
         this.setRegionNameTextColorFromHex(this.regionNameTextColor())
         localStorage.setItem(this.REGION_NAME_TEXT_COLOR, this.regionNameTextColor())
+        console.log("Initialized region name settings from local storage.")
     }
 
     // Initialize Copyright Text
@@ -377,7 +391,7 @@ export class App {
 
     // Update the info/replay icon
     updateSettingsIcon(): void {
-        this.sidenav.toggle().then(r => {})
+        this.sidenav.toggle()
         if (this.settingsIcon() === this.icon_info) {
             this.settingsIcon.set(this.icon_replay)
 
@@ -675,13 +689,13 @@ export class App {
                 }
             }
             else if (this.someTilesSelected()) {
-                if (this.tile1SettingsButtonIcon() === this.icon_check_box && this.tile2SettingsButtonIcon() === this.icon_apps && this.tile3SettingsButtonIcon() === this.icon_apps) {
+                if (this.onlyTile1Selected()) {
                     return this.tile1Outline()
                 }
-                if (this.tile2SettingsButtonIcon() === this.icon_check_box && this.tile1SettingsButtonIcon() === this.icon_apps && this.tile3SettingsButtonIcon() === this.icon_apps) {
+                if (this.onlyTile2Selected()) {
                     return this.tile2Outline()
                 }
-                if (this.tile3SettingsButtonIcon() === this.icon_check_box && this.tile1SettingsButtonIcon() === this.icon_apps && this.tile2SettingsButtonIcon() === this.icon_apps) {
+                if (this.onlyTile3Selected()) {
                     return this.tile3Outline()
                 }
             } else {
@@ -770,13 +784,13 @@ export class App {
                     throw new Error("tileSettingsButtonLastClicked is not set correctly in localStorage")
                 }
             } else {
-                if (this.tile1SettingsButtonIcon() === this.icon_check_box && this.tile2SettingsButtonIcon() === this.icon_apps && this.tile3SettingsButtonIcon() === this.icon_apps) {
+                if (this.onlyTile1Selected()) {
                     return this.tile1Blur()
                 }
-                if (this.tile2SettingsButtonIcon() === this.icon_check_box && this.tile1SettingsButtonIcon() === this.icon_apps && this.tile3SettingsButtonIcon() === this.icon_apps) {
+                if (this.onlyTile2Selected()) {
                     return this.tile2Blur()
                 }
-                if (this.tile3SettingsButtonIcon() === this.icon_check_box && this.tile1SettingsButtonIcon() === this.icon_apps && this.tile2SettingsButtonIcon() === this.icon_apps) {
+                if (this.onlyTile3Selected()) {
                     return this.tile3Blur()
                 }
             }
@@ -820,13 +834,13 @@ export class App {
                     throw new Error("tileSettingsButtonLastClicked is not set correctly in localStorage")
                 }
             } else {
-                if (this.tile1SettingsButtonIcon() === this.icon_check_box && this.tile2SettingsButtonIcon() === this.icon_apps && this.tile3SettingsButtonIcon() === this.icon_apps) {
+                if (this.onlyTile1Selected()) {
                     return this.tile1TextFontFamily()
                 }
-                if (this.tile2SettingsButtonIcon() === this.icon_check_box && this.tile1SettingsButtonIcon() === this.icon_apps && this.tile3SettingsButtonIcon() === this.icon_apps) {
+                if (this.onlyTile2Selected()) {
                     return this.tile2TextFontFamily()
                 }
-                if (this.tile3SettingsButtonIcon() === this.icon_check_box && this.tile1SettingsButtonIcon() === this.icon_apps && this.tile2SettingsButtonIcon() === this.icon_apps) {
+                if (this.onlyTile3Selected()) {
                     return this.tile3TextFontFamily()
                 }
             }
@@ -858,6 +872,32 @@ export class App {
         // return black if no tiles are selected
         if (!this.allTilesSelected() && !this.someTilesSelected()) {
             return this.COLOR_BLACK
+        } else {
+            if (this.allTilesSelected() || this.someTilesSelected()) {
+                // if multiple tiles are selected, return the color of the last clicked tile
+                const lastClicked = localStorage.getItem(this.LAST_TILE_SETTINGS_BUTTON_CLICKED)
+                if (lastClicked === this.TILE_1) {
+                    return this.tile1TextColor()
+                } else if (lastClicked === this.TILE_2) {
+                    return this.tile2TextColor()
+                }
+                else if (lastClicked === this.TILE_3) {
+                    return this.tile3TextColor()
+                } else {
+                    throw new Error("tileSettingsButtonLastClicked is not set correctly in localStorage")
+                }
+            }
+            else {
+                if (this.onlyTile1Selected()) {
+                    return this.tile1TextColor()
+                }
+                if (this.onlyTile2Selected()) {
+                    return this.tile2TextColor()
+                }
+                if (this.onlyTile3Selected()) {
+                    return this.tile3TextColor()
+                }
+            }
         }
     }
 
@@ -1226,6 +1266,7 @@ export class App {
     }
     // Set Region Name Color From Hex (initialization)
     private setRegionNameColorFromHex(hex: string) {
+        console.debug("Setting matched region name color to: " + hex)
         const rgb = this.hexToRgb(hex)
         if (rgb) {
             document.documentElement.style.setProperty('--red-region-name-color', rgb.r.toString())
@@ -1240,6 +1281,7 @@ export class App {
     }
     // Set Region Name Outline Color From Hex (initialization)
     private setRegionNameOutlineColorFromHex(hex: string) {
+        console.debug("Setting region name outline color to: " + hex)
         const rgb = this.hexToRgb(hex)
         if (rgb) {
             document.documentElement.style.setProperty('--red-region-name-outline-color', rgb.r.toString())
@@ -1265,6 +1307,7 @@ export class App {
     // Helper methods to set CSS variables from hex color strings
     private hexToRgb(hex: string): { r: number, g: number, b: number } | null {
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+        console.debug("Converting hex " + hex + " to rgb: " + result)
         return result ? {
             r: parseInt(result[1], 16),
             g: parseInt(result[2], 16),
