@@ -7,17 +7,24 @@
     margin-top: 1rem;
 }
 
-.tileText {
-    color: var(--tile-text-color);
-    font-family: var(--tile-text-font-family), cursive;
+.tile1Text {
+    color: var(--tile1-text-color);
+    font-family: var(--tile1-text-font-family), cursive;
+}
+
+.tile2Text {
+    color: var(--tile2-text-color);
+    font-family: var(--tile2-text-font-family), cursive;
+}
+
+.tile3Text {
+    color: var(--tile3-text-color);
+    font-family: var(--tile3-text-font-family), cursive;
 }
 
 .regionNameText {
     color: var(--region-name-text-color);
     font-family: var(--region-name-text-font-family), cursive;
-    /*font-size: 1.25rem;*/
-    /*font-weight: 500;*/
-    /*margin-top: 0.5rem;*/
 }
 
 a {
@@ -47,17 +54,43 @@ a:link, a:visited, a:hover, a:active, a:focus {
     transition: background 160ms ease-in-out, opacity 120ms ease;
 }
 
-.glass {
+.glass1 {
     width: 250px;
     height: auto;
-    background: var(--tile-color);
+    background: var(--tile1-color);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     /*backdrop-filter: blur(0px);*/
     /*-webkit-backdrop-filter: blur(0px);*/
-    backdrop-filter: var(--tile-backdrop-filter);
-    -webkit-backdrop-filter: var(--tile-webkit-backdrop-filter);
-    border: 1px solid var(--tile-border-color);
+    backdrop-filter: var(--tile1-backdrop-filter);
+    -webkit-backdrop-filter: var(--tile1-webkit-backdrop-filter);
+    border: 1px solid var(--tile1-outline-color);
+}
+
+.glass2 {
+    width: 250px;
+    height: auto;
+    background: var(--tile2-color);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    /*backdrop-filter: blur(0px);*/
+    /*-webkit-backdrop-filter: blur(0px);*/
+    backdrop-filter: var(--tile2-backdrop-filter);
+    -webkit-backdrop-filter: var(--tile2-webkit-backdrop-filter);
+    border: 1px solid var(--tile2-outline-color);
+}
+
+.glass3 {
+    width: 250px;
+    height: auto;
+    background: var(--tile3-color);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    /*backdrop-filter: blur(0px);*/
+    /*-webkit-backdrop-filter: blur(0px);*/
+    backdrop-filter: var(--tile3-backdrop-filter);
+    -webkit-backdrop-filter: var(--tile3-webkit-backdrop-filter);
+    border: 1px solid var(--tile3-outline-color);
 }
 
 @media screen and (max-width: 650px) {
