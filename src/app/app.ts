@@ -1,10 +1,11 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, signal, ViewChild} from '@angular/core'
 import {ColorEvent} from 'ngx-color'
-import {ColorCompactModule} from "ngx-color/compact"
-import {MaterialModule} from "./materialModule"
-import {MatSidenav} from "@angular/material/sidenav"
-import {Tiles} from "../tiles/tiles"
-import {MatExpansionPanel} from "@angular/material/expansion"
+import {ColorCompactModule} from 'ngx-color/compact'
+import {MaterialModule} from './materialModule'
+import {MatSidenav} from '@angular/material/sidenav'
+import {Tiles} from '../tiles/tiles'
+import {MatExpansionPanel} from '@angular/material/expansion'
+import {environment} from '../environments/environment';
 
 @Component({
     selector: 'app-root',
@@ -34,52 +35,53 @@ export class App {
     protected readonly icon_check_box = 'check_box'
     protected readonly icon_save = 'save'
     protected readonly Math = Math
+    protected readonly environment = environment;
     // Colors
     protected readonly COLOR_WHITE = '#FFFFFF'
     protected readonly COLOR_BLACK = '#000000'
     // Local Storage Keys
     protected readonly DEFAULT_TEXT_FONT_FAMILY = 'Roboto, sans-serif'
-    protected readonly LAST_TILE_SETTINGS_BUTTON_CLICKED = "tileSettingsButtonLastClicked"
-    protected readonly TILE_1 = "tile1"
-    protected readonly TILE_2 = "tile2"
-    protected readonly TILE_3 = "tile3"
-    protected readonly TILE_1_SETTINGS_BUTTON_ICON = "tile1SettingsButtonIcon"
-    protected readonly TILE_2_SETTINGS_BUTTON_ICON = "tile2SettingsButtonIcon"
-    protected readonly TILE_3_SETTINGS_BUTTON_ICON = "tile3SettingsButtonIcon"
-    protected readonly TILE_1_TRANSPARENCY = "tile1Transparency"
-    protected readonly TILE_2_TRANSPARENCY = "tile2Transparency"
-    protected readonly TILE_3_TRANSPARENCY = "tile3Transparency"
-    protected readonly TILE_1_OUTLINE = "tile1Outline"
-    protected readonly TILE_2_OUTLINE = "tile2Outline"
-    protected readonly TILE_3_OUTLINE = "tile3Outline"
-    protected readonly TILE_1_BACKGROUND_COLOR = "tile1BackgroundColor"
-    protected readonly TILE_2_BACKGROUND_COLOR = "tile2BackgroundColor"
-    protected readonly TILE_3_BACKGROUND_COLOR = "tile3BackgroundColor"
-    protected readonly TILE_1_OUTLINE_COLOR = "tile1OutlineColor"
-    protected readonly TILE_2_OUTLINE_COLOR = "tile2OutlineColor"
-    protected readonly TILE_3_OUTLINE_COLOR = "tile3OutlineColor"
-    protected readonly TILE_1_BLUR = "tile1Blur"
-    protected readonly TILE_2_BLUR = "tile2Blur"
-    protected readonly TILE_3_BLUR = "tile3Blur"
-    protected readonly MATCH_TILE_COLORS = "matchTileColors"
-    protected readonly MATCH_TILE_TRANSPARENCY = "matchTileTransparency"
-    protected readonly MATCHED_TILE_COLOR = "matchedTileColor"
-    protected readonly MATCHED_TILE_TRANSPARENCY = "matchedTileTransparency"
-    protected readonly TILE_1_TEXT_FONT_FAMILY = "tile1TextFontFamily"
-    protected readonly TILE_2_TEXT_FONT_FAMILY = "tile2TextFontFamily"
-    protected readonly TILE_3_TEXT_FONT_FAMILY = "tile3TextFontFamily"
-    protected readonly TILE_1_TEXT_COLOR = "tile1TextColor"
-    protected readonly TILE_2_TEXT_COLOR = "tile2TextColor"
-    protected readonly TILE_3_TEXT_COLOR = "tile3TextColor"
-    protected readonly MATCH_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR = "matchRegionNameBackgroundColor"
-    protected readonly MATCHED_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR = "matchedRegionNameColor"
-    protected readonly REGION_NAME_BACKGROUND_COLOR = "regionNameBackgroundColor"
-    protected readonly REGION_NAME_OUTLINE_COLOR = "regionNameOutlineColor"
-    protected readonly REGION_NAME_TRANSPARENCY = "regionNameTransparency"
-    protected readonly REGION_NAME_BLUR = "regionNameBlur"
-    protected readonly REGION_NAME_OUTLINE = "regionNameOutline"
-    protected readonly REGION_NAME_TEXT_FONT_FAMILY = "regionNameTextFontFamily"
-    protected readonly REGION_NAME_TEXT_COLOR = "regionNameTextColor"
+    protected readonly LAST_TILE_SETTINGS_BUTTON_CLICKED = 'tileSettingsButtonLastClicked'
+    protected readonly TILE_1 = 'tile1'
+    protected readonly TILE_2 = 'tile2'
+    protected readonly TILE_3 = 'tile3'
+    protected readonly TILE_1_SETTINGS_BUTTON_ICON = 'tile1SettingsButtonIcon'
+    protected readonly TILE_2_SETTINGS_BUTTON_ICON = 'tile2SettingsButtonIcon'
+    protected readonly TILE_3_SETTINGS_BUTTON_ICON = 'tile3SettingsButtonIcon'
+    protected readonly TILE_1_TRANSPARENCY = 'tile1Transparency'
+    protected readonly TILE_2_TRANSPARENCY = 'tile2Transparency'
+    protected readonly TILE_3_TRANSPARENCY = 'tile3Transparency'
+    protected readonly TILE_1_OUTLINE = 'tile1Outline'
+    protected readonly TILE_2_OUTLINE = 'tile2Outline'
+    protected readonly TILE_3_OUTLINE = 'tile3Outline'
+    protected readonly TILE_1_BACKGROUND_COLOR = 'tile1BackgroundColor'
+    protected readonly TILE_2_BACKGROUND_COLOR = 'tile2BackgroundColor'
+    protected readonly TILE_3_BACKGROUND_COLOR = 'tile3BackgroundColor'
+    protected readonly TILE_1_OUTLINE_COLOR = 'tile1OutlineColor'
+    protected readonly TILE_2_OUTLINE_COLOR = 'tile2OutlineColor'
+    protected readonly TILE_3_OUTLINE_COLOR = 'tile3OutlineColor'
+    protected readonly TILE_1_BLUR = 'tile1Blur'
+    protected readonly TILE_2_BLUR = 'tile2Blur'
+    protected readonly TILE_3_BLUR = 'tile3Blur'
+    protected readonly MATCH_TILE_COLORS = 'matchTileColors'
+    protected readonly MATCH_TILE_TRANSPARENCY = 'matchTileTransparency'
+    protected readonly MATCHED_TILE_COLOR = 'matchedTileColor'
+    protected readonly MATCHED_TILE_TRANSPARENCY = 'matchedTileTransparency'
+    protected readonly TILE_1_TEXT_FONT_FAMILY = 'tile1TextFontFamily'
+    protected readonly TILE_2_TEXT_FONT_FAMILY = 'tile2TextFontFamily'
+    protected readonly TILE_3_TEXT_FONT_FAMILY = 'tile3TextFontFamily'
+    protected readonly TILE_1_TEXT_COLOR = 'tile1TextColor'
+    protected readonly TILE_2_TEXT_COLOR = 'tile2TextColor'
+    protected readonly TILE_3_TEXT_COLOR = 'tile3TextColor'
+    protected readonly MATCH_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR = 'matchRegionNameBackgroundColor'
+    protected readonly MATCHED_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR = 'matchedRegionNameColor'
+    protected readonly REGION_NAME_BACKGROUND_COLOR = 'regionNameBackgroundColor'
+    protected readonly REGION_NAME_OUTLINE_COLOR = 'regionNameOutlineColor'
+    protected readonly REGION_NAME_TRANSPARENCY = 'regionNameTransparency'
+    protected readonly REGION_NAME_BLUR = 'regionNameBlur'
+    protected readonly REGION_NAME_OUTLINE = 'regionNameOutline'
+    protected readonly REGION_NAME_TEXT_FONT_FAMILY = 'regionNameTextFontFamily'
+    protected readonly REGION_NAME_TEXT_COLOR = 'regionNameTextColor'
     protected readonly BACKGROUND_IMAGE = '1kantoMap.png'
     protected readonly REGION_NAME = 'Kanto'
     protected readonly BACKGROUND_IMAGE_REMOVED = 'backgroundImageRemoved'
@@ -220,7 +222,7 @@ export class App {
         localStorage.setItem(this.TILE_1_BACKGROUND_COLOR, this.tile1BackgroundColor())
         localStorage.setItem(this.TILE_2_BACKGROUND_COLOR, this.tile2BackgroundColor())
         localStorage.setItem(this.TILE_3_BACKGROUND_COLOR, this.tile3BackgroundColor())
-        console.log("Initialized tile background colors from local storage.")
+        console.log('Initialized tile background colors from local storage.')
 
         // Load tile outline color
         const tile1OutlineColorValue = localStorage.getItem(this.TILE_1_OUTLINE_COLOR)
@@ -234,7 +236,7 @@ export class App {
         this.setTile1OutlineColorFromHex(this.tile1OutlineColor())
         this.setTile2OutlineColorFromHex(this.tile2OutlineColor())
         this.setTile3OutlineColorFromHex(this.tile3OutlineColor())
-        console.log("Initialized tile outline colors from local storage.")
+        console.log('Initialized tile outline colors from local storage.')
 
         // Load outline
         const tile1OutlineValue = localStorage.getItem(this.TILE_1_OUTLINE)
@@ -251,7 +253,7 @@ export class App {
         this.setTile2Blur(Number(tile2BlurValue || this.tile2Blur()))
         const tile3BlurValue = localStorage.getItem(this.TILE_3_BLUR)
         this.setTile3Blur(Number(tile3BlurValue || this.tile3Blur()))
-        console.log("Initialized tile blur from local storage.")
+        console.log('Initialized tile blur from local storage.')
 
         // Load matchTileColors
         const matchTileColorsValue = localStorage.getItem(this.MATCH_TILE_COLORS)
@@ -288,7 +290,7 @@ export class App {
         }
         localStorage.setItem(this.MATCH_TILE_TRANSPARENCY, this.matchTileBackgroundAndOutlineShade().toString())
         localStorage.setItem(this.MATCHED_TILE_TRANSPARENCY, this.matchedTileTransparencyAndOutline().toString())
-        console.log("Initialized matched tile color and transparency from local storage.")
+        console.log('Initialized matched tile color and transparency from local storage.')
 
         // Load font family
         const tile1FontValue = localStorage.getItem(this.TILE_1_TEXT_FONT_FAMILY)
@@ -579,7 +581,7 @@ export class App {
                     } else if (lastClicked === this.TILE_3) {
                         return this.tile3Transparency()
                     } else {
-                        throw new Error("tileSettingsButtonLastClicked is not set correctly in localStorage")
+                        throw new Error('tileSettingsButtonLastClicked is not set correctly in localStorage')
                     }
                 }
             }
@@ -595,7 +597,7 @@ export class App {
                 }
             }
             else {
-                console.log("showThisTransparency: how did we get here")
+                console.log('showThisTransparency: how did we get here')
                 return 0
             }
         }
@@ -604,12 +606,12 @@ export class App {
     // Update Tile Background Color
     updateTileBackgroundColorVariables(colors: ColorEvent) {
         if (!this.allTilesSelected() && !this.someTilesSelected()) {
-            console.log("No tiles are selected.")
+            console.log('No tiles are selected.')
         } else {
             // should only apply if at least one tile is selected
             if (this.matchTileBackgroundAndOutlineColor()) {
                 this.setMatchedTileColor(colors)
-                localStorage.setItem("matchedTileColor", this.matchedTileBackgroundAndOutlineColor())
+                localStorage.setItem('matchedTileColor', this.matchedTileBackgroundAndOutlineColor())
                 if (this.tile1SettingsButtonIcon() === this.icon_check_box) {
                     this.setTile1MatchedColorProperties(this.matchedTileBackgroundAndOutlineColor())
                 }
@@ -711,7 +713,7 @@ export class App {
                     } else if (lastClicked === this.TILE_3) {
                         return this.tile3Outline()
                     } else {
-                        throw new Error("tileSettingsButtonLastClicked is not set correctly in localStorage")
+                        throw new Error('tileSettingsButtonLastClicked is not set correctly in localStorage')
                     }
                 }
             }
@@ -726,7 +728,7 @@ export class App {
                     return this.tile3Outline()
                 }
             } else {
-                console.log("showThisOutline: how did we get here")
+                console.log('showThisOutline: how did we get here')
                 return 0
             }
         }
@@ -735,7 +737,7 @@ export class App {
     // Update Tile Outline Color
     updateTileOutlineColorVariables(colors: ColorEvent) {
         if (!this.allTilesSelected() && !this.someTilesSelected()) {
-            console.log("No tiles are selected.")
+            console.log('No tiles are selected.')
         } else {
             if (this.tile1SettingsButtonIcon() === this.icon_check_box) {
                 this.tile1OutlineColor.set(colors.color.hex)
@@ -800,7 +802,7 @@ export class App {
                                              this.onlyTile2Selected() ||
                                              this.onlyTile3Selected())) {
                 // if multiple tiles are selected, return the blur of the last clicked tile
-                const lastClicked = localStorage.getItem("tileSettingsButtonLastClicked")
+                const lastClicked = localStorage.getItem('tileSettingsButtonLastClicked')
                 if (lastClicked === this.TILE_1) {
                     return this.tile1Blur()
                 } else if (lastClicked === this.TILE_2) {
@@ -808,7 +810,7 @@ export class App {
                 } else if (lastClicked === this.TILE_3) {
                     return this.tile3Blur()
                 } else {
-                    throw new Error("tileSettingsButtonLastClicked is not set correctly in localStorage")
+                    throw new Error('tileSettingsButtonLastClicked is not set correctly in localStorage')
                 }
             } else {
                 if (this.onlyTile1Selected()) {
@@ -827,7 +829,7 @@ export class App {
     // Update Tile Text Font
     updateTileTextFont(font: string) {
         if (!this.allTilesSelected() && !this.someTilesSelected()) {
-            console.log("No tiles are selected.")
+            console.log('No tiles are selected.')
         } else {
             if (this.tile1SettingsButtonIcon() === this.icon_check_box) {
                 this.setTile1TextFontFamily(font)
@@ -850,7 +852,7 @@ export class App {
         } else {
             if (this.allTilesSelected() || this.someTilesSelected()) {
                 // if multiple tiles are selected, return the blur of the last clicked tile
-                const lastClicked = localStorage.getItem("tileSettingsButtonLastClicked")
+                const lastClicked = localStorage.getItem('tileSettingsButtonLastClicked')
                 if (lastClicked === this.TILE_1) {
                     return this.tile1TextFontFamily()
                 } else if (lastClicked === this.TILE_2) {
@@ -858,7 +860,7 @@ export class App {
                 } else if (lastClicked === this.TILE_3) {
                     return this.tile3TextFontFamily()
                 } else {
-                    throw new Error("tileSettingsButtonLastClicked is not set correctly in localStorage")
+                    throw new Error('tileSettingsButtonLastClicked is not set correctly in localStorage')
                 }
             } else {
                 if (this.onlyTile1Selected()) {
@@ -911,7 +913,7 @@ export class App {
                 else if (lastClicked === this.TILE_3) {
                     return this.tile3TextColor()
                 } else {
-                    throw new Error("tileSettingsButtonLastClicked is not set correctly in localStorage")
+                    throw new Error('tileSettingsButtonLastClicked is not set correctly in localStorage')
                 }
             }
             else {
@@ -931,7 +933,7 @@ export class App {
     // Update Tile Text Color
     updateTileTextColorVariables(colors: ColorEvent) {
         if (!this.allTilesSelected() && !this.someTilesSelected()) {
-            console.log("No tiles are selected.")
+            console.log('No tiles are selected.')
         } else {
             if (this.tile1SettingsButtonIcon() === this.icon_check_box) {
                 this.setTile1TextColorFromHex(colors.color.hex)
@@ -1059,7 +1061,7 @@ export class App {
         this.cdr.detectChanges()
         this.regionNameTextColor.set(colors.color.hex)
         localStorage.setItem(this.REGION_NAME_TEXT_COLOR, this.regionNameTextColor())
-        console.debug("updating region name text color to: " + this.regionNameTextColor())
+        console.debug('updating region name text color to: ' + this.regionNameTextColor())
     }
 
     // =========== Background Settings Methods =========== //
@@ -1336,7 +1338,7 @@ export class App {
     }
     // Set Region Name Color From Hex (initialization)
     private setRegionNameColorFromHex(hex: string) {
-        console.debug("Setting matched region name color to: " + hex)
+        console.debug('Setting matched region name color to: ' + hex)
         const rgb = this.hexToRgb(hex)
         if (rgb) {
             document.documentElement.style.setProperty('--region-name-red-color', rgb.r.toString())
@@ -1351,7 +1353,7 @@ export class App {
     }
     // Set Region Name Outline Color From Hex (initialization)
     private setRegionNameOutlineColorFromHex(hex: string) {
-        console.debug("Setting region name outline color to: " + hex)
+        console.debug('Setting region name outline color to: ' + hex)
         const rgb = this.hexToRgb(hex)
         if (rgb) {
             document.documentElement.style.setProperty('--region-name-outline-red-color', rgb.r.toString())
@@ -1377,7 +1379,7 @@ export class App {
     // Helper methods to set CSS variables from hex color strings
     private hexToRgb(hex: string): { r: number, g: number, b: number } | null {
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-        console.debug("Converting hex " + hex + " to rgb: " + result)
+        console.debug('Converting hex ' + hex + ' to rgb: ' + result)
         return result ? {
             r: parseInt(result[1], 16),
             g: parseInt(result[2], 16),

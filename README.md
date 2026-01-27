@@ -64,6 +64,11 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.8.4
+
+Fixed an issue with the swagger url not being dynamic. This was also not working correctly with the recent changes
+to the Pokedex and PokedexApi apps.
+
 #### Version 1.8.3
 
 Implemented a new setting to save the background and region name. Simply click on the 'Save Background' button
