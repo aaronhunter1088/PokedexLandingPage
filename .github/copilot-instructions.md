@@ -203,7 +203,7 @@ When making significant changes:
 
 ## Additional Notes
 
-- The application manages three different Pokédex application links (tiles)
+- The application manages three different Pokédex application links (tiles): one Spring Boot app, one Angular app, and one app that is an Angular front-end and a Spring Boot back-end.
 - Background images are themed by Pokémon regions
 - Settings can be controlled globally or per-tile
 - The side panel provides extensive customization options
