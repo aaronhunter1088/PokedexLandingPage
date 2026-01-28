@@ -196,7 +196,7 @@ When adding features:
 ## Documentation
 
 When making significant changes:
-- Update the README.md History section with a new version entry
+- Update the README.md History section with a new version entry. New features should increase the minor number. Fixes or minor updates should increase the patch number. The major number should remain as is unless a major enhancement or change is introduced.
 - Document the changes clearly
 - Include the version number following the existing pattern (x.y.z)
 - Explain the purpose and impact of changes
