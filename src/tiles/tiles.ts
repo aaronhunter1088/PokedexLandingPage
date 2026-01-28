@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit} from '@angular/core';
-import {NgOptimizedImage} from "@angular/common";
-import {FormsModule} from "@angular/forms";
-import {MaterialModule} from "../app/materialModule";
+import {NgOptimizedImage} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {MaterialModule} from '../app/materialModule';
 import {environment} from '../environments/environment';
 import {ActivatedRoute} from '@angular/router';
 

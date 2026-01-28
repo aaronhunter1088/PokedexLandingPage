@@ -1,9 +1,9 @@
 import {MatButton, MatButtonModule} from '@angular/material/button';
 import {MatToolbar, MatToolbarModule} from '@angular/material/toolbar';
-import {NgModule} from "@angular/core";
-import {MatIcon, MatIconModule} from "@angular/material/icon";
-import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
-import {MatInput, MatInputModule} from "@angular/material/input";
+import {NgModule} from '@angular/core';
+import {MatIcon, MatIconModule} from '@angular/material/icon';
+import {MatFormField, MatFormFieldModule} from '@angular/material/form-field';
+import {MatInput, MatInputModule} from '@angular/material/input';
 import {
     MatCard,
     MatCardActions,
@@ -13,20 +13,20 @@ import {
     MatCardImage,
     MatCardSubtitle,
     MatCardTitle
-} from "@angular/material/card";
-import {MatMenu} from "@angular/material/menu";
-import {MatSlideToggle} from "@angular/material/slide-toggle";
-import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
-import {MatSlider, MatSliderThumb} from "@angular/material/slider";
-import {MatCheckbox} from "@angular/material/checkbox";
-import {MatOption, MatSelect} from "@angular/material/select";
+} from '@angular/material/card';
+import {MatMenu} from '@angular/material/menu';
+import {MatSlideToggle} from '@angular/material/slide-toggle';
+import {MatSidenav, MatSidenavContainer, MatSidenavContent} from '@angular/material/sidenav';
+import {MatSlider, MatSliderThumb} from '@angular/material/slider';
+import {MatCheckbox} from '@angular/material/checkbox';
+import {MatOption, MatSelect} from '@angular/material/select';
 import {
     MatAccordion,
     MatExpansionPanel,
     MatExpansionPanelDescription,
     MatExpansionPanelHeader,
     MatExpansionPanelTitle
-} from "@angular/material/expansion";
+} from '@angular/material/expansion';
 import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
