@@ -64,6 +64,14 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.8.5
+
+Updated the About this Application section to update information about the Landing Page app itself. This was mostly
+just correcting grammer and making the description more clear. There was one update at the end that stated you cannot
+save the background. This is now possible so that sentence was updated to reflect the new functionality.
+Last but not least, I updated the mobile css properties on the tile page to ensure that if we are on a mobile device
+and the orientation is portrait, stack the tiles. If they rotate their phone to landscape, display the tiles in a row.
+
 #### Version 1.8.4
 
 Fixed an issue with the swagger url not being dynamic. This was also not working correctly with the recent changes

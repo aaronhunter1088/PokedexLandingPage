@@ -255,44 +255,46 @@
                             About this Pok&#233;dex Application
                         </mat-panel-description>
                     </mat-expansion-panel-header>
-                    This Pok&#233;dex application was originally built using Spring Boot as a fun project in order to
-                    practice the Spring framework version 2.x (it had been a couple years since having used it specifically).
-                    Later, I needed to learn Angular for work, so I decided to clone the Pok&#233;dex application since I
+                    This Pok&#233;dex application was originally built using Spring Boot, version 2.x, as a fun project in order to
+                    brush up on my Spring Boot skills since it had been a couple of years since having used it specifically.
+                    Later on, I needed to learn Angular for work, so I decided to clone the Pok&#233;dex application since I
                     already had a working version. This allowed me to focus on learning Angular semantics and the best
-                    practices without worries about what I was building and how it should function. The Spring Boot app
-                    was working perfectly so all I needed to do was translate Spring Boot to Angular. So, the
-                    Spring Boot application is a 100% Java/Spring Boot app. The Angular app is a 100% JavaScript/Angular
-                    Single Page Application app, built using Angular version 15.<br/>
-                    One day, I decided to create a version using both technologies together: Angular as the font-end
-                    and Spring Boot as my back-end, hence the third version of the Pok&#233;dex application was born.<br/>
-                    While I felt this was a great exercise in learning a new framework, Angular, and how the two can work
-                    independently and together, something felt missing, and that 'was' the ability to show it off.
+                    practices without worries about what I was building and how it should function. All I needed to do
+                    was translate Spring Boot to Angular. So, the
+                    Spring Boot app is 100% Spring Boot which utilizes Java. The Angular app is 100% JavaScript and was
+                    built using Angular version 15.<br/>
+                    One day, I decided to create a version using both technologies together: Angular as the font-end, which
+                    displays the Pok&#233;mon data, and Spring Boot as my back-end, which the UI <i>calls</i> to fetch the
+                    data to display. Hence, the third version of the Pok&#233;dex application was born.<br/>
+                    While I felt this was a great exercise in learning a new framework, Angular, and how Angular and
+                    Spring Boot can work together and independently, something felt missing, and that <i>was</i> the ability
+                    to show it off.
                     Was being the keyword because as it turns out, I did, do, own a Pok&#233;mon specific domain which I
-                    had created way back in 2022. I just never did anything with it... until now.<br/>
-                    The domain was created using NameHero and I ported it over to my new hosting provider, Hostinger.
+                    had created back in 2022. I just never did anything with it... until now.<br/>
+                    The domain was created using NameHero and I transferred it over to my new hosting provider, Hostinger.
                     Bringing the domain and my Angular skills back from the dead (because now it has been a couple years
-                    since I've touched Angular, but not Spring Boot, lol), and all my experience hence forth, I quickly
+                    since I've touched Angular, but not Spring Boot, lol), and a lot my experience hence forth, I quickly
                     created this landing page using the latest Angular version, 21, to display all three versions of the
                     Pok&#233;dex application in one place. That's a total of 5 applications to bring this entire site to
                     life: one Spring Boot app, one Angular app, one combo app that is both an Angular front-end (app)
-                    and a back-end jar file (app) to fetch the Pok&#233;mon data to display on the front-end, and this
-                    landing page (app).
-                    The amount of work getting all these applications to the server is nothing crazy but it is still a
-                    bit of a process. But I enjoy every second of it. <br/>
+                    and a Spring Boot back-end (app), and this landing page (app).
+                    The amount of work getting all these applications to behave the same way was a lot of work but I truly
+                    enjoy every second of it.<br/>
                     The <a href="http://pokeapi.co/" rel="noopener noreferrer" target="_blank">Pok&#233;API</a> is where
-                    I obtained references to the Pok&#233;mon code however I created my own versions of the Java library
-                    to enhance its functionality since Java is my primary coding language, and all others are second. You
-                    can view this enhanced functionality by navigating to the code's <a href="{{environment.swaggerUrl}}" rel="noopener noreferrer" target="_blank">Swagger UI</a>
-                    page. There you can view all the same requests this app makes (pokemon-api/pokemon for example).
+                    I obtained references to the Pok&#233;mon code (Java versus JavaScript libraries) but I quickly created
+                    my own versions of the Java library to enhance its functionality. You can view this enhanced functionality
+                    by navigating to the code's <a href="{{environment.swaggerUrl}}" rel="noopener noreferrer" target="_blank">Swagger UI</a>
+                    page. There you can view all the same requests this app makes (pokemon-api/pokemon for example) and more.
                     While the app doesn't use all of the endpoints specifically, anyone could use the jar/library in their
                     own Java applications for their own Pok&#233;dex/Pok&#233;mon needs!<br/><br/>
-                    This application allows you to tailor the appearance of the tiles and region name to your liking and
-                    persists across the device and sessions using local storage. This allows you to set up the site with
-                    custom settings different from someone else. Again, that is per device. But set it up once and never
-                    again unless you decide it should be different. Having trouble seeing the tile changes while on your
-                    phone? Updating the region name will give you a "preview" of the controls and changes that will be
-                    applied to the tiles just as you are for the region name. It is not possible to save the background
-                    at this time but you can change it while on the landing page. <br/><br/>
+                    This application allows you to tailor the appearance of the tiles, individually or together, and
+                    region name to your liking and persists across the device and sessions using local storage.
+                    This allows you to set up the site with custom settings different from someone else. Again, that is per device.
+                    But set it up once and never again unless you decide it should be different.
+                    Having trouble seeing the tile changes while on your phone? Updating the region name will give you a
+                    "preview" of the controls and changes that will be applied to the tiles just as you are for the region
+                    name. The background changes each time the page loads. You can cycle through the various images and
+                    even save one to further customize your experience.<br/><br/>
                     More updates to come but please enjoy using my latest creation!<br/><br/>
                 </mat-expansion-panel>
             </div>

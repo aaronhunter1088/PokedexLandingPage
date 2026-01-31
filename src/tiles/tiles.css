@@ -93,7 +93,8 @@ a:link, a:visited, a:hover, a:active, a:focus {
     border: 1px solid var(--tile3-outline-color);
 }
 
-@media screen and (max-width: 650px) {
+/* Touch Screen Stylings: must be 650 and portrait orientatio or no hover ability, pointer is coarse, and portait orientation */
+@media screen and (max-width: 650px) and (orientation: portrait), (hover: none) and (pointer: coarse) and (orientation: portrait) {
     .tiles {
         display: block;
         width: 100%;
