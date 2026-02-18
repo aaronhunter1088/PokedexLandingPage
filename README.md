@@ -64,6 +64,10 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.8.6
+Updated the environments.dev.ts file to work with mobile devices. Before, it was not properly navigating to the
+correct url since localhost isn't available.
+
 #### Version 1.8.5
 
 Updated the About this Application section to update information about the Landing Page app itself. This was mostly
