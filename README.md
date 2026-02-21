@@ -64,6 +64,13 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.8.7
+Updated the save background button to just be one button and changed the icon to a bookmark icon. Now, when you first
+view the button, it will show a bookmark with a plus icon and say 'Save Background'. Once you click it, the background
+will be saved and the button will change to show a bookmark with a checkmark and say 'Saved Background'. If you click
+it again, the background will be removed from the settings and the button will change to a bookmark with a minus sign
+and say 'Removed Background'. Clicking it again will once again say 'Saved Background'. 
+
 #### Version 1.8.6
 Updated the environments.dev.ts file to work with mobile devices. Before, it was not properly navigating to the
 correct url since localhost isn't available.

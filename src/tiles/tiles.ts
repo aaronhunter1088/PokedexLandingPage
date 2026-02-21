@@ -75,14 +75,14 @@ export class Tiles implements OnInit, OnDestroy {
             });
         }, 2000);
         /* Swap content image on tile3 every 2 seconds */
-        setInterval(() => {
-            this.ngZone.run(() => {
-                this.ngFullImgValue = this.ngFullImgValue === 'angular-full-white.png'
-                    ? 'spring-full-white.png'
-                    : 'angular-full-white.png';
-                this.cdr.detectChanges();
-            });
-        }, 2000);
+        // setInterval(() => {
+        //     this.ngZone.run(() => {
+        //         this.ngFullImgValue = this.ngFullImgValue === 'angular-full-white.png'
+        //             ? 'spring-full-white.png'
+        //             : 'angular-full-white.png';
+        //         this.cdr.detectChanges();
+        //     });
+        // }, 2000);
     }
 
     ngOnDestroy() {

@@ -237,14 +237,21 @@
                         Adjust{{ panelTileSettingsOpenState() ? 'ing' : '' }} the background settings
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-                <button matFab extended (click)="saveBackgroundImage(this.backgroundImage(), this.regionName())">
-                    <mat-icon>{{ saveIcon() }}</mat-icon>
-                    Save{{backgroundImageAndNameSaved() ? 'd':''}} Background
+                <button matFab extended (click)="toggleBackgroundImage(this.backgroundImage(), this.regionName())">
+                    @if (!backgroundImageAndNameRemoved()) {
+                        @if (!backgroundImageAndNameSaved()) {
+                            <mat-icon>{{ saveIcon() }}</mat-icon>
+                        }
+                        @else {
+                            <mat-icon>{{ savedIcon() }}</mat-icon>
+                        }
+                        Save{{backgroundImageAndNameSaved() ? 'd':''}} Background
+                    } @else {
+                        <mat-icon>{{ unsaveIcon() }}</mat-icon>
+                        Removed Background
+                    }
                 </button>
-                <button matFab extended (click)="removeBackgroundImage()">
-                    <mat-icon>{{ saveIcon() }}</mat-icon>
-                    Remove{{backgroundImageAndNameRemoved() ? 'd':''}} Background
-                </button>
+
             </mat-expansion-panel>
             <!-- About This Application Accordion -->
             <div style="max-height: 70vh; overflow-y: auto; overflow-x: hidden; ">
@@ -278,8 +285,14 @@
                     Pok&#233;dex application in one place. That's a total of 5 applications to bring this entire site to
                     life: one Spring Boot app, one Angular app, one combo app that is both an Angular front-end (app)
                     and a Spring Boot back-end (app), and this landing page (app).
-                    The amount of work getting all these applications to behave the same way was a lot of work but I truly
-                    enjoy every second of it.<br/>
+                    This was not an easy endeavor. To get all three apps to behave the same way is extremely
+                    time consuming. Not all parts are easily translatable. Specific functionalities requires a deeper
+                    understanding of how this feature should function based on the technology being used and that is not
+                    always easy or quick to do. Even using AI to help speed along this process still requires I check
+                    all changes before blindly accepting them. So there may be some differences but that's also where the
+                    fun continues for me. Those small problems drive my growth. Presenting problems where only I can solve
+                    them is a key factor in growing my problem solving skills and if I didn't like it, I wouldn't
+                    continue to put myself in those positions.<br/>
                     The <a href="http://pokeapi.co/" rel="noopener noreferrer" target="_blank">Pok&#233;API</a> is where
                     I obtained references to the Pok&#233;mon code (Java versus JavaScript libraries) but I quickly created
                     my own versions of the Java library to enhance its functionality. You can view this enhanced functionality

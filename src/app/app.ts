@@ -33,7 +33,9 @@ export class App {
     protected readonly icon_shuffle = 'shuffle'
     protected readonly icon_apps = 'apps'
     protected readonly icon_check_box = 'check_box'
-    protected readonly icon_save = 'save'
+    protected readonly icon_bookmark_save = 'bookmark_add'
+    protected readonly icon_bookmark_saved = 'bookmark_added'
+    protected readonly icon_bookmark_remove = 'bookmark_remove'
     protected readonly Math = Math
     protected readonly environment = environment;
     // Colors
@@ -87,7 +89,9 @@ export class App {
     protected readonly BACKGROUND_IMAGE_REMOVED = 'backgroundImageRemoved'
     // Default Properties
     protected settingsIcon = signal(this.icon_info)
-    protected saveIcon = signal(this.icon_save)
+    protected saveIcon = signal(this.icon_bookmark_save)
+    protected savedIcon = signal(this.icon_bookmark_saved)
+    protected unsaveIcon = signal(this.icon_bookmark_remove)
     // tile specific settings
     protected tile1SettingsButtonIcon = signal(this.icon_apps)
     protected tile2SettingsButtonIcon = signal(this.icon_apps)
@@ -1066,22 +1070,23 @@ export class App {
 
     // =========== Background Settings Methods =========== //
 
-    saveBackgroundImage(image: string, regionName: string): void {
-        this.backgroundImage.set(image)
-        this.regionName.set(regionName)
-        this.backgroundImageAndNameSaved.set(true)
-        this.backgroundImageAndNameRemoved.set(false)
-        localStorage.setItem(this.BACKGROUND_IMAGE, this.backgroundImage())
-        localStorage.setItem(this.REGION_NAME, this.regionName())
-        localStorage.setItem(this.BACKGROUND_IMAGE_REMOVED, false.toString())
-    }
+    toggleBackgroundImage(image: string, regionName: string): void {
+        if (!this.backgroundImageAndNameSaved()) {
+            this.backgroundImage.set(image)
+            this.regionName.set(regionName)
+            this.backgroundImageAndNameSaved.set(true)
+            this.backgroundImageAndNameRemoved.set(false)
+            localStorage.setItem(this.BACKGROUND_IMAGE, this.backgroundImage())
+            localStorage.setItem(this.REGION_NAME, this.regionName())
+            localStorage.setItem(this.BACKGROUND_IMAGE_REMOVED, false.toString())
+        } else {
+            this.backgroundImageAndNameSaved.set(false)
+            this.backgroundImageAndNameRemoved.set(true)
+            localStorage.setItem(this.BACKGROUND_IMAGE, '')
+            localStorage.setItem(this.REGION_NAME, '')
+            localStorage.setItem(this.BACKGROUND_IMAGE_REMOVED, true.toString())
+        }
 
-    removeBackgroundImage(): void {
-        this.backgroundImageAndNameSaved.set(false)
-        this.backgroundImageAndNameRemoved.set(true)
-        localStorage.setItem(this.BACKGROUND_IMAGE, '')
-        localStorage.setItem(this.REGION_NAME, '')
-        localStorage.setItem(this.BACKGROUND_IMAGE_REMOVED, true.toString())
     }
 
     // =========== Private Helper Methods =========== //
