@@ -4,7 +4,7 @@
     display: inline-flex;
     width: 100%;
     justify-content: center;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
 .tile1Text {
@@ -99,7 +99,7 @@ a:link, a:visited, a:hover, a:active, a:focus {
         display: block;
         width: 100%;
         justify-content: center;
-        margin-top: 1rem;
+        margin-top: 0.5rem;
     }
 
     .content {
