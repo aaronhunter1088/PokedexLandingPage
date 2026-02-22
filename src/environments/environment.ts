@@ -4,5 +4,5 @@ export const environment = {
     springBootAppUrl: 'https://mypokedex.us/springboot/',
     angularAppUrl: 'https://mypokedex.us/angular/',
     combinedAppUrl: 'https://mypokedex.us/combined/',
-    swaggerUrl: 'https://mypokedex.us/combined/swagger-ui/index.html'
+    swaggerUrl: 'https://mypokedex.us/springboot/swagger-ui/index.html'
 };
