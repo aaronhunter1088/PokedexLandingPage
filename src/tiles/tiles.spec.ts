@@ -1,312 +1,224 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import '@angular/compiler'
+import {ActivatedRoute} from '@angular/router'
+import {ChangeDetectorRef, NgZone} from '@angular/core'
+import {of} from 'rxjs'
+import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest'
 
-import {Tiles} from './tiles';
-import {ActivatedRoute} from '@angular/router';
-import {of} from 'rxjs';
+import {Tiles} from './tiles'
+
+type QueryParamGetter = (key: string) => string | null
+
+const createLocalStorageMock = (): Storage => {
+  const store = new Map<string, string>()
+
+  return {
+    getItem: (key: string): string | null => store.get(key) ?? null,
+    setItem: (key: string, value: string): void => {
+      store.set(key, value)
+    },
+    removeItem: (key: string): void => {
+      store.delete(key)
+    },
+    clear: (): void => {
+      store.clear()
+    },
+    key: (index: number): string | null => Array.from(store.keys())[index] ?? null,
+    get length(): number {
+      return store.size
+    }
+  } as Storage
+}
+
+const ensureLocalStorage = (): Storage => {
+  if (typeof globalThis.localStorage === 'undefined') {
+    Object.defineProperty(globalThis, 'localStorage', {
+      value: createLocalStorageMock(),
+      configurable: true
+    })
+  }
+
+  return globalThis.localStorage
+}
+
+const createComponent = (getParam: QueryParamGetter = () => null): {
+  component: Tiles
+  cdr: ChangeDetectorRef
+} => {
+  const ngZone = {
+    run: (fn: () => void): void => {
+      fn()
+    }
+  } as NgZone
+  const cdr = {
+    detectChanges: vi.fn(),
+    markForCheck: vi.fn(),
+    detach: vi.fn(),
+    checkNoChanges: vi.fn(),
+    reattach: vi.fn()
+  } as ChangeDetectorRef
+  const route = {
+    queryParamMap: of({
+      get: getParam
+    })
+  } as ActivatedRoute
+
+  const component = new Tiles(ngZone, cdr, route)
+
+  return {component, cdr}
+}
+
+const setup = (getParam: QueryParamGetter = () => null): {
+  component: Tiles
+  cdr: ChangeDetectorRef
+} => {
+  const {component, cdr} = createComponent(getParam)
+  component.ngOnInit()
+  return {component, cdr}
+}
 
 describe('Tiles', () => {
-    let component: Tiles;
-    let fixture: ComponentFixture<Tiles>;
+  beforeEach(() => {
+    ensureLocalStorage().clear()
+    vi.spyOn(globalThis, 'setInterval').mockImplementation(() => 0 as unknown as number)
+  })
 
-    beforeEach(async () => {
-        // Clear localStorage before each test
-        localStorage.clear();
-        
-        await TestBed.configureTestingModule({
-            imports: [Tiles],
-            providers: [
-                {
-                    provide: ActivatedRoute,
-                    useValue: {
-                        queryParamMap: of({
-                            get: () => null
-                        })
-                    }
-                }
-            ]
-        })
-            .compileComponents();
+  afterEach(() => {
+    ensureLocalStorage().clear()
+    vi.restoreAllMocks()
+  })
 
-        fixture = TestBed.createComponent(Tiles);
-        component = fixture.componentInstance;
-        await fixture.whenStable();
-    });
+  it('should create', () => {
+    const {component} = setup()
+    expect(component).toBeTruthy()
+  })
 
-    afterEach(() => {
-        // Clean up localStorage after each test
-        localStorage.clear();
-    });
+  it('should not set toggle when no parameters are provided', () => {
+    const {component} = setup()
+    expect(component.toggle1Checked).toBe(false)
+    expect(component.toggle2Checked).toBe(false)
+    expect(component.toggle3Checked).toBe(false)
+  })
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
-    });
+  it('should set toggle1 to true when tileNumber=1 and darkmode=true', () => {
+    const {component} = setup((key: string) => {
+      if (key === 'tileNumber') return '1'
+      if (key === 'darkmode') return 'true'
+      return null
+    })
 
-    it('should not set toggle when no parameters are provided', () => {
-        expect(component.toggle1Checked).toBe(false);
-        expect(component.toggle2Checked).toBe(false);
-        expect(component.toggle3Checked).toBe(false);
-    });
+    expect(component.toggle1Checked).toBe(true)
+    expect(component.toggle2Checked).toBe(false)
+    expect(component.toggle3Checked).toBe(false)
+  })
 
-    it('should set toggle1 to true when tileNumber=1 and darkmode=true', async () => {
-        const mockActivatedRoute = {
-            queryParamMap: of({
-                get: (key: string) => {
-                    if (key === 'tileNumber') return '1';
-                    if (key === 'darkmode') return 'true';
-                    return null;
-                }
-            })
-        };
+  it('should set toggle1 to false when tileNumber=1 and darkmode=false', () => {
+    const {component} = setup((key: string) => {
+      if (key === 'tileNumber') return '1'
+      if (key === 'darkmode') return 'false'
+      return null
+    })
 
-        await TestBed.configureTestingModule({
-            imports: [Tiles],
-            providers: [
-                {provide: ActivatedRoute, useValue: mockActivatedRoute}
-            ]
-        }).compileComponents();
+    expect(component.toggle1Checked).toBe(false)
+  })
 
-        const newFixture = TestBed.createComponent(Tiles);
-        const newComponent = newFixture.componentInstance;
-        await newFixture.whenStable();
-        newFixture.detectChanges();
+  it('should set toggle2 when tileNumber=2', () => {
+    const {component} = setup((key: string) => {
+      if (key === 'tileNumber') return '2'
+      if (key === 'darkmode') return 'true'
+      return null
+    })
 
-        expect(newComponent.toggle1Checked).toBe(true);
-        expect(newComponent.toggle2Checked).toBe(false);
-        expect(newComponent.toggle3Checked).toBe(false);
-    });
+    expect(component.toggle1Checked).toBe(false)
+    expect(component.toggle2Checked).toBe(true)
+    expect(component.toggle3Checked).toBe(false)
+  })
 
-    it('should set toggle1 to false when tileNumber=1 and darkmode=false', async () => {
-        const mockActivatedRoute = {
-            queryParamMap: of({
-                get: (key: string) => {
-                    if (key === 'tileNumber') return '1';
-                    if (key === 'darkmode') return 'false';
-                    return null;
-                }
-            })
-        };
+  it('should set toggle3 when tileNumber=3', () => {
+    const {component} = setup((key: string) => {
+      if (key === 'tileNumber') return '3'
+      if (key === 'darkmode') return 'true'
+      return null
+    })
 
-        await TestBed.configureTestingModule({
-            imports: [Tiles],
-            providers: [
-                {provide: ActivatedRoute, useValue: mockActivatedRoute}
-            ]
-        }).compileComponents();
+    expect(component.toggle1Checked).toBe(false)
+    expect(component.toggle2Checked).toBe(false)
+    expect(component.toggle3Checked).toBe(true)
+  })
 
-        const newFixture = TestBed.createComponent(Tiles);
-        const newComponent = newFixture.componentInstance;
-        await newFixture.whenStable();
-        newFixture.detectChanges();
+  it('should not set toggle when only tileNumber is provided', () => {
+    const {component} = setup((key: string) => {
+      if (key === 'tileNumber') return '1'
+      return null
+    })
 
-        expect(newComponent.toggle1Checked).toBe(false);
-    });
+    expect(component.toggle1Checked).toBe(false)
+    expect(component.toggle2Checked).toBe(false)
+    expect(component.toggle3Checked).toBe(false)
+  })
 
-    it('should set toggle2 when tileNumber=2', async () => {
-        const mockActivatedRoute = {
-            queryParamMap: of({
-                get: (key: string) => {
-                    if (key === 'tileNumber') return '2';
-                    if (key === 'darkmode') return 'true';
-                    return null;
-                }
-            })
-        };
+  it('should not set toggle when only darkmode is provided', () => {
+    const {component} = setup((key: string) => {
+      if (key === 'darkmode') return 'true'
+      return null
+    })
 
-        await TestBed.configureTestingModule({
-            imports: [Tiles],
-            providers: [
-                {provide: ActivatedRoute, useValue: mockActivatedRoute}
-            ]
-        }).compileComponents();
+    expect(component.toggle1Checked).toBe(false)
+    expect(component.toggle2Checked).toBe(false)
+    expect(component.toggle3Checked).toBe(false)
+  })
 
-        const newFixture = TestBed.createComponent(Tiles);
-        const newComponent = newFixture.componentInstance;
-        await newFixture.whenStable();
-        newFixture.detectChanges();
+  it('should not set toggle when tileNumber is invalid', () => {
+    const {component} = setup((key: string) => {
+      if (key === 'tileNumber') return '4'
+      if (key === 'darkmode') return 'true'
+      return null
+    })
 
-        expect(newComponent.toggle1Checked).toBe(false);
-        expect(newComponent.toggle2Checked).toBe(true);
-        expect(newComponent.toggle3Checked).toBe(false);
-    });
+    expect(component.toggle1Checked).toBe(false)
+    expect(component.toggle2Checked).toBe(false)
+    expect(component.toggle3Checked).toBe(false)
+  })
 
-    it('should set toggle3 when tileNumber=3', async () => {
-        const mockActivatedRoute = {
-            queryParamMap: of({
-                get: (key: string) => {
-                    if (key === 'tileNumber') return '3';
-                    if (key === 'darkmode') return 'true';
-                    return null;
-                }
-            })
-        };
+  it('should save to localStorage when updateMode1 is called', () => {
+    const {component} = setup()
+    component.updateMode1(true)
+    expect(localStorage.getItem('tile1Darkmode')).toBe('true')
+    expect(component.toggle1Checked).toBe(true)
+  })
 
-        await TestBed.configureTestingModule({
-            imports: [Tiles],
-            providers: [
-                {provide: ActivatedRoute, useValue: mockActivatedRoute}
-            ]
-        }).compileComponents();
+  it('should save to localStorage when updateMode2 is called', () => {
+    const {component} = setup()
+    component.updateMode2(true)
+    expect(localStorage.getItem('tile2Darkmode')).toBe('true')
+    expect(component.toggle2Checked).toBe(true)
+  })
 
-        const newFixture = TestBed.createComponent(Tiles);
-        const newComponent = newFixture.componentInstance;
-        await newFixture.whenStable();
-        newFixture.detectChanges();
+  it('should save to localStorage when updateMode3 is called', () => {
+    const {component} = setup()
+    component.updateMode3(true)
+    expect(localStorage.getItem('tile3Darkmode')).toBe('true')
+    expect(component.toggle3Checked).toBe(true)
+  })
 
-        expect(newComponent.toggle1Checked).toBe(false);
-        expect(newComponent.toggle2Checked).toBe(false);
-        expect(newComponent.toggle3Checked).toBe(true);
-    });
+  it('should load darkmode settings from localStorage on init', () => {
+    localStorage.setItem('tile1Darkmode', 'true')
+    localStorage.setItem('tile2Darkmode', 'true')
+    localStorage.setItem('tile3Darkmode', 'false')
 
-    it('should not set toggle when only tileNumber is provided', async () => {
-        const mockActivatedRoute = {
-            queryParamMap: of({
-                get: (key: string) => {
-                    if (key === 'tileNumber') return '1';
-                    return null;
-                }
-            })
-        };
+    const {component} = setup()
 
-        await TestBed.configureTestingModule({
-            imports: [Tiles],
-            providers: [
-                {provide: ActivatedRoute, useValue: mockActivatedRoute}
-            ]
-        }).compileComponents();
+    expect(component.toggle1Checked).toBe(true)
+    expect(component.toggle2Checked).toBe(true)
+    expect(component.toggle3Checked).toBe(false)
+  })
 
-        const newFixture = TestBed.createComponent(Tiles);
-        const newComponent = newFixture.componentInstance;
-        await newFixture.whenStable();
-        newFixture.detectChanges();
+  it('should save query parameter values to localStorage', () => {
+    setup((key: string) => {
+      if (key === 'tileNumber') return '2'
+      if (key === 'darkmode') return 'true'
+      return null
+    })
 
-        expect(newComponent.toggle1Checked).toBe(false);
-        expect(newComponent.toggle2Checked).toBe(false);
-        expect(newComponent.toggle3Checked).toBe(false);
-    });
-
-    it('should not set toggle when only darkmode is provided', async () => {
-        const mockActivatedRoute = {
-            queryParamMap: of({
-                get: (key: string) => {
-                    if (key === 'darkmode') return 'true';
-                    return null;
-                }
-            })
-        };
-
-        await TestBed.configureTestingModule({
-            imports: [Tiles],
-            providers: [
-                {provide: ActivatedRoute, useValue: mockActivatedRoute}
-            ]
-        }).compileComponents();
-
-        const newFixture = TestBed.createComponent(Tiles);
-        const newComponent = newFixture.componentInstance;
-        await newFixture.whenStable();
-        newFixture.detectChanges();
-
-        expect(newComponent.toggle1Checked).toBe(false);
-        expect(newComponent.toggle2Checked).toBe(false);
-        expect(newComponent.toggle3Checked).toBe(false);
-    });
-
-    it('should not set toggle when tileNumber is invalid', async () => {
-        const mockActivatedRoute = {
-            queryParamMap: of({
-                get: (key: string) => {
-                    if (key === 'tileNumber') return '4';
-                    if (key === 'darkmode') return 'true';
-                    return null;
-                }
-            })
-        };
-
-        await TestBed.configureTestingModule({
-            imports: [Tiles],
-            providers: [
-                {provide: ActivatedRoute, useValue: mockActivatedRoute}
-            ]
-        }).compileComponents();
-
-        const newFixture = TestBed.createComponent(Tiles);
-        const newComponent = newFixture.componentInstance;
-        await newFixture.whenStable();
-        newFixture.detectChanges();
-
-        expect(newComponent.toggle1Checked).toBe(false);
-        expect(newComponent.toggle2Checked).toBe(false);
-        expect(newComponent.toggle3Checked).toBe(false);
-    });
-
-    it('should save to localStorage when updateMode1 is called', () => {
-        component.updateMode1(true);
-        expect(localStorage.getItem('tile1Darkmode')).toBe('true');
-        expect(component.toggle1Checked).toBe(true);
-    });
-
-    it('should save to localStorage when updateMode2 is called', () => {
-        component.updateMode2(true);
-        expect(localStorage.getItem('tile2Darkmode')).toBe('true');
-        expect(component.toggle2Checked).toBe(true);
-    });
-
-    it('should save to localStorage when updateMode3 is called', () => {
-        component.updateMode3(true);
-        expect(localStorage.getItem('tile3Darkmode')).toBe('true');
-        expect(component.toggle3Checked).toBe(true);
-    });
-
-    it('should load darkmode settings from localStorage on init', async () => {
-        localStorage.setItem('tile1Darkmode', 'true');
-        localStorage.setItem('tile2Darkmode', 'true');
-        localStorage.setItem('tile3Darkmode', 'false');
-
-        const mockActivatedRoute = {
-            queryParamMap: of({
-                get: () => null
-            })
-        };
-
-        await TestBed.configureTestingModule({
-            imports: [Tiles],
-            providers: [
-                {provide: ActivatedRoute, useValue: mockActivatedRoute}
-            ]
-        }).compileComponents();
-
-        const newFixture = TestBed.createComponent(Tiles);
-        const newComponent = newFixture.componentInstance;
-        await newFixture.whenStable();
-        newFixture.detectChanges();
-
-        expect(newComponent.toggle1Checked).toBe(true);
-        expect(newComponent.toggle2Checked).toBe(true);
-        expect(newComponent.toggle3Checked).toBe(false);
-    });
-
-    it('should save query parameter values to localStorage', async () => {
-        const mockActivatedRoute = {
-            queryParamMap: of({
-                get: (key: string) => {
-                    if (key === 'tileNumber') return '2';
-                    if (key === 'darkmode') return 'true';
-                    return null;
-                }
-            })
-        };
-
-        await TestBed.configureTestingModule({
-            imports: [Tiles],
-            providers: [
-                {provide: ActivatedRoute, useValue: mockActivatedRoute}
-            ]
-        }).compileComponents();
-
-        const newFixture = TestBed.createComponent(Tiles);
-        await newFixture.whenStable();
-        newFixture.detectChanges();
-
-        expect(localStorage.getItem('tile2Darkmode')).toBe('true');
-    });
-});
+    expect(localStorage.getItem('tile2Darkmode')).toBe('true')
+  })
+})

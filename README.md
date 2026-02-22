@@ -64,6 +64,10 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.8.8
+There was a bug causing the region name text color to not change. That has been fixed. There was another issue with
+the Swagger url not loading. That is now working. Finally, some tests were updated.
+
 #### Version 1.8.7
 Updated the save background button to just be one button and changed the icon to a bookmark icon. Now, when you first
 view the button, it will show a bookmark with a plus icon and say 'Save Background'. Once you click it, the background

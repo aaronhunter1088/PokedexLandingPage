@@ -1375,9 +1375,9 @@ export class App {
     private setRegionNameTextColorFromHex(hex: string) {
         const rgb = this.hexToRgb(hex)
         if (rgb) {
-            document.documentElement.style.setProperty('--red-region-name-text-color', rgb.r.toString())
-            document.documentElement.style.setProperty('--green-region-name-text-color', rgb.g.toString())
-            document.documentElement.style.setProperty('--blue-region-name-text-color', rgb.b.toString())
+            document.documentElement.style.setProperty('--region-name-text-red-color', rgb.r.toString())
+            document.documentElement.style.setProperty('--region-name-text-green-color', rgb.g.toString())
+            document.documentElement.style.setProperty('--region-name-text-blue-color', rgb.b.toString())
         }
     }
 
