@@ -64,6 +64,9 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.8.9
+Updated the contextPath to point to an updated url for the Swagger documentation.
+
 #### Version 1.8.8
 There was a bug causing the region name text color to not change. That has been fixed. There was another issue with
 the Swagger url not loading. That is now working. Finally, some tests were updated.

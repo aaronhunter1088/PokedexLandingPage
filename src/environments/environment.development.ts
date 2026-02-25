@@ -12,6 +12,6 @@ export const environment = {
         return isMobile ? 'http://192.168.1.152:4203' : 'http://localhost:4203';
     },
     get swaggerUrl(): string {
-        return isMobile ? 'http://192.168.1.152:4204/combined/swagger-ui.html' : 'http://localhost:4204/combined/swagger-ui.html';
+        return isMobile ? 'http://192.168.1.152:4204/pokedexapi/swagger-ui.html' : 'http://localhost:4204/pokedexapi/swagger-ui.html';
     },
 };
