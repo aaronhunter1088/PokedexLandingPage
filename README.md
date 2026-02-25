@@ -64,6 +64,12 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.9.0
+Update the tile settings by removing the word 'Transparency' from the UI and replacing it with 'Color'. This is more
+clear as to what is being intensified or removed from the tile. If there is no color percentage, the tile is transparent
+so it works out the same and makes more sense to the user. (Before it was showing 100% as non-transparent when the tile
+was clearly transparent, which was confusing).
+
 #### Version 1.8.9
 Updated the contextPath to point to an updated url for the Swagger documentation.
 

@@ -106,9 +106,10 @@ export class App {
     protected tile1OutlineColor = signal(this.COLOR_WHITE)
     protected tile2OutlineColor = signal(this.COLOR_WHITE)
     protected tile3OutlineColor = signal(this.COLOR_WHITE)
-    protected tile1Transparency = signal(0)
-    protected tile2Transparency = signal(0)
-    protected tile3Transparency = signal(0)
+    // Seems more like it's color intensity but can double as going transparent.
+    protected tile1Transparency = signal(1)
+    protected tile2Transparency = signal(1)
+    protected tile3Transparency = signal(1)
     protected tile1Outline = signal(0)
     protected tile2Outline = signal(0)
     protected tile3Outline = signal(0)
@@ -1239,7 +1240,7 @@ export class App {
         document.documentElement.style.setProperty('--tile3-webkit-backdrop-filter', this.setBlurString(value))
         localStorage.setItem(this.TILE_3_BLUR, value.toString())
     }
-    
+
     // Helper to create blur string
     private setBlurString(value: number): string {
         return `blur(${value}px)`

@@ -57,7 +57,7 @@
                     <mat-tab #tab1Transparency>
                         <ng-template mat-tab-label>
                             <mat-icon class="example-tab-icon">opacity</mat-icon>
-                            Transparency
+                            Color
                         </ng-template>
                         <div style="display:flex;align-items:center;justify-content:center;">
                             <mat-slider max="1" min="0" step="0.01">
@@ -73,11 +73,11 @@
                         </color-compact>
                         <mat-checkbox (change)="updateMatchTileShade($event.checked)"
                                       [checked]="matchTileBackgroundAndOutlineShade()">
-                            Match Transparency & Outline Shade
+                            Match Outline Shade
                         </mat-checkbox>
                         <mat-checkbox (change)="updateMatchTileColors($event.checked)"
                                       [checked]="matchTileBackgroundAndOutlineColor()">
-                            Match Transparency & Outline Color
+                            Match Outline Color
                         </mat-checkbox>
                     </mat-tab>
 
@@ -101,11 +101,11 @@
                         </color-compact>
                         <mat-checkbox (change)="updateMatchTileShade($event.checked)"
                                       [checked]="matchTileBackgroundAndOutlineShade()">
-                            Match Transparency & Outline Shade
+                            Match Outline Shade
                         </mat-checkbox>
                         <mat-checkbox (change)="updateMatchTileColors($event.checked)"
                                       [checked]="matchTileBackgroundAndOutlineColor()">
-                            Match Transparency & Outline Color
+                            Match Outline Color
                         </mat-checkbox>
                     </mat-tab>
 
@@ -158,15 +158,15 @@
                     </mat-expansion-panel-header>
                     <mat-checkbox (change)="updateMatchRegionNameColors($event.checked)"
                                   [checked]="matchRegionNameBackgroundAndOutlineColor()">
-                        Match Transparency & Outline Color
+                        Match Outline Color
                     </mat-checkbox>
                     <mat-checkbox (change)="updateMatchRegionNameShade($event.checked)"
                                   [checked]="matchRegionNameTransparencyAndOutlineShade()">
-                        Match Transparency & Outline Shade
+                        Match Outline Shade
                     </mat-checkbox>
                     <br/>
                     <div style="display:inline-flex; align-items:center; gap: 1rem;">
-                        <p style="margin: 0;">Transparency</p>
+                        <p style="margin: 0;">Color</p>
                         <mat-slider max="1" min="0" step="0.01">
                             <input (input)="updateRegionNameTransparency($event)"
                                    [value]="showThisRegionNameTransparency()"
