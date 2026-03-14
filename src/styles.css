@@ -308,7 +308,7 @@ main {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 1rem;
+        /*padding: 1rem;*/
         position: relative;
         overflow: hidden;
     }
