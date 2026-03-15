@@ -3,15 +3,15 @@ const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/
 export const environment = {
     production: false,
     get springBootAppUrl(): string {
-        return isMobile ? 'http://192.168.1.152:4201/springboot/' : 'http://localhost:4201/springboot/';
+        return isMobile ? `http://${window.location.hostname}:4201/springboot/` : 'http://localhost:4201/springboot/';
     },
     get angularAppUrl(): string {
-        return isMobile ? 'http://192.168.1.152:4202' : 'http://localhost:4202';
+        return isMobile ? `http://${window.location.hostname}:4202` : 'http://localhost:4202';
     },
     get combinedAppUrl(): string {
-        return isMobile ? 'http://192.168.1.152:4203' : 'http://localhost:4203';
+        return isMobile ? `http://${window.location.hostname}:4203` : 'http://localhost:4203';
     },
     get swaggerUrl(): string {
-        return isMobile ? 'http://192.168.1.152:4204/pokedexapi/swagger-ui.html' : 'http://localhost:4204/pokedexapi/swagger-ui.html';
+        return isMobile ? `http://${window.location.hostname}:4201/springboot/swagger-ui.html` : 'http://localhost:4201/springboot/swagger-ui.html';
     },
 };
