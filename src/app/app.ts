@@ -37,7 +37,7 @@ export class App {
     protected readonly icon_bookmark_saved = 'bookmark_added'
     protected readonly icon_bookmark_remove = 'bookmark_remove'
     protected readonly Math = Math
-    protected readonly environment = environment;
+    protected readonly swaggerUrl: string = environment.swaggerUrl;
     // Colors
     protected readonly COLOR_WHITE = '#FFFFFF'
     protected readonly COLOR_BLACK = '#000000'

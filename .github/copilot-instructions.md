@@ -2,7 +2,9 @@
 
 ## Project Overview
 
-This is an Angular 21 application that serves as a landing page for multiple Pokédex applications. The project provides a visually appealing interface with customizable tiles, background images, and theme settings that persist across sessions using local storage.
+This is an Angular 21 application that serves as a landing page for multiple Pokédex applications. The project provides 
+a visually appealing interface with customizable tiles, background images, and theme settings that persist across 
+sessions using local storage.
 
 ## Technology Stack
 
@@ -129,7 +131,7 @@ Two environments are configured:
 
 When adding environment-specific configuration:
 - Update both environment files
-- Use `environment.apiUrl` or similar patterns
+- Use `environment.apiUrl` when storing variables
 - Ensure builds select the correct environment via angular.json
 
 ## When Making Changes
@@ -142,6 +144,7 @@ When adding environment-specific configuration:
 4. **Follow Material Design** - For UI components
 5. **Maintain accessibility** - Ensure proper ARIA attributes and keyboard navigation
 6. **Test responsiveness** - Verify the feature works on different screen sizes
+7. **Document changes** - Update README.md History section with version and description of changes
 
 ### Modifying Existing Code
 
@@ -196,14 +199,17 @@ When adding features:
 ## Documentation
 
 When making significant changes:
-- Update the README.md History section with a new version entry. New features should increase the minor number. Fixes or minor updates should increase the patch number. The major number should remain as is unless a major enhancement or change is introduced.
+- Update the README.md History section with a new version entry. New features should increase the minor number. 
+  Fixes or minor updates should increase the patch number. The major number should remain as is unless a major
+  enhancement or change is introduced.
 - Document the changes clearly
 - Include the version number following the existing pattern (x.y.z)
 - Explain the purpose and impact of changes
 
 ## Additional Notes
 
-- The application manages three different Pokédex application links (tiles): one Spring Boot app, one Angular app, and one app that is an Angular front-end and a Spring Boot back-end.
+- The application manages three different Pokédex application links (tiles): one Spring Boot app, one Angular app, and
+  one app that is an Angular front-end and a Spring Boot back-end.
 - Background images are themed by Pokémon regions
 - Settings can be controlled globally or per-tile
 - The side panel provides extensive customization options

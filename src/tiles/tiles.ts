@@ -27,7 +27,9 @@ export class Tiles implements OnInit, OnDestroy {
     // icons in use
     protected readonly icon_sunny = 'sunny';
     protected readonly icon_bedtime = 'bedtime';
-    protected readonly environment = environment;
+    protected readonly springbootAppUrl: string = environment.springBootAppUrl;
+    protected readonly angularAppUrl: string = environment.angularAppUrl;
+    protected readonly combinedAppUrl: string = environment.combinedAppUrl;
 
     constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef, private route: ActivatedRoute) {
     }

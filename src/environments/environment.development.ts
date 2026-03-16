@@ -13,5 +13,5 @@ export const environment = {
     },
     get swaggerUrl(): string {
         return isMobile ? `http://${window.location.hostname}:4201/springboot/swagger-ui.html` : 'http://localhost:4201/springboot/swagger-ui.html';
-    },
+    }
 };
