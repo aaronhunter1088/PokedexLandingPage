@@ -64,6 +64,10 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.9.1
+Updated the app.ts file to close the background accordian if it were still open when the sidenav is closed. This is
+how the other accordians work and this must have been missed.
+
 #### Version 1.9.0
 Update the tile settings by removing the word 'Transparency' from the UI and replacing it with 'Color'. This is more
 clear as to what is being intensified or removed from the tile. If there is no color percentage, the tile is transparent

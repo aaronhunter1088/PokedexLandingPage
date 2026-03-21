@@ -22,6 +22,8 @@ export class App {
     @ViewChild('tileAccordian') tileAccordian!: MatExpansionPanel
     // obtain reference to the element #regionNameAccordian
     @ViewChild('regionNameAccordian') regionNameAccordian!: MatExpansionPanel
+    // obtain reference to the element #backgroundAccordian
+    @ViewChild('backgroundAccordian') backgroundAccordion!: MatExpansionPanel
     // obtain reference to the element #aboutAccordian
     @ViewChild('aboutAccordian') aboutAccordian!: MatExpansionPanel
     // Signals
@@ -185,6 +187,7 @@ export class App {
         this.sidenav.closedStart.subscribe(() => {
             if (this.tileAccordian?.expanded) this.tileAccordian.close()
             if (this.regionNameAccordian?.expanded) this.regionNameAccordian.close()
+            if (this.backgroundAccordion?.expanded) this.backgroundAccordion.close()
             if (this.aboutAccordian?.expanded) this.aboutAccordian.close()
         })
     }
