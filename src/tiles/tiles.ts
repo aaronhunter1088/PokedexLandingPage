@@ -3,7 +3,7 @@ import {NgOptimizedImage} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MaterialModule} from '../app/materialModule';
 import {environment} from '../environments/environment';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     selector: 'app-tiles',
@@ -23,7 +23,7 @@ export class Tiles implements OnInit, OnDestroy {
     // Logo and full images separate to alternate independently
     ngLogoImgValue = 'spring-logo-white.png';
     ngFullImgValue = 'angular-full-white.png';
-    intervalId: any;
+    springBootVersion = '4.1.0-M4';
     // icons in use
     protected readonly icon_sunny = 'sunny';
     protected readonly icon_bedtime = 'bedtime';
@@ -31,7 +31,7 @@ export class Tiles implements OnInit, OnDestroy {
     protected readonly angularAppUrl: string = environment.angularAppUrl;
     protected readonly combinedAppUrl: string = environment.combinedAppUrl;
 
-    constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef, private route: ActivatedRoute) {
+    constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef, private activatedRoute: ActivatedRoute, private router: Router) {
     }
 
     ngOnInit() {
@@ -39,7 +39,7 @@ export class Tiles implements OnInit, OnDestroy {
         this.loadDarkmodeFromLocalStorage();
         
         // Read query parameters (these override localStorage if present)
-        this.route.queryParamMap.subscribe(params => {
+        this.activatedRoute.queryParamMap.subscribe(params => {
             const tileNumber = params.get('tileNumber');
             const darkmode = params.get('darkmode');
             
@@ -50,7 +50,7 @@ export class Tiles implements OnInit, OnDestroy {
                 
                 // Validate tileNumber is 1, 2, or 3
                 if (tileNum >= 1 && tileNum <= 3) {
-                    // Set the appropriate toggle and save to localStorage
+                    // Updates the toggles and localStorage
                     if (tileNum === 1) {
                         this.toggle1Checked = isDarkMode;
                         localStorage.setItem('tile1Darkmode', isDarkMode.toString());
@@ -62,6 +62,16 @@ export class Tiles implements OnInit, OnDestroy {
                         localStorage.setItem('tile3Darkmode', isDarkMode.toString());
                     }
                     this.cdr.detectChanges();
+
+                    // Clear query parameters from URL
+                    // Navigates to the same activatedRoute without query parameters using router.navigate([])
+                    // The URL changes
+                    // From http://localhost:4200?tileNumber=1/2/3&darkmode=true/false
+                    // To http://localhost:4200
+                    this.router.navigate([], {
+                        relativeTo: this.activatedRoute,
+                        queryParams: {}
+                    });
                 }
             }
         });
@@ -88,9 +98,6 @@ export class Tiles implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        if (this.intervalId) {
-            clearInterval(this.intervalId);
-        }
     }
 
     // Update darkmode for tile 1 and save to localStorage

@@ -34,6 +34,7 @@ To build the project run:
 
 ```bash
 ng build
+npm install - builds the package-lock.json file
 ```
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build
@@ -63,6 +64,9 @@ For more information on using the Angular CLI, including detailed command refere
 the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
 ## History
+
+#### Version 1.9.2
+Updated the tiles html page to use a variable to display the spring boot version.
 
 #### Version 1.9.1
 Updated the app.ts file to close the background accordian if it were still open when the sidenav is closed. This is
