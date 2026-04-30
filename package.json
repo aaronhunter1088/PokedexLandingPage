@@ -1,12 +1,12 @@
 {
   "name": "pokedex-landing-page",
-  "version": "1.9.2",
+  "version": "1.9.3",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "startPort": "ng serve --host 0.0.0.0",
-    "build": "ng build",
-    "build-server": "ng build --base-href / --deploy-url /",
+    "startLandingPage": "ng serve",
+    "startLandingPageAndMobile": "ng serve --host 0.0.0.0",
+    "buildLandingPage": "ng build",
+    "deployLandingPageForServer": "ng build --base-href / --deploy-url /",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
