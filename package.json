@@ -6,6 +6,7 @@
     "startLandingPage": "ng serve",
     "startLandingPageAndMobile": "ng serve --host 0.0.0.0",
     "buildLandingPage": "ng build",
+    "installLandingPage": "npm install",
     "deployLandingPageForServer": "ng build --base-href / --deploy-url /",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
