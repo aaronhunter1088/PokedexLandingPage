@@ -65,6 +65,9 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.9.4
+Added GitHub instruction files.
+
 #### Version 1.9.3
 Updated the package.json start scripts to correctly identify them in this new IntelliJ Multi-Project workspace.
 

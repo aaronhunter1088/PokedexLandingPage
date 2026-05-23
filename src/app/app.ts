@@ -152,9 +152,9 @@ export class App {
         'Galar': '8galarMap.png',
         'Paldea': '9paldeaMap.png'
     }
-    protected regionName = signal(Object.keys(this.regionsNameMap)[0])
-    protected randomImageIndex = signal(0)
-    protected backgroundImage = signal(Object.values(this.regionsNameMap)[0])
+    regionName = signal(Object.keys(this.regionsNameMap)[0])
+    randomImageIndex = signal(0)
+    backgroundImage = signal(Object.values(this.regionsNameMap)[0])
 
     // Component  constructor
     constructor(private cdr: ChangeDetectorRef) {
@@ -444,7 +444,7 @@ export class App {
         else {
             this.tile2SettingsButtonIcon.set(this.icon_apps)
         }
-        localStorage.setItem(this.TILE_2_SETTINGS_BUTTON_ICON, this.tile1SettingsButtonIcon())
+        localStorage.setItem(this.TILE_2_SETTINGS_BUTTON_ICON, this.tile2SettingsButtonIcon())
         localStorage.setItem(this.LAST_TILE_SETTINGS_BUTTON_CLICKED, this.TILE_2)
     }
 
@@ -456,7 +456,7 @@ export class App {
         else {
             this.tile3SettingsButtonIcon.set(this.icon_apps)
         }
-        localStorage.setItem(this.TILE_3_SETTINGS_BUTTON_ICON, this.tile1SettingsButtonIcon())
+        localStorage.setItem(this.TILE_3_SETTINGS_BUTTON_ICON, this.tile3SettingsButtonIcon())
         localStorage.setItem(this.LAST_TILE_SETTINGS_BUTTON_CLICKED, this.TILE_3)
     }
 
