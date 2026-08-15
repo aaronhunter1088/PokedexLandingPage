@@ -1,3 +1,13 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will check out the code, set up Node, build the
+# landing page, and deploy it to the temporary directory. We then
+# make a back up of the previous working version and deploy the
+# new version.
+# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#Publishing-using-gradle
+
 name: Landing Page Deployment
 
 on:

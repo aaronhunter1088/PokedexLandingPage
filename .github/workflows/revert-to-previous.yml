@@ -2,9 +2,9 @@
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
-# This workflow will revert the war from the backup if there
-# happens to be something wrong with the deployment of the
-# latest version. 
+# This workflow will revert the Landing Page from the backup
+# if there happens to be something wrong with the deployment
+# of the latest version.
 # For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#Publishing-using-gradle
 
 name: Revert To Previous Version
@@ -31,7 +31,7 @@ jobs:
             echo 'java -version'
             java -version
 
-      - name: Revert to Previous Version
+      - name: Revert to Previous Landing Page Version
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.SERVER_HOST }}
