@@ -115,12 +115,12 @@ export class App {
     protected tile1Transparency = signal(1)
     protected tile2Transparency = signal(1)
     protected tile3Transparency = signal(1)
-    protected tile1Outline = signal(0)
-    protected tile2Outline = signal(0)
-    protected tile3Outline = signal(0)
-    protected tile1Blur = signal(0)
-    protected tile2Blur = signal(0)
-    protected tile3Blur = signal(0)
+    protected tile1Outline = signal(1)
+    protected tile2Outline = signal(1)
+    protected tile3Outline = signal(1)
+    protected tile1Blur = signal(1)
+    protected tile2Blur = signal(1)
+    protected tile3Blur = signal(1)
     protected tile1TextFontFamily = signal(this.DEFAULT_TEXT_FONT_FAMILY)
     protected tile2TextFontFamily = signal(this.DEFAULT_TEXT_FONT_FAMILY)
     protected tile3TextFontFamily = signal(this.DEFAULT_TEXT_FONT_FAMILY)
@@ -437,6 +437,7 @@ export class App {
         }
         localStorage.setItem(this.TILE_1_SETTINGS_BUTTON_ICON, this.tile1SettingsButtonIcon())
         localStorage.setItem(this.LAST_TILE_SETTINGS_BUTTON_CLICKED, this.TILE_1)
+        this.cdr.detectChanges()
     }
 
     // Update the Settings Tile 2 Button Icon
@@ -449,6 +450,7 @@ export class App {
         }
         localStorage.setItem(this.TILE_2_SETTINGS_BUTTON_ICON, this.tile2SettingsButtonIcon())
         localStorage.setItem(this.LAST_TILE_SETTINGS_BUTTON_CLICKED, this.TILE_2)
+        this.cdr.detectChanges()
     }
 
     // Update the Settings Tile 3 Button Icon
@@ -461,6 +463,7 @@ export class App {
         }
         localStorage.setItem(this.TILE_3_SETTINGS_BUTTON_ICON, this.tile3SettingsButtonIcon())
         localStorage.setItem(this.LAST_TILE_SETTINGS_BUTTON_CLICKED, this.TILE_3)
+        this.cdr.detectChanges()
     }
 
     // =========== Tile Settings Methods =========== //
@@ -614,6 +617,25 @@ export class App {
         }
     }
 
+    // Show the background color for the currently active tile in the color picker
+    showThisBackgroundColor(): string {
+        if (!this.allTilesSelected() && !this.someTilesSelected()) {
+            return this.COLOR_WHITE
+        }
+        if (this.matchTileBackgroundAndOutlineColor()) {
+            return this.matchedTileBackgroundAndOutlineColor()
+        }
+        const lastClicked = localStorage.getItem(this.LAST_TILE_SETTINGS_BUTTON_CLICKED)
+        if (lastClicked === this.TILE_1) {
+            return this.tile1BackgroundColor()
+        } else if (lastClicked === this.TILE_2) {
+            return this.tile2BackgroundColor()
+        } else if (lastClicked === this.TILE_3) {
+            return this.tile3BackgroundColor()
+        }
+        return this.COLOR_WHITE
+    }
+
     // Update Tile Background Color
     updateTileBackgroundColorVariables(colors: ColorEvent) {
         if (!this.allTilesSelected() && !this.someTilesSelected()) {
@@ -637,6 +659,7 @@ export class App {
                     this.tile1BackgroundColor.set(colors.color.hex)
                     this.setTile1BackgroundColorVariables(colors)
                     localStorage.setItem(this.TILE_1_BACKGROUND_COLOR, this.tile1BackgroundColor())
+                    // set the color picker
                 }
                 if (this.tile2SettingsButtonIcon() === this.icon_check_box) {
                     this.tile2BackgroundColor.set(colors.color.hex)
@@ -707,8 +730,8 @@ export class App {
 
     // Show Tile Outline
     showThisOutline(): any {
-        // Return 0 if: no tiles are selected what so ever
-        if (!this.allTilesSelected()) {
+        // Return 0 if: no tiles are selected whatsoever
+        if (!this.allTilesSelected() && !this.someTilesSelected()) {
             return 0
         } else {
             if (this.allTilesSelected() || this.someTilesSelected()) {
