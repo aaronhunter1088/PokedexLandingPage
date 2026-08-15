@@ -1,0 +1,59 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will revert the war from the backup if there
+# happens to be something wrong with the deployment of the
+# latest version. 
+# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#Publishing-using-gradle
+
+name: Revert To Previous Version
+
+on:
+  workflow_dispatch:
+
+jobs:
+  revert-to-previous:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test SSH Connection
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            echo 'whoami' 
+            whoami
+            echo 'hostname'
+            hostname
+            echo 'java -version'
+            java -version
+            echo 'npm --version'
+            npm --version
+            echo 'node --version'
+            node --version
+
+      - name: Revert to Previous Version
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            # Stop Tomcat 11 Service
+            sudo systemctl stop tomcat11
+
+            # Revert to Previous Working Version
+            cd /opt/tomcat11
+            sudo rm -rf MyPokedex/ROOT
+            sudo mkdir MyPokedex/ROOT
+            sudo cp -a MyPokedexBackup/ROOT/* /opt/tomcat11/MyPokedex/ROOT/
+
+            # Update Permissions Again
+            sudo chown -R tomcat:tomcat /opt/tomcat11/MyPokedex/ROOT
+            sudo chmod -R 644 /opt/tomcat11/MyPokedex/ROOT
+
+            # Start Tomcat 11 Service
+            sudo systemctl start tomcat11
