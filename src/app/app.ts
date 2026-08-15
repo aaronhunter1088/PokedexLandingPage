@@ -330,7 +330,7 @@ export class App {
         if (removeBackgroundImage === 'true') {
             this.backgroundImageAndNameSaved.set(false)
             this.backgroundImageAndNameRemoved.set(false)
-            this.toggleBackground()
+            this.swapBackgroundImage()
         }
     }
 
@@ -398,8 +398,8 @@ export class App {
 
     // =========== Header Actions =========== //
 
-    // Update the background
-    toggleBackground(): void {
+    // Swaps the background image with another
+    swapBackgroundImage(): void {
         let randomIndex = this.randomImageIndex()
         while (randomIndex === this.randomImageIndex()) {
             randomIndex = Math.floor(Math.random() * Object.values(this.regionsNameMap).length)
