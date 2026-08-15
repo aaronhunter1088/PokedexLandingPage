@@ -42,36 +42,35 @@ jobs:
             # Stop script on a failing command rather than blindly continuing
             set -e
 
+            # Verify uploaded build before touching production
+            test -d /tmp/deploy/dist/PokedexLandingPage
+
             # Stop Tomcat 11 Service
-            systemctl stop tomcat11
+            sudo systemctl stop tomcat11
 
             # Copy Previous Working Version
             cd /opt/tomcat11
-            rm -rf MyPokedexBackup/ROOT
-            mkdir -p MyPokedexBackup/ROOT
-            cp -a MyPokedex/ROOT/. MyPokedexBackup/ROOT/
+            sudo rm -rf MyPokedexBackup/ROOT
+            sudo mkdir -p MyPokedexBackup/ROOT
+            sudo cp -a MyPokedex/ROOT/. MyPokedexBackup/ROOT/
 
             # Prepare New Version
-            rm -rf MyPokedex/ROOT
-            mv /tmp/deploy/dist/PokedexLandingPage /opt/tomcat11/MyPokedex/ROOT
+            sudo rm -rf MyPokedex/ROOT
+            sudo mv /tmp/deploy/dist/PokedexLandingPage /opt/tomcat11/MyPokedex/ROOT
 
             cd /opt/tomcat11/MyPokedex/ROOT
-            cp -a browser/. .
-            rm -rf browser
+            sudo cp -a browser/. .
+            sudo rm -rf browser
 
             # Update Ownership
-            chown -R tomcat:tomcat /opt/tomcat11/MyPokedex/ROOT
-            chown -R tomcat:tomcat /opt/tomcat11/MyPokedexBackup/ROOT
+            sudo chown -R tomcat:tomcat /opt/tomcat11/MyPokedex/ROOT
+            sudo chown -R tomcat:tomcat /opt/tomcat11/MyPokedexBackup/ROOT
 
             # Update Permissions
-            find /opt/tomcat11/MyPokedex/ROOT -type d -exec chmod 755 {} \;
-            find /opt/tomcat11/MyPokedex/ROOT -type f -exec chmod 644 {} \;
+            sudo find /opt/tomcat11/MyPokedex/ROOT -type d -exec chmod 755 {} \;
+            sudo find /opt/tomcat11/MyPokedex/ROOT -type f -exec chmod 644 {} \;
 
             # Start Tomcat 11 Service
-            systemctl start tomcat11
-
-            # Wait until Tomcat reports active, or fail after 120 seconds
-            timeout 120 bash -c 'until systemctl is-active --quiet tomcat11; do sleep 3; done'
-
-            # Show recent Tomcat logs
-            journalctl -u tomcat11 -n 100 --no-pager
+            sudo systemctl start tomcat11
+            timeout 120 bash -c 'until sudo systemctl is-active --quiet tomcat11; do sleep 3; done'
+            sudo journalctl -u tomcat11 -n 100 --no-pager
