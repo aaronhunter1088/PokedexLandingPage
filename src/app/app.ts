@@ -43,6 +43,9 @@ export class App {
     // Colors
     protected readonly COLOR_WHITE = '#FFFFFF'
     protected readonly COLOR_BLACK = '#000000'
+    protected readonly COLOR_SPRING_BOOT_GREEN = '#6DB33F'
+    protected readonly COLOR_ANGULAR_PINK = '#76147D'
+    protected readonly COLOR_COMBINED_GRAY = '#CCCCCC';
     // Local Storage Keys
     protected readonly DEFAULT_TEXT_FONT_FAMILY = 'Roboto, sans-serif'
     protected readonly LAST_TILE_SETTINGS_BUTTON_CLICKED = 'tileSettingsButtonLastClicked'
@@ -102,9 +105,9 @@ export class App {
     protected matchTileBackgroundAndOutlineColor = signal(false)
     protected matchedTileBackgroundAndOutlineColor = signal(this.COLOR_WHITE)
     protected matchedTileTransparencyAndOutline = signal(0)
-    protected tile1BackgroundColor = signal(this.COLOR_WHITE)
-    protected tile2BackgroundColor = signal(this.COLOR_WHITE)
-    protected tile3BackgroundColor = signal(this.COLOR_WHITE)
+    protected tile1BackgroundColor = signal(this.COLOR_SPRING_BOOT_GREEN)
+    protected tile2BackgroundColor = signal(this.COLOR_ANGULAR_PINK)
+    protected tile3BackgroundColor = signal(this.COLOR_COMBINED_GRAY)
     protected tile1OutlineColor = signal(this.COLOR_WHITE)
     protected tile2OutlineColor = signal(this.COLOR_WHITE)
     protected tile3OutlineColor = signal(this.COLOR_WHITE)
@@ -574,8 +577,8 @@ export class App {
             return 0
         } else {
             if (this.allTilesSelected() || !(this.onlyTile1Selected() ||
-                                             this.onlyTile2Selected() ||
-                                             this.onlyTile3Selected())) {
+                this.onlyTile2Selected() ||
+                this.onlyTile3Selected())) {
                 if (this.matchTileBackgroundAndOutlineShade()) {
                     return this.matchedTileTransparencyAndOutline()
                 }
@@ -807,8 +810,8 @@ export class App {
             return 0
         } else {
             if (this.allTilesSelected() || !(this.onlyTile1Selected() ||
-                                             this.onlyTile2Selected() ||
-                                             this.onlyTile3Selected())) {
+                this.onlyTile2Selected() ||
+                this.onlyTile3Selected())) {
                 // if multiple tiles are selected, return the blur of the last clicked tile
                 const lastClicked = localStorage.getItem('tileSettingsButtonLastClicked')
                 if (lastClicked === this.TILE_1) {
@@ -1399,15 +1402,15 @@ export class App {
     // Returns true if all tiles are selected
     private allTilesSelected(): boolean {
         return this.tile1SettingsButtonIcon() === this.icon_check_box &&
-               this.tile2SettingsButtonIcon() === this.icon_check_box &&
-               this.tile3SettingsButtonIcon() === this.icon_check_box
+            this.tile2SettingsButtonIcon() === this.icon_check_box &&
+            this.tile3SettingsButtonIcon() === this.icon_check_box
     }
 
     // Returns true if some tiles are selected
     private someTilesSelected(): boolean {
         return this.tile1SettingsButtonIcon() === this.icon_check_box ||
-               this.tile2SettingsButtonIcon() === this.icon_check_box ||
-               this.tile3SettingsButtonIcon() === this.icon_check_box
+            this.tile2SettingsButtonIcon() === this.icon_check_box ||
+            this.tile3SettingsButtonIcon() === this.icon_check_box
     }
 
     // Return true only if Tile 1 is selected

@@ -46,35 +46,35 @@ outside of it.
     -moz-osx-font-smoothing: grayscale;
 
     /* Tile Background Color Variables */
-    --tile1-red-color: 0;
-    --tile1-green-color: 0;
-    --tile1-blue-color: 0;
-    --tile1-transparency: 0;
+    --tile1-red-color: 109;
+    --tile1-green-color: 179;
+    --tile1-blue-color: 63;
+    --tile1-transparency: 1;
     --tile1-color: rgba(
     var(--tile1-red-color),
     var(--tile1-green-color),
     var(--tile1-blue-color),
-    var(--tile1-transparency, 0));
+    var(--tile1-transparency, 1));
 
-    --tile2-red-color: 0;
-    --tile2-green-color: 0;
-    --tile2-blue-color: 0;
-    --tile2-transparency: 0;
+    --tile2-red-color: 118;
+    --tile2-green-color: 20;
+    --tile2-blue-color: 125;
+    --tile2-transparency: 1;
     --tile2-color: rgba(
     var(--tile2-red-color),
     var(--tile2-green-color),
     var(--tile2-blue-color),
-    var(--tile2-transparency, 0));
+    var(--tile2-transparency, 1));
 
-    --tile3-red-color: 0;
-    --tile3-green-color: 0;
-    --tile3-blue-color: 0;
-    --tile3-transparency: 0;
+    --tile3-red-color: 205;
+    --tile3-green-color: 205;
+    --tile3-blue-color: 205;
+    --tile3-transparency: 1;
     --tile3-color: rgba(
     var(--tile3-red-color),
     var(--tile3-green-color),
     var(--tile3-blue-color),
-    var(--tile3-transparency, 0));
+    var(--tile3-transparency, 1));
 
     /* Tile Outline Variables */
     --tile1-outline-red-color: 0;
