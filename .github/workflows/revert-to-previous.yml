@@ -30,10 +30,6 @@ jobs:
             hostname
             echo 'java -version'
             java -version
-            echo 'npm --version'
-            npm --version
-            echo 'node --version'
-            node --version
 
       - name: Revert to Previous Version
         uses: appleboy/ssh-action@v1
