@@ -156,12 +156,24 @@
                     </mat-expansion-panel-header>
                     <mat-checkbox (change)="updateMatchRegionNameColors($event.checked)"
                                   [checked]="matchRegionNameBackgroundAndOutlineColor()">
-                        Match Outline Color
+                        Match Opacity
                     </mat-checkbox>
                     <mat-checkbox (change)="updateMatchRegionNameShade($event.checked)"
                                   [checked]="matchRegionNameTransparencyAndOutlineShade()">
-                        Match Outline Shade
+                        Same Outline Color
                     </mat-checkbox>
+                    <br/>
+                    <div style="display:inline-flex; align-items:center; gap: 1rem;">
+                        <p>Blur</p>
+                        <mat-slider max="20" min="0" step="0.1">
+                            <input (input)="updateRegionNameBlur($event)"
+                                   [value]="regionNameBlur()"
+                                   matSliderThumb
+                                   value="0">
+                        </mat-slider>
+                        {{ Math.round(regionNameBlur() * 5) }}%
+                    </div>
+
                     <br/>
                     <div style="display:inline-flex; align-items:center; gap: 1rem;">
                         <p style="margin: 0;">Color</p>
@@ -172,6 +184,7 @@
                         </mat-slider>
                         {{ Math.round(showThisRegionNameTransparency() * 100) }}%
                     </div>
+
                     <div style="display:block;justify-content:center;">
                         <color-compact
                                 [color]="regionNameBackgroundColor()"
@@ -179,33 +192,24 @@
                         ></color-compact>
                     </div>
 
-                    <br/>
-                    <div style="display:inline-flex; align-items:center; gap: 1rem;">
-                        <p>Blur</p>
-                        <mat-slider max="20" min="0" step="0.1">
-                            <input (input)="updateRegionNameBlur($event)"
-                                   [value]="regionNameBlur()"
-                                   matSliderThumb
-                                   value="0">
-                        </mat-slider>
-                    </div>
-
-                    <br/>
-                    <div style="display:inline-flex; align-items:center; gap: 1rem;">
-                        <p>Outline</p>
-                        <mat-slider max="1" min="0" step="0.01">
-                            <input (input)="updateRegionNameOutline($event)"
-                                   [value]="showThisRegionNameOutline()"
-                                   matSliderThumb
-                                   value="1">
-                        </mat-slider>
-                        {{ Math.round(showThisRegionNameOutline() * 100) }}%
-                    </div>
                     <div style="display:block;justify-content:center;">
-                        <color-compact
-                                [color]="regionNameOutlineColor()"
-                                (onChange)="updateRegionNameOutlineColorVariables($event)">
-                        </color-compact>
+                        <br/>
+                        <div style="display:inline-flex; align-items:center; gap: 1rem;">
+                            <p>Outline</p>
+                            <mat-slider max="1" min="0" step="0.01">
+                                <input (input)="updateRegionNameOutline($event)"
+                                       [value]="showThisRegionNameOutline()"
+                                       matSliderThumb
+                                       value="1">
+                            </mat-slider>
+                            {{ Math.round(showThisRegionNameOutline() * 100) }}%
+                        </div>
+                        @if (!matchRegionNameTransparencyAndOutlineShade()) {
+                            <color-compact
+                                    [color]="regionNameOutlineColor()"
+                                    (onChange)="updateRegionNameOutlineColorVariables($event)">
+                            </color-compact>
+                        }
                     </div>
 
                     <br/>
@@ -293,7 +297,7 @@
                     The <a href="https://pokeapi.co/" rel="noopener noreferrer" target="_blank">Pok&#233;API</a> is where
                     I obtained references to the Pok&#233;mon code (Java versus JavaScript libraries) and I even created
                     my own version of the Java library to enhance its functionality. You can view this enhanced functionality
-                    by navigating to the code's <a href="{{swaggerUrl}}" rel="noopener noreferrer" target="_blank">Swagger UI</a>
+                    by navigating to the code's <a href="{{swaggerUrl}}" rel="noopener noreferrer" target="_blank">OpenAPI UI</a>
                     page. There you can view all the same requests this app makes (pokemon-api/pokemon for example) and more.
                     While the app doesn't use all of the endpoints specifically, anyone could use the jar/library in their
                     own Java applications for their own Pok&#233;dex/Pok&#233;mon needs!<br/><br/>

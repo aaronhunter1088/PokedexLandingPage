@@ -162,8 +162,8 @@ outside of it.
     --region-name-outline: 1;
     --region-name-outline-color: rgba(
     var(--region-name-outline-red-color),
-    var(--region-name-outline-blue-color),
     var(--region-name-outline-green-color),
+    var(--region-name-outline-blue-color),
     var(--region-name-outline, 1));
 
     /* Region Name Blur Variables */
