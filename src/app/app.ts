@@ -386,13 +386,17 @@ export class App {
         localStorage.setItem(this.REGION_NAME_TEXT_COLOR, this.regionNameTextColor())
     }
 
-    // Initialize Copyright Text
+    /**
+     * Initialize the copyright text as a range from the launch year to the current year,
+     * e.g. © 2026 - 2027. Always shows both years, even if they are the same.
+     * @private
+     */
     private initializeCopyrightText(): void {
         const currentYear = new Date().getFullYear().toString()
-        const copyrightText = (currentYear === this.copyrightText())
-            ? `© ${this.copyrightText()}`
-            : `© ${this.copyrightText()} - ${currentYear}`
-        this.copyrightText.set(copyrightText)
+        if (currentYear === this.copyrightText())
+            this.copyrightText.set(`© ${this.copyrightText()}`)
+        else
+            this.copyrightText.set(`© ${this.copyrightText()} - ${currentYear}`)
     }
 
     // =========== Header Actions =========== //
