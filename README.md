@@ -1,4 +1,4 @@
-# PokédexLandingPage
+# Pokédex Landing Page
 
 ![Homepage.png](/Homepage.png)
 [![Landing Page Deployment](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/landing-page-deploy.yml/badge.svg?branch=main)](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/landing-page-deploy.yml)
