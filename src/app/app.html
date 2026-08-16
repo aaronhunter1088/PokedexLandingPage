@@ -20,7 +20,9 @@
                        class="sidenavContainer">
     <mat-sidenav-content>
         <main class="main">
-            <app-tiles></app-tiles>
+            <app-tiles [tile1BackgroundColor]="tile1BackgroundColor()"
+                       [tile2BackgroundColor]="tile2BackgroundColor()"
+                       [tile3BackgroundColor]="tile3BackgroundColor()"></app-tiles>
             <p id="copyright" style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); color: black; z-index: 10;">
                 {{ copyrightText() }}
             </p>

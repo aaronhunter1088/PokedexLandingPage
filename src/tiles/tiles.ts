@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MaterialModule} from '../app/materialModule';
@@ -26,6 +26,10 @@ export class Tiles implements OnInit, OnDestroy {
     protected readonly COLOR_SPRING_BOOT_GREEN = '#6DB33F'
     protected readonly COLOR_ANGULAR_PINK = '#76147D'
     protected readonly COLOR_COMBINED_GRAY = '#CCCCCC';
+    protected readonly encodeURIComponent = encodeURIComponent;
+    @Input() tile1BackgroundColor = this.COLOR_SPRING_BOOT_GREEN;
+    @Input() tile2BackgroundColor = this.COLOR_ANGULAR_PINK;
+    @Input() tile3BackgroundColor = this.COLOR_COMBINED_GRAY;
     // Logo and full images separate to alternate independently
     ngLogoImgValue = 'spring-logo-white.png';
     ngFullImgValue = 'angular-full-white.png';
