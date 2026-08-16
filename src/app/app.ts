@@ -28,7 +28,7 @@ export class App {
     @ViewChild('aboutAccordian') aboutAccordian!: MatExpansionPanel
     // Signals
     protected readonly title = signal('My Pokédex') // &#233 é
-    protected readonly copyrightText = signal('2026')
+    protected readonly copyrightText = signal('2026') // set up for 2026 - 'so on'
     // Icons in use
     protected readonly icon_info = 'info'
     protected readonly icon_replay = 'replay'
@@ -1451,4 +1451,6 @@ export class App {
             && this.tile1SettingsButtonIcon() === this.icon_apps
             && this.tile2SettingsButtonIcon() === this.icon_apps
     }
+
+    protected readonly Date = Date;
 }

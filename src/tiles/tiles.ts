@@ -20,6 +20,12 @@ export class Tiles implements OnInit, OnDestroy {
     toggle1Checked = false;
     toggle2Checked = false;
     toggle3Checked = false;
+    // Colors
+    protected readonly COLOR_WHITE = '#FFFFFF'
+    protected readonly COLOR_BLACK = '#000000'
+    protected readonly COLOR_SPRING_BOOT_GREEN = '#6DB33F'
+    protected readonly COLOR_ANGULAR_PINK = '#76147D'
+    protected readonly COLOR_COMBINED_GRAY = '#CCCCCC';
     // Logo and full images separate to alternate independently
     ngLogoImgValue = 'spring-logo-white.png';
     ngFullImgValue = 'angular-full-white.png';

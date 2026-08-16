@@ -32,9 +32,9 @@
             </mat-card-actions>
         </mat-card-footer>
     </mat-card>
-    <div aria-label="Divider" class="divider" role="separator"></div>
+
     <mat-card [style]="" class="glass2" id="tile2" tabindex="0">
-        <a [href]="angularAppUrl + '?darkmode=' + (toggle2Checked)" style="display: contents;">
+        <a [href]="angularAppUrl + '?darkmode=' + (toggle2Checked) + '&tileColor=' + COLOR_SPRING_BOOT_GREEN" style="display: contents;">
             <mat-card-header>
                 <mat-card-title class="tile2Text"> Angular</mat-card-title>
                 <mat-card-subtitle class="tile2Text"> v21</mat-card-subtitle>
@@ -66,7 +66,7 @@
             </mat-card-actions>
         </mat-card-footer>
     </mat-card>
-    <div aria-label="Divider" class="divider" role="separator"></div>
+
     <mat-card [style]="" class="glass3" id="tile3" tabindex="0">
         <a [href]="combinedAppUrl + '?darkmode=' + (toggle3Checked)"
            style="text-decoration:none; display: contents;">

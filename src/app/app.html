@@ -12,8 +12,8 @@
         </mat-card-content>
     </mat-card>
     <div class="header-icons">
-        <mat-icon (click)="swapBackgroundImage()" class="header-icon clickable">swap_calls</mat-icon>
-        <mat-icon (click)="updateSettingsIcon()" class="header-icon clickable">{{ settingsIcon() }}</mat-icon>
+        <mat-icon (click)="swapBackgroundImage()" class="header-icon clickable" tabindex="1">swap_calls</mat-icon>
+        <mat-icon (click)="updateSettingsIcon()" class="header-icon clickable" tabindex="2">{{ settingsIcon() }}</mat-icon>
     </div>
 </header>
 <mat-sidenav-container [style.background-image]="getBackgroundImageUrl()"
@@ -21,7 +21,7 @@
     <mat-sidenav-content>
         <main class="main">
             <app-tiles></app-tiles>
-            <p id="copyright" style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); color: black; z-index: 1000;">
+            <p id="copyright" style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); color: black; z-index: 10;">
                 {{ copyrightText() }}
             </p>
         </main>
