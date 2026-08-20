@@ -1,6 +1,6 @@
 # Pokédex Landing Page
 
-![Homepage.png](/Homepage.png)
+![Landing Page.png](/LandingPage.png)
 [![Landing Page Deployment](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/landing-page-deploy.yml/badge.svg?branch=main)](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/landing-page-deploy.yml)
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.5.
