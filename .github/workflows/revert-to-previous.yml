@@ -47,9 +47,13 @@ jobs:
             sudo mkdir MyPokedex/ROOT
             sudo cp -a MyPokedexBackup/ROOT/* /opt/tomcat11/MyPokedex/ROOT/
 
-            # Update Permissions Again
+            # Update Ownership
             sudo chown -R tomcat:tomcat /opt/tomcat11/MyPokedex/ROOT
-            sudo chmod -R 644 /opt/tomcat11/MyPokedex/ROOT
+            sudo chown -R tomcat:tomcat /opt/tomcat11/MyPokedexBackup/ROOT
+
+            # Update Permissions
+            sudo find /opt/tomcat11/MyPokedex/ROOT -type d -exec chmod 755 {} \;
+            sudo find /opt/tomcat11/MyPokedex/ROOT -type f -exec chmod 644 {} \;
 
             # Start Tomcat 11 Service
             sudo systemctl start tomcat11
