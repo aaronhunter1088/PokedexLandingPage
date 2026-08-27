@@ -40,8 +40,18 @@ ng build
 npm install - builds the package-lock.json file
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build
-optimizes your application for performance and speed.
+Run `deployLandingPageForServer` to build the project for server-side rendering. The built artifacts will be
+stored in the `dist/` directory. The PokedexLandingPage folder will contain a /broswer directory. That
+is what will be uploaded to the server. All files inside will be extracted and moved into the
+/angular directory.
+Login to the server using sftp.
+Execute put -r (/dist)/PokedexLandingPage /opt/tomcat11/ROOT
+This should successfully upload all the files inside the PokedexLandingPage folder to the server. Extract the files
+in the /browser directory and move them up one level to the /ROOT directory.
+Delete the pokedexapiui folder and the browser folder.
+The server will need to be configured to serve the files in the ROOT directory.
+
+We now have a GitHub Action to deploy and revert to the previous version. Use those actions.
 
 ## Running unit tests
 

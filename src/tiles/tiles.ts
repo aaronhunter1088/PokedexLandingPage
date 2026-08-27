@@ -33,7 +33,7 @@ export class Tiles implements OnInit, OnDestroy {
     // Logo and full images separate to alternate independently
     ngLogoImgValue = 'spring-logo-white.png';
     ngFullImgValue = 'angular-full-white.png';
-    springBootVersion = '4.1.0';
+    springBootVersion = '4.2.0-M1';
     // icons in use
     protected readonly icon_sunny = 'sunny';
     protected readonly icon_bedtime = 'bedtime';
