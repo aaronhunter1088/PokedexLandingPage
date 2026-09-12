@@ -6,6 +6,7 @@
     justify-content: center;
     align-content: center;
     margin-top: 1rem;
+    padding-bottom: 4rem;
 }
 
 .tile1Text {
@@ -101,7 +102,6 @@ a:link, a:visited, a:hover, a:active, a:focus {
         width: 100%;
         justify-content: center;
         margin-top: 1rem;
-        padding-bottom: 4rem;
     }
 
     .content {
