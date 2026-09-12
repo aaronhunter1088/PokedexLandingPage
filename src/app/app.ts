@@ -81,6 +81,7 @@ export class App {
     protected readonly TILE_2_TEXT_COLOR = 'tile2TextColor'
     protected readonly TILE_3_TEXT_COLOR = 'tile3TextColor'
     protected readonly MATCH_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR = 'matchRegionNameBackgroundColor'
+    protected readonly MATCH_REGION_NAME_TRANSPARENCY_AND_OUTLINE_SHADE = 'matchRegionNameTransparencyAndOutlineShade'
     protected readonly MATCHED_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR = 'matchedRegionNameColor'
     protected readonly REGION_NAME_BACKGROUND_COLOR = 'regionNameBackgroundColor'
     protected readonly REGION_NAME_OUTLINE_COLOR = 'regionNameOutlineColor'
@@ -340,6 +341,10 @@ export class App {
         this.matchRegionNameBackgroundAndOutlineColor.set(matchRegionNameColorsValue === 'true')
         localStorage.setItem(this.MATCH_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR, this.matchRegionNameBackgroundAndOutlineColor().toString())
 
+        const matchRegionNameShadeValue = localStorage.getItem(this.MATCH_REGION_NAME_TRANSPARENCY_AND_OUTLINE_SHADE)
+        this.matchRegionNameTransparencyAndOutlineShade.set(matchRegionNameShadeValue === 'true')
+        localStorage.setItem(this.MATCH_REGION_NAME_TRANSPARENCY_AND_OUTLINE_SHADE, this.matchRegionNameTransparencyAndOutlineShade().toString())
+
         if (this.matchRegionNameBackgroundAndOutlineColor()) {
             // Load matched region name color
             const matchedRegionNameColorValue = localStorage.getItem(this.MATCHED_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR)
@@ -512,10 +517,10 @@ export class App {
         this.cdr.detectChanges()
     }
 
-    // Update Match Tile Shade Checkbox
+    // Update Match Region Name Shade Checkbox
     updateMatchRegionNameShade(checked: boolean) {
         this.matchRegionNameTransparencyAndOutlineShade.set(checked)
-        localStorage.setItem(this.MATCH_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR, checked.toString())
+        localStorage.setItem(this.MATCH_REGION_NAME_TRANSPARENCY_AND_OUTLINE_SHADE, checked.toString())
         this.cdr.detectChanges()
     }
 
@@ -1069,7 +1074,7 @@ export class App {
             localStorage.setItem(this.REGION_NAME_BACKGROUND_COLOR, this.regionNameBackgroundColor())
         }
         this.cdr.detectChanges()
-        localStorage.setItem(this.MATCH_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR, this.matchRegionNameTransparencyAndOutlineShade().toString())
+        localStorage.setItem(this.MATCH_REGION_NAME_TRANSPARENCY_AND_OUTLINE_SHADE, this.matchRegionNameTransparencyAndOutlineShade().toString())
         localStorage.setItem(this.MATCHED_REGION_NAME_BACKGROUND_AND_OUTLINE_COLOR, this.matchedRegionNameBackgroundAndOutlineColor())
         localStorage.setItem(this.REGION_NAME_OUTLINE_COLOR, this.regionNameOutlineColor())
     }
