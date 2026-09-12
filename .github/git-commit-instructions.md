@@ -7,7 +7,7 @@ Format:
 
 Types:
 - feature/a_new_feature
-- fix/a_bug_fix
+- defect/a_bug_fix
 
 Summary:
 - A brief description of the change, separated by underscores, in all lowercase characters.
@@ -20,4 +20,4 @@ Rules for Summary Line:
 
 Examples:
 feature/add_hexadecimal_conversion_support
-fix/prevent_divide_by_zero_exception
+defect/prevent_divide_by_zero_exception
