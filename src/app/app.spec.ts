@@ -183,19 +183,19 @@ describe('App', () => {
     expect(url).toContain('.png')
   })
 
-  it('should update region name to a valid region when toggleBackground is called', () => {
+  it('should update region name to a valid region when swapBackgroundImage is called', () => {
     const {component} = setup()
     const validRegions = [
       'Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Ancient Sinnoh',
       'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'
     ]
-    component.toggleBackground()
+    component.swapBackgroundImage()
     expect(validRegions).toContain(component.regionName())
   })
 
-  it('should update backgroundImage to a .png file when toggleBackground is called', () => {
+  it('should update backgroundImage to a .png file when swapBackgroundImage is called', () => {
     const {component} = setup()
-    component.toggleBackground()
+    component.swapBackgroundImage()
     expect(component.backgroundImage()).toMatch(/\.png$/)
   })
 
