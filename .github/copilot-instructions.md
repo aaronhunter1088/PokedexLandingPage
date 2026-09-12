@@ -8,13 +8,13 @@ sessions using local storage.
 
 ## Technology Stack
 
-- **Framework**: Angular 21.0.0 with standalone components
-- **Language**: TypeScript 5.9.2 with strict mode enabled
-- **UI Components**: Angular Material 21.0.6
-- **Color Picker**: ngx-color 10.1.0
-- **Build Tool**: Angular CLI 21.0.5
-- **Testing**: Vitest 4.0.8
-- **Package Manager**: npm 11.6.2
+- **Framework**: Angular LTS with standalone components
+- **Language**: TypeScript with strict mode enabled
+- **UI Components**: Angular Material
+- **Color Picker**: ngx-color
+- **Build Tool**: Angular CLI
+- **Testing**: Vitest
+- **Package Manager**: npm LTS
 
 ## Project Structure
 
