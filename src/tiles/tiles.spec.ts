@@ -92,7 +92,7 @@ describe('Tiles', () => {
     capturedIntervalCallback = undefined
     vi.spyOn(globalThis, 'setInterval').mockImplementation((fn: TimerHandler) => {
       capturedIntervalCallback = fn as () => void
-      return 0 as unknown as ReturnType<typeof setInterval>
+      return 123 as unknown as ReturnType<typeof setInterval>
     })
   })
 
@@ -256,6 +256,14 @@ describe('Tiles', () => {
     expect((router as any).navigate).not.toHaveBeenCalled()
   })
 
+  it('should clear the rotation interval on destroy', () => {
+    const {component} = setup()
+    const clearIntervalSpy = vi.spyOn(globalThis, 'clearInterval')
+
+    component.ngOnDestroy()
+
+    expect(clearIntervalSpy).toHaveBeenCalled()
+  })
   // =========== updateMode Methods =========== //
 
   it('should set toggle1 and save to localStorage when updateMode1 is called with true', () => {

@@ -1,6 +1,7 @@
 import {ChangeDetectorRef, Component, Input, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import {Subscription} from 'rxjs';
 import {MaterialModule} from '../app/materialModule';
 import {environment} from '../environments/environment';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -16,6 +17,9 @@ import {ActivatedRoute, Router} from '@angular/router';
     styleUrls: ['./tiles.css'],
 })
 export class Tiles implements OnInit, OnDestroy {
+
+    private queryParamSubscription?: Subscription;
+    private rotationIntervalId?: ReturnType<typeof setInterval>;
 
     toggle1Checked = false;
     toggle2Checked = false;
@@ -49,15 +53,15 @@ export class Tiles implements OnInit, OnDestroy {
         this.loadDarkmodeFromLocalStorage();
         
         // Read query parameters (these override localStorage if present)
-        this.activatedRoute.queryParamMap.subscribe(params => {
+        this.queryParamSubscription = this.activatedRoute.queryParamMap.subscribe(params => {
             const tileNumber = params.get('tileNumber');
             const darkmode = params.get('darkmode');
-            
+
             // Both parameters must be present
             if (tileNumber && darkmode) {
                 const tileNum = parseInt(tileNumber, 10);
                 const isDarkMode = darkmode === 'true';
-                
+
                 // Validate tileNumber is 1, 2, or 3
                 if (tileNum >= 1 && tileNum <= 3) {
                     // Updates the toggles and localStorage
@@ -86,7 +90,7 @@ export class Tiles implements OnInit, OnDestroy {
             }
         });
         /* Swap logo on tile3 every 2 seconds */
-        setInterval(() => {
+        this.rotationIntervalId = setInterval(() => {
             this.ngZone.run(() => {
                 // swap to darkmode logo swap based on whether toggle is set or not
                 const color = this.toggle3Checked ? 'black' : 'white';
@@ -108,6 +112,12 @@ export class Tiles implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+        if (this.rotationIntervalId !== undefined) {
+            clearInterval(this.rotationIntervalId);
+            this.rotationIntervalId = undefined;
+        }
+
+        this.queryParamSubscription?.unsubscribe();
     }
 
     // Update darkmode for tile 1 and save to localStorage
