@@ -39,7 +39,10 @@ To build the project run:
 ng build
 npm install - builds the package-lock.json file
 ```
+Current:
+We now have two GitHub Actions to deploy the latest code and revert to the previous version. Use those actions.
 
+Legacy:
 Run `deployLandingPageForServer` to build the project for server-side rendering. The built artifacts will be
 stored in the `dist/` directory. The PokedexLandingPage folder will contain a /broswer directory. That
 is what will be uploaded to the server. All files inside will be extracted and moved into the
@@ -50,8 +53,6 @@ This should successfully upload all the files inside the PokedexLandingPage fold
 in the /browser directory and move them up one level to the /ROOT directory.
 Delete the pokedexapiui folder and the browser folder.
 The server will need to be configured to serve the files in the ROOT directory.
-
-We now have a GitHub Action to deploy and revert to the previous version. Use those actions.
 
 ## Running unit tests
 
@@ -77,6 +78,18 @@ For more information on using the Angular CLI, including detailed command refere
 the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
 ## History
+
+#### Version 1.10.0
+Updated the code by fixing a few issues identified. There were a few failing tests which are now fixed. There were a few
+severe vulnerabilities identified so `npm audit --omit=dev` was executed to identify the proper updates. NPM was updated
+to the latest LTS, 12.0.2. Running `npm audit fix` updated the affected packages to fix the vulnerabilities. There was
+a memory leak found in the tile image rotation which was patched. There was an incorrect local storage key used in the
+region name settings which was patched. Last, there was a legacy file which was no longer used. That file was removed.
+
+#### Version 1.9.5
+Updated the README.md file to include instructions for deploying the Landing Page to the server. This includes
+the steps to build the project and upload it to the server. The GitHub Action for deployment has also been updated to
+include the steps to build and deploy the project to the server.
 
 #### Version 1.9.4
 Added GitHub instruction files.

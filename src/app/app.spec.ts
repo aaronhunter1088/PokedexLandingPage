@@ -123,6 +123,11 @@ describe('App', () => {
     expect(component.matchRegionNameBackgroundAndOutlineColor()).toBe(false)
   })
 
+  it('should have matchRegionNameTransparencyAndOutlineShade as false by default', () => {
+    const {component} = setup()
+    expect(component.matchRegionNameTransparencyAndOutlineShade()).toBe(false)
+  })
+
   // =========== Tile Settings Button Icons =========== //
 
   it('should default all tile settings button icons to apps', () => {
@@ -183,19 +188,19 @@ describe('App', () => {
     expect(url).toContain('.png')
   })
 
-  it('should update region name to a valid region when toggleBackground is called', () => {
+  it('should update region name to a valid region when swapBackgroundImage is called', () => {
     const {component} = setup()
     const validRegions = [
       'Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Ancient Sinnoh',
       'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'
     ]
-    component.toggleBackground()
+    component.swapBackgroundImage()
     expect(validRegions).toContain(component.regionName())
   })
 
-  it('should update backgroundImage to a .png file when toggleBackground is called', () => {
+  it('should update backgroundImage to a .png file when swapBackgroundImage is called', () => {
     const {component} = setup()
-    component.toggleBackground()
+    component.swapBackgroundImage()
     expect(component.backgroundImage()).toMatch(/\.png$/)
   })
 
@@ -312,6 +317,32 @@ describe('App', () => {
     expect(component.matchRegionNameBackgroundAndOutlineColor()).toBe(true)
     component.updateMatchRegionNameColors(false)
     expect(component.matchRegionNameBackgroundAndOutlineColor()).toBe(false)
+  })
+
+  it('should update matchRegionNameTransparencyAndOutlineShade when updateMatchRegionNameShade is called', () => {
+    const {component} = setup()
+    component.updateMatchRegionNameShade(true)
+    expect(component.matchRegionNameTransparencyAndOutlineShade()).toBe(true)
+    component.updateMatchRegionNameShade(false)
+    expect(component.matchRegionNameTransparencyAndOutlineShade()).toBe(false)
+  })
+
+  it('should save region-name shade setting in its own localStorage key', () => {
+    localStorage.setItem('matchRegionNameBackgroundColor', 'false')
+    const {component} = setup()
+    component.updateMatchRegionNameShade(true)
+    expect(localStorage.getItem('matchRegionNameTransparencyAndOutlineShade')).toBe('true')
+    expect(localStorage.getItem('matchRegionNameBackgroundColor')).toBe('false')
+  })
+
+  it('should restore region-name color and shade settings independently on init', () => {
+    localStorage.setItem('matchRegionNameBackgroundColor', 'true')
+    localStorage.setItem('matchRegionNameTransparencyAndOutlineShade', 'false')
+
+    const {component} = setup()
+
+    expect(component.matchRegionNameBackgroundAndOutlineColor()).toBe(true)
+    expect(component.matchRegionNameTransparencyAndOutlineShade()).toBe(false)
   })
 
   it('should update regionNameTransparency when updateRegionNameTransparency is called', () => {
