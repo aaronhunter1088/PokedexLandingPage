@@ -6,6 +6,8 @@
     justify-content: center;
     align-content: center;
     margin-top: 1rem;
+    padding-bottom: 4rem;
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom));
 }
 
 .tile1Text {
@@ -100,7 +102,7 @@ a:link, a:visited, a:hover, a:active, a:focus {
         display: block;
         width: 100%;
         justify-content: center;
-        margin-top: 1rem;
+        padding-bottom: calc(4rem + env(safe-area-inset-bottom));
     }
 
     .content {
