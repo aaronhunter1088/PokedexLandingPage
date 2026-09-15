@@ -1,7 +1,7 @@
 # Pokédex Landing Page
 
 ![Landing Page.png](/LandingPage.png)
-[![Landing Page Deployment](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/landing-page-deploy.yml/badge.svg?branch=main)](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/landing-page-deploy.yml)
+[![Landing Page Deployment](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/landing-page-deploy.yml/badge.svg?branch=main)](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/landing-page-deploy.yml) [![Dependabot Updates](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/dependabot/dependabot-updates)
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.5.
 See below for historical changes.
