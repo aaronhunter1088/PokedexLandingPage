@@ -24,6 +24,9 @@
   },
   "private": true,
   "packageManager": "npm@12.0.2",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "dependencies": {
     "@angular/animations": "^22.1.6",
     "@angular/cdk": "^22.1.7",
@@ -33,7 +36,7 @@
     "@angular/forms": "^22.1.6",
     "@angular/material": "^22.1.7",
     "@angular/platform-browser": "^22.1.6",
-    "@angular/router": "^22.1.6",
+    "@angular/router": "^22.1.7",
     "ngx-color": "^10.1.0",
     "rxjs": "~7.8.2",
     "tslib": "^2.3.0"
@@ -44,6 +47,7 @@
     "@angular/compiler-cli": "^22.1.6",
     "@types/jasmine": "~6.0.0",
     "jasmine-core": "~7.0.2",
+    "jsdom": "^27.0.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
