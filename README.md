@@ -79,6 +79,9 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.10.1
+Dependency updates.
+
 #### Version 1.10.0
 Updated the code by fixing a few issues identified. There were a few failing tests which are now fixed. There were a few
 severe vulnerabilities identified so `npm audit --omit=dev` was executed to identify the proper updates. NPM was updated
