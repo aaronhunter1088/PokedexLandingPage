@@ -43,14 +43,15 @@ Use the current Angular major line for all `@angular/*` packages and allow compa
 
 | Package | Version |
 | ------- | ------- |
-| `@angular/cdk` | `^21.x` |
-| `@angular/common` | `^21.x` |
-| `@angular/compiler` | `^21.x` |
-| `@angular/core` | `^21.x` |
-| `@angular/forms` | `^21.x` |
-| `@angular/material` | `^21.x` |
-| `@angular/platform-browser` | `^21.x` |
-| `@angular/router` | `^21.x` |
+| `@angular/animations` | `^22.x` |
+| `@angular/cdk` | `^22.x` |
+| `@angular/common` | `^22.x` |
+| `@angular/compiler` | `^22.x` |
+| `@angular/core` | `^22.x` |
+| `@angular/forms` | `^22.x` |
+| `@angular/material` | `^22.x` |
+| `@angular/platform-browser` | `^22.x` |
+| `@angular/router` | `^22.x` |
 | `ngx-color` | `^10.x` |
 | `rxjs` | `~7.8.x` |
 | `tslib` | `^2.x` |
@@ -59,19 +60,20 @@ Use the current Angular major line for all `@angular/*` packages and allow compa
 
 | Package | Version |
 | ------- | ------- |
-| `@angular/build` | `^21.x` |
-| `@angular/cli` | `^21.x` |
-| `@angular/compiler-cli` | `^21.x` |
+| `@angular/build` | `^22.x` |
+| `@angular/cli` | `^22.x` |
+| `@angular/compiler-cli` | `^22.x` |
 | `jsdom` | `^27.x` |
-| `typescript` | `~5.9.x` |
+| `typescript` | `~6.0.x` |
 | `vitest` | `^4.x` |
 
-- All `@angular/*` packages must stay on the **same major version** (currently `21.x`).
+- All `@angular/*` packages must stay on the **same major version** (currently `22.x`).
 - Use `^` (caret) for Angular and most packages to allow compatible minor/patch updates without doc churn.
 - Use `~` (tilde) only where stricter patch-level pinning is needed (e.g., `rxjs`, `typescript`).
+- The current toolchain expects **Node.js 20.19 or newer**.
 - Do not add unnecessary dependencies — prefer using libraries already present in the project.
 - Verify Angular Material compatibility before upgrading any `@angular/*` package.
-- Update these version ranges only when the project moves to a new major line (for example `22.x`), not for routine `21.x` minor/patch releases.
+- Update these version ranges only when the project moves to a new major line (for example `23.x`), not for routine `22.x` minor/patch releases.
 
 ## Prettier Configuration
 
