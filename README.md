@@ -79,6 +79,9 @@ the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) 
 
 ## History
 
+#### Version 1.10.2
+This version updates dependencies and adds the version to the side panel.
+
 #### Version 1.10.1
 Dependency updates.
 
