@@ -29,6 +29,7 @@ export class App {
     // Signals
     protected readonly title = signal('My Pokédex') // &#233 é
     protected readonly copyrightText = signal('2026') // set up for 2026 - 'so on'
+    protected readonly appVersion = signal('1.10.2')
     // Icons in use
     protected readonly icon_info = 'info'
     protected readonly icon_replay = 'replay'
