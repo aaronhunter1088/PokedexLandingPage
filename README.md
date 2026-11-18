@@ -1,7 +1,7 @@
 # Pokédex Landing Page
 
-![Landing Page.png](/LandingPage.png)
-[![Landing Page Deployment](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/landing-page-deploy.yml/badge.svg?branch=main)](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/landing-page-deploy.yml) [![Dependabot Updates](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/dependabot/dependabot-updates)
+![Landing Page.png](LandingPage.png)
+[![Deploy Landing Page](https://github.com/aaronhunter1088/Pokedex-Manager/actions/workflows/deploy-landing-page.yml/badge.svg)](https://github.com/aaronhunter1088/Pokedex-Manager/actions/workflows/deploy-landing-page.yml) [![Dependabot Updates](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/dependabot/dependabot-updates)
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.5.
 See below for historical changes.
@@ -78,6 +78,9 @@ For more information on using the Angular CLI, including detailed command refere
 the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
 ## History
+
+#### Version 1.10.3
+This version updates dependencies and adds the version to the side panel.
 
 #### Version 1.10.2
 This version updates dependencies and adds the version to the side panel.
