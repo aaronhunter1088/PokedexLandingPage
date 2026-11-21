@@ -3,74 +3,65 @@
 ![Landing Page.png](LandingPage.png)
 [![Deploy Landing Page](https://github.com/aaronhunter1088/Pokedex-Manager/actions/workflows/deploy-landing-page.yml/badge.svg)](https://github.com/aaronhunter1088/Pokedex-Manager/actions/workflows/deploy-landing-page.yml) [![Dependabot Updates](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/aaronhunter1088/PokedexLandingPage/actions/workflows/dependabot/dependabot-updates)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.5.
-See below for historical changes.
+Landing page for the Pokédex apps (Spring Boot, Angular and Combined). It links to each app and lets the user
+customize the background, region name and tiles. Settings are saved in local storage.
+
+Built with [Angular](https://angular.dev) 22 and Angular Material. See [History](#history) for changes.
 
 ## Development server
 
-To start a local development server, run:
+Start the app with one of the npm scripts:
 
-```bash
-ng serve
-```
+| Script                               | Purpose                                                                       |
+|--------------------------------------|-------------------------------------------------------------------------------|
+| `npm run startLandingPage`           | Serves on `http://localhost:4200/` using the `development` environment.       |
+| `npm run startLandingPageAndMobile`  | Same, but also reachable from other devices on your network (`--host 0.0.0.0`). |
+| `npm run startLandingPageProdLocal`  | Uses the `localprod` environment, which targets locally running apps.         |
+| `npm run startLandingPageAndMobileProdLocal` | `localprod` plus network access, for testing on a phone.              |
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will
-automatically reload whenever you modify any of the source files.
+The `localprod` environment builds its links from the host the page was opened from, so a phone using
+`http://<your-ip>:4200/` reaches the other apps on your computer instead of its own `localhost`.
+The app reloads automatically when you change a source file.
 
 ## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+To generate a new component, run:
 
 ```bash
 ng generate component component-name
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
+For a complete list of schematics, run `ng generate --help`.
 
 ## Building
 
-To build the project run:
-
 ```bash
-ng build
-npm install - builds the package-lock.json file
+npm install                    # installs dependencies and updates package-lock.json
+npm ci                         # clean install from package-lock.json
+npm run deployLandingPageForServer   # production build into dist/
 ```
-Current:
-We now have two GitHub Actions to deploy the latest code and revert to the previous version. Use those actions.
 
-Legacy:
-Run `deployLandingPageForServer` to build the project for server-side rendering. The built artifacts will be
-stored in the `dist/` directory. The PokedexLandingPage folder will contain a /broswer directory. That
-is what will be uploaded to the server. All files inside will be extracted and moved into the
-/angular directory.
-Login to the server using sftp.
-Execute put -r (/dist)/PokedexLandingPage /opt/tomcat11/ROOT
-This should successfully upload all the files inside the PokedexLandingPage folder to the server. Extract the files
-in the /browser directory and move them up one level to the /ROOT directory.
-Delete the pokedexapiui folder and the browser folder.
-The server will need to be configured to serve the files in the ROOT directory.
+Deployments are done with two GitHub Actions: one deploys the latest code and the other reverts to the previous
+version. Use those actions.
+
+Legacy manual deployment:
+
+1. Run `npm run deployLandingPageForServer`. The artifacts are written to `dist/`, and the `PokedexLandingPage`
+   folder contains a `browser` directory. Its contents are what get uploaded.
+2. Log in to the server using sftp and run `put -r (/dist)/PokedexLandingPage /opt/tomcat11/ROOT`.
+3. On the server, move the files in the `browser` directory up one level into `/ROOT`, then delete the
+   `browser` folder (and the old `pokedexapiui` folder if present).
+4. The server must be configured to serve the files in `/ROOT`.
 
 ## Running unit tests
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Unit tests use the [Vitest](https://vitest.dev/) test runner through the Angular CLI:
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+There is no end-to-end test setup in this project.
 
 ## Additional Resources
 
@@ -78,6 +69,11 @@ For more information on using the Angular CLI, including detailed command refere
 the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
 ## History
+
+#### Version 1.11.0
+Fixed the side panel on iOS and other WebKit browsers, where the collapsed accordion panels did not close
+properly and hid the remaining options. Added a runtime-host `localprod` environment so the apps can be tested from a
+phone on the local network. Dependency updates and version alignment with the other Pokédex apps.
 
 #### Version 1.10.3
 This version updates dependencies and adds the version to the side panel.
@@ -110,8 +106,8 @@ Updated the package.json start scripts to correctly identify them in this new In
 Updated the tiles html page to use a variable to display the spring boot version.
 
 #### Version 1.9.1
-Updated the app.ts file to close the background accordian if it were still open when the sidenav is closed. This is
-how the other accordians work and this must have been missed.
+Updated the app.ts file to close the background accordion if it were still open when the sidenav is closed. This is
+how the other accordions work and this must have been missed.
 
 #### Version 1.9.0
 Update the tile settings by removing the word 'Transparency' from the UI and replacing it with 'Color'. This is more
