@@ -323,3 +323,8 @@ main {
 .tile-settings-panel .mat-mdc-tab-body {
     overflow: hidden !important;
 }
+
+/* WebKit (iOS Safari) lets collapsed expansion panel content overflow its 0fr grid row, leaving the panels open */
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-content-wrapper {
+    overflow: hidden;
+}
